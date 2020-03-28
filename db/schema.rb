@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_143519) do
 
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "classroom_id", null: false
-    t.datetime "scheduled_dt"
+    t.datetime "scheduled_at"
     t.string "live_url"
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
