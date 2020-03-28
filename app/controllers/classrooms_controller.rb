@@ -8,7 +8,7 @@ class ClassroomsController < ApplicationController
     @classroom = Classroom.find(params[:id])
     authorize @classroom
 
-    @live_session = @classroom.sessions.live.first
+    @live_session = @classroom.classroom_animations.live.first
     @resources = @classroom.resources
   end
 end

@@ -18,6 +18,32 @@ p{
 
 /*
 *
+* LIENS
+*
+*/
+.liens {
+    @apply inline-flex items-center px-1 pt-1 text-sm font-bold leading-5 text-blue-500
+}
+
+.liens:hover{
+    @apply text-teal-400
+}
+
+.liens:focus{
+    @apply outline-none transition duration-150 ease-in-out
+}
+
+.liensText{
+    @apply text-blue-500
+}
+
+.liensText:hover{
+    @apply text-teal-400
+}
+
+
+/*
+*
 * BOUTONS
 *
 */
@@ -68,4 +94,20 @@ p{
 
 .btn-orange:focus{
     @apply outline-none border-orange-700 shadow-outline-green 
+}
+/* PINK */
+.btn-pink{
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-pink-400
+}
+
+.btn-red:active{
+    @apply bg-pink-400 transition ease-in-out duration-150
+}
+
+.btn-red:hover{
+    @apply bg-pink-500 underline
+}
+
+.btn-red:focus{
+    @apply outline-none border-pink-400 shadow-outline-green 
 }
