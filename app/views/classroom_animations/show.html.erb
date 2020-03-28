@@ -16,9 +16,9 @@
 
     <div class="mb-2">
       <% if @classroom_animation.opened? %>
-        <%= render 'classroom_animations/closures/form', session: @classroom_animation %>
+        <%= render 'classroom_animations/closures/form', classroom_animation: @classroom_animation %>
       <% else %>
-        <%= render 'classroom_animations/openings/form', session: @classroom_animation %>
+        <%= render 'classroom_animations/openings/form', classroom_animation: @classroom_animation %>
       <% end %>
     </div>
   <% end %>
