@@ -18,6 +18,6 @@ module.exports = {
       },
       stage: 3
     }),
-    purgecss
+    ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])
   ]
 }
