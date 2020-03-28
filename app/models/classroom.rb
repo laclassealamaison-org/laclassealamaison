@@ -11,5 +11,5 @@
 #
 class Classroom < ApplicationRecord
   has_many :resources
-  has_many :sessions
+  has_many :classroom_animations
 end
