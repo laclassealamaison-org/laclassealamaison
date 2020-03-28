@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classroom: one
+  scheduled_at: 2020-03-28 15:00:09
+  live_url: MyString
+  user: one
+
+two:
+  classroom: two
+  scheduled_at: 2020-03-28 15:00:09
+  live_url: MyString
+  user: two
