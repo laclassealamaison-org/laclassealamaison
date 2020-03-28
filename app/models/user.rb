@@ -41,6 +41,8 @@ class User < ApplicationRecord
 
   has_many :sessions
 
+  scope :not_admin, -> { where.not(role: :admin) }
+
   def set_default_role
     self.role ||= :user
   end
