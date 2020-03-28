@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_080222) do
+ActiveRecord::Schema.define(version: 2020_03_28_140641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -20,10 +20,28 @@ ActiveRecord::Schema.define(version: 2020_03_28_080222) do
     t.string "name"
     t.integer "position"
     t.string "color"
-    t.string "videoconference_url"
-    t.string "ressources_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.string "url"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_resources_on_classroom_id"
+  end
+
+  create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.datetime "scheduled_dt"
+    t.string "live_url"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_sessions_on_classroom_id"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -51,4 +69,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_080222) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "resources", "classrooms"
+  add_foreign_key "sessions", "classrooms"
+  add_foreign_key "sessions", "users"
 end
