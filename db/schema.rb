@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_140641) do
+ActiveRecord::Schema.define(version: 2020_03_28_143519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2020_03_28_140641) do
     t.uuid "classroom_id", null: false
     t.datetime "scheduled_dt"
     t.string "live_url"
-    t.uuid "user_id", null: false
+    t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["classroom_id"], name: "index_sessions_on_classroom_id"
