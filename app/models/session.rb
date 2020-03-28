@@ -23,4 +23,8 @@
 class Session < ApplicationRecord
   belongs_to :classroom, optional: true
   belongs_to :user, optional: true
+
+  scope :live,            -> { where("scheduled_at < ? AND scheduled_at + interval '1 hour' > ?", Time.now, Time.now)}
+  # scope :open
+  # scope :live_and_open
 end
