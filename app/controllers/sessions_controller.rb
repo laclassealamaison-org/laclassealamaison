@@ -1,17 +1,21 @@
 class SessionsController < ApplicationController
   def show
     @session = Session.find(params[:id])
-  end
-
-  def new
-    @session = current_user.sessions.build
-    @session.scheduled_at = DateTime.now
-    @classrooms = Classroom.all
     authorize @session
   end
 
+  def new
+    @session = Session.new
+    authorize @session
+    @session.user = current_user
+    @session.scheduled_at = DateTime.now
+    @classrooms = Classroom.all
+  end
+
   def create
-    @session = current_user.sessions.build(session_params)
+    @session = Session.new(session_params)
+    authorize @session
+    @session.user = current_user
     @session.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
     if @session.save
       redirect_to session_path(@session)
