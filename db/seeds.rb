@@ -13,6 +13,13 @@ Classroom.create!([
 puts "...ok"
 
 
+User.create!([
+  { email: 'administrateur@laclassealamaison.org', password: 'admin@.org', role: :admin },
+  { email: 'parent@laclassealamaison.org', password: 'parent@.org', role: :responsible_parent },
+  { email: 'utilisateur@laclassealamaison.org', password: 'user@.org', role: :user }
+])
+teacher = User.create!(email: 'professeur@laclassealamaison.org', password: 'teacher@.org', role: :teacher)
+
 puts "Building Session instances..."
 
 available_times = [
@@ -30,11 +37,11 @@ available_times = [
 
 Classroom.all.each do |classroom|
   available_times.each do |available_time|
-    Session.create!({
+    ClassroomAnimation.create!({
       classroom: classroom,
-      scheduled_dt: available_time,
+      starts_at: available_time,
       live_url: nil,
-      user: nil
+      user: teacher
     })
   end
 end
