@@ -69,7 +69,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="468" y="180" name="sessions">
+<table x="468" y="179" name="classroom_animations">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -77,7 +77,7 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="classrooms" row="id" />
 </row>
-<row name="scheduled_dt" null="1" autoincrement="0">
+<row name="starts_at" null="1" autoincrement="0">
 <datatype>TIMESTAMP</datatype>
 <default>NULL</default></row>
 <row name="live_url" null="1" autoincrement="0">
@@ -87,6 +87,12 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
+<row name="opened" null="1" autoincrement="0">
+<datatype>BOOLEAN</datatype>
+<default>NULL</default></row>
+<row name="childrens_maximum" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
@@ -99,6 +105,9 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="classrooms" row="id" />
 </row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
 <row name="url" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>NULL</default></row>
