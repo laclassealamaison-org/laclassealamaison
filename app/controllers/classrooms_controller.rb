@@ -1,11 +1,11 @@
 class ClassroomsController < ApplicationController
   def index
     authorize Classroom
-    @classrooms = Classroom.all
+    @classrooms = Classroom.order(:position)
   end
 
   def show
-    authorize @classroom
     @classroom = Classroom.find(params[:id])
+    authorize @classroom
   end
 end
