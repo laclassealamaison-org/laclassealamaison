@@ -10,6 +10,6 @@
 #  updated_at :datetime         not null
 #
 class Classroom < ApplicationRecord
-    has_many :sessions
-    has_many :resources
+  has_many :resources
+  has_many :sessions
 end
