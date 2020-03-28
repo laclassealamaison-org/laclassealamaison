@@ -18,7 +18,7 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation.user = current_user
     @classroom_animation.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
     if @classroom_animation.save
-      redirect_to classroom_animation_path(@classroom_animation.id)
+      redirect_to classroom_animation_path(@classroom_animation)
     else
       @classrooms = Classroom.all
       render :new
