@@ -2,12 +2,12 @@
 
 one:
   classroom: one
-  scheduled_dt: 2020-03-28 15:00:09
+  scheduled_at: 2020-03-28 15:00:09
   live_url: MyString
   user: one
 
 two:
   classroom: two
-  scheduled_dt: 2020-03-28 15:00:09
+  scheduled_at: 2020-03-28 15:00:09
   live_url: MyString
   user: two
