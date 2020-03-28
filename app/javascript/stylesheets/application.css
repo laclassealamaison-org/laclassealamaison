@@ -21,6 +21,7 @@ p{
 * BOUTONS
 *
 */
+/* RED */
 .btn-red{
     @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-red-600
 }
@@ -36,7 +37,7 @@ p{
 .btn-red:focus{
     @apply outline-none border-red-500 shadow-outline-green 
 }
-
+/* GREEN */
 .btn-green{
     @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-green-400
 }
@@ -51,4 +52,20 @@ p{
 
 .btn-green:focus{
     @apply outline-none border-green-700 shadow-outline-green 
+}
+/* YELLOW-ORANGE */
+.btn-orange{
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-orange-400
+}
+
+.btn-orange:active{
+    @apply bg-orange-400 transition ease-in-out duration-150
+}
+
+.btn-orange:hover{
+    @apply bg-orange-500 underline
+}
+
+.btn-orange:focus{
+    @apply outline-none border-orange-700 shadow-outline-green 
 }
