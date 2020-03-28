@@ -15,6 +15,11 @@
           <%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
           <%= link_to 'FAQ', page_path('faq'), class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
           <%= link_to 'Contact', page_path('contact'), class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
+          <% if current_user %>
+            <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
+          <% else %>
+            <%= link_to 'Se connecter', new_user_session_path,class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
+          <% end %>
         </div>
       </div>
       <div class="-mr-2 flex items-center sm:hidden">
