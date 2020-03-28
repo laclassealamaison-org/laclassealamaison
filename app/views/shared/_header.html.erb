@@ -10,7 +10,7 @@
       </div>
       <div class="hidden sm:ml-6 sm:flex sm:items-center">
         <div class="hidden sm:ml-6 sm:flex">
-          <%= link_to 'Enfants', page_path('enfants'), class: 'inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
+          <%= link_to 'Enfants', classrooms_path, class: 'inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
           <%= link_to 'Parents', page_path('espace-parents'), class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
           <%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
           <%= link_to 'FAQ', page_path('faq'), class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
@@ -21,14 +21,6 @@
             <%= link_to 'Se connecter', new_user_session_path,class: 'ml-8 inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-blue-500 hover:text-blue-700 focus:outline-none transition duration-150 ease-in-out' %>
           <% end %>
         </div>
-      </div>
-      <div class="-mr-2 flex items-center sm:hidden">
-        <button @click="open = !open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path :class="{'hidden': open, 'inline-flex': !open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            <path :class="{'hidden': !open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
       </div>
     </div>
   </div>
