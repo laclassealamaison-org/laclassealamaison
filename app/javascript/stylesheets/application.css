@@ -1,3 +1,54 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+
+/*
+*
+* GENERAL
+*
+*/
+h2{
+    @apply text-gray-600 text-4xl mt-12 mb-4
+}
+p{
+    @apply text-lg text-gray-500 mb-4
+}
+
+
+/*
+*
+* BOUTONS
+*
+*/
+.btn-red{
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-red-600
+}
+
+.btn-red:active{
+    @apply bg-red-600 transition ease-in-out duration-150
+}
+
+.btn-red:hover{
+    @apply bg-red-700 underline
+}
+
+.btn-red:focus{
+    @apply outline-none border-red-500 shadow-outline-green 
+}
+
+.btn-green{
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-green-400
+}
+
+.btn-green:active{
+    @apply bg-green-700 transition ease-in-out duration-150
+}
+
+.btn-green:hover{
+    @apply bg-green-500 underline
+}
+
+.btn-green:focus{
+    @apply outline-none border-green-700 shadow-outline-green 
+}
