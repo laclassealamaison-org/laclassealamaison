@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  position: 1
+  color: MyString
+  videoconference_url: MyString
+  ressources_url: MyString
+
+two:
+  name: MyString
+  position: 1
+  color: MyString
+  videoconference_url: MyString
+  ressources_url: MyString
