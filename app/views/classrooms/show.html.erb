@@ -26,13 +26,12 @@
 
       <h2 class="text-3xl mt-12 mb-4">Autres ressources utiles</h2>
 
-      <!--
       <% @resources.each do |resource| %>
         <div class="my-12">
-          <%= link_to resource.description, resource.url, target: "_blank", class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150" %>
+          <p><%= resource.description %></p>
+          <%= link_to resource.name, resource.url, target: "_blank", class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150" %>
         </div>
       <% end %>
-      -->
 
     </div>
 
