@@ -8,7 +8,7 @@
 
         <% @classrooms.each do |classroom| %>
           <div class="my-12">
-            <%= link_to classroom.name, classroom_path(classroom), class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-#{classroom.color}-400 hover:bg-#{classroom.color}-500 focus:outline-none focus:border-#{classroom.color}-700 focus:shadow-outline-#{classroom.color} active:bg-#{classroom.color}-700 transition ease-in-out duration-150" %>
+            <%= link_to classroom.name, classroom_path(classroom), class: "btn-#{classroom.color}" %>
           </div>
         <% end %>
 
