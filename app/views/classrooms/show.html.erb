@@ -1,30 +1,31 @@
+<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300">
+    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <h1 class="py-6 text-4xl text-pink-400 font-bold"><%= @classroom.name %></h1>
+    </div>
+</header>
+
 <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-
-  <div class="flex content-center">
-
-    <div class="text-center">
-
-      <h1 class="text-4xl mt-12 mb-4"><%= @classroom.name %></h1>
-
-      <div class="my-12">
+  <div class="flex flex-wrap justify-between text-center">
+      <div class="my-12 flex-wrap flex-basis-2">
 
         <% if @live_session %>
           <span class="mb-3 inline-flex rounded-md shadow-sm">
-            <%= link_to "Rejoindre la classe en directe", @live_session.live_url, target: "_blank", class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-150" %>
+            <%= link_to "Rejoindre la classe en directe", @live_session.live_url, target: "_blank", class: "btn-gray" %>
           </span>
         <% else %>
-          <p class="items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-gray-400 focus:outline-none focus:border-gray-700 focus:shadow-outline-gray transition ease-in-out duration-150">
+          <p class="btn-gray">
             Il n'y a pas de direct pour le moment
           </p>
         <% end %>
 
       </div>
 
-      <div class="my-12">
-        <%= link_to "Questions/Réponses", '#', class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:border-yellow-700 focus:shadow-outline-yellow active:bg-yellow-700 transition ease-in-out duration-150" %>
+      <div class="my-12 flex-wrap flex-basis-2">
+        <%= link_to "Questions/Réponses", page_path('faq'), class: "btn-black" %>
       </div>
+  </div>
 
-      <h2 class="text-3xl mt-12 mb-4">Autres ressources utiles</h2>
+      <h2 class="text-3xl mt-6 mb-12">Autres ressources utiles</h2>
 
       <% @resources.each do |resource| %>
         <div class="my-12">
@@ -32,9 +33,5 @@
           <%= link_to resource.name, resource.url, target: "_blank", class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150" %>
         </div>
       <% end %>
-
-    </div>
-
-  </div>
-
+  
 </div>

@@ -19,6 +19,11 @@ ol{
   @apply list-decimal ml-20
 }
 
+.flex-basis50{
+    flex-basis: 50%;
+    margin: 0 auto;
+}
+
 
 /*
 *
@@ -111,67 +116,91 @@ ol{
 .btn-pink{
   @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-pink-400
 }
-
-.btn-red:active{
+.btn-pink:active{
   @apply bg-pink-400 transition ease-in-out duration-150
 }
-
-.btn-red:hover{
+.btn-pink:hover{
   @apply bg-pink-500
 }
-
-.btn-red:focus{
+.btn-pink:focus{
   @apply outline-none border-pink-400 shadow-outline-green
 }
 
 /* BLUE */
 .btn-blue {
-  @apply items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-blue-400;
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-blue-400
 }
-
 .btn-blue:hover {
-  @apply bg-blue-500;
+  @apply bg-blue-500
 }
-
 .btn-blue:focus {
-  @apply outline-none border-blue-700 shadow-outline-blue;
+  @apply inline-flex outline-none border-blue-700 shadow-outline-blue
 }
-
 .btn-blue:active {
-  @apply bg-blue-700;
+  @apply bg-blue-700
 }
 
 /* PURPLE */
 .btn-purple {
-  @apply items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-purple-400;
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-purple-400
 }
-
 .btn-purple:hover {
-  @apply bg-purple-500;
+  @apply bg-purple-500
 }
-
 .btn-purple:focus {
-  @apply outline-none border-purple-700 shadow-outline-purple;
+  @apply outline-none border-purple-700 shadow-outline-purple
 }
-
 .btn-purple:active {
-  @apply bg-purple-700;
+  @apply bg-purple-700
 }
-
 
 /* YELLOW */
 .btn-yellow {
-  @apply items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-yellow-400;
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-yellow-400
 }
 
 .btn-yellow:hover {
-  @apply bg-yellow-500;
+  @apply bg-yellow-500
 }
 
 .btn-yellow:focus {
-  @apply outline-none border-yellow-700 shadow-outline-yellow;
+  @apply outline-none border-yellow-700 shadow-outline-yellow
 }
 
 .btn-yellow:active {
-  @apply bg-yellow-700;
+  @apply bg-yellow-700
 }
+
+/* GRAY */
+.btn-gray{
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-gray-400
+  }
+  
+  .btn-gray:active{
+    @apply bg-gray-400 transition ease-in-out duration-150
+  }
+  
+  .btn-gray:hover{
+    @apply bg-gray-500
+  }
+  
+  .btn-gray:focus{
+    @apply outline-none border-gray-700 shadow-outline-green
+  }
+
+  /* BLACK */
+.btn-black{
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-gray-800
+  }
+  
+  .btn-black:active{
+    @apply bg-gray-800 transition ease-in-out duration-150
+  }
+  
+  .btn-black:hover{
+    @apply bg-gray-900
+  }
+  
+  .btn-black:focus{
+    @apply outline-none border-gray-800 shadow-outline-green
+  }

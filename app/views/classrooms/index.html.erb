@@ -1,21 +1,21 @@
-<div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-
-  <div class="flex content-center">
-
-    <div class="text-center">
-
-        <h1 class="text-4xl mt-12 mb-4">Choisissez la classe de votre enfant</h1>
-
-        <% @classrooms.each do |classroom| %>
-          <div class="my-12">
-            <%= link_to classroom.name, classroom_path(classroom), class: "btn-#{classroom.color}" %>
-          </div>
-        <% end %>
-        <% # Hack for PurgeCSS because btn-blue btn-purple btn-yellow are only used here %>
-        <!--<span class="btn-blue btn-purple btn-yellow"></span>-->
-
+<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300">
+    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <h1 class="py-6 text-4xl text-pink-400 font-bold">Enfants</h1>
     </div>
+</header>
 
-  </div>
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8 mb-12">
+
+        <h2 class="text-4xl mt-12 mb-4">Choisissez la classe de votre enfant</h2>
+
+        <div class="flex flex-wrap justify-between text-center">
+          <% @classrooms.each do |classroom| %>
+            <span class="my-6 flex-wrap flex-basis-2">
+              <%= link_to classroom.name, classroom_path(classroom), class: "btn-#{classroom.color} flex-basis50" %>
+            </span>
+          <% end %>
+        </div>
+        <% # Hack for PurgeCSS because btn-blue btn-purple btn-yellow are only used here %>
+        <!--<span class="btn-blue btn-purple btn-yellow w-1/2"></span>-->
 
 </div>
