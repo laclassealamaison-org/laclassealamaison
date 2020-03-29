@@ -26,7 +26,8 @@ class ClassroomAnimation < ApplicationRecord
   belongs_to :classroom
   belongs_to :user
 
-  scope :live,            -> { where("starts_at < ? AND starts_at + interval '1 hour' > ?", Time.now, Time.now)}
+  scope :live,            -> { where("starts_at < current_timestamp AND starts_at + interval '1 hour' > current_timestamp") }
+  scope :upcoming,         -> { where("starts_at > current_timestamp") }
   # scope :open
   # scope :live_and_open
 end

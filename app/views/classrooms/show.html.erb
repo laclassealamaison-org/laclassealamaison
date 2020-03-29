@@ -10,7 +10,7 @@
 
         <% if @live_session %>
           <span class="mb-3 inline-flex rounded-md shadow-sm">
-            <%= link_to "Rejoindre la classe en directe", @live_session.live_url, target: "_blank", class: "btn-gray" %>
+            <%= link_to "Rejoindre la classe en directe", @live_session.live_url, target: "_blank", class: "btn-blue-big" %>
           </span>
         <% else %>
           <p class="btn-gray">
@@ -25,13 +25,26 @@
       </div>
   </div>
 
-      <h2 class="text-3xl mt-6 mb-12">Autres ressources utiles</h2>
+  <h2 class="text-3xl mt-6 mb-12">Planning des cours à venir</h2>
 
-      <% @resources.each do |resource| %>
-        <div class="my-12">
-          <p><%= resource.description %></p>
-          <%= link_to resource.name, resource.url, target: "_blank", class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150" %>
-        </div>
-      <% end %>
+  <% if @upcoming_sessions.empty? %>
+    <p>Il n'y a pas de cours prévu prochainement...</p>
+  <% else %>
+    <% @upcoming_sessions.each do |session| %>
+      <div>
+        <%= l(session.starts_at) %> (Capacité maximum : <%= session.childrens_maximum %>)
+        <%#= session.user.email %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <h2 class="text-3xl mt-6 mb-12">Autres ressources utiles</h2>
+
+  <% @resources.each do |resource| %>
+    <div class="my-12">
+      <p><%= resource.description %></p>
+      <%= link_to resource.name, resource.url, target: "_blank", class: "items-center px-4 py-2 border border-transparent text-xl leading-5 font-medium rounded-lg text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition ease-in-out duration-150" %>
+    </div>
+  <% end %>
   
 </div>
