@@ -1,126 +1,117 @@
 <header class="bg-gray-100 border-t-2 border-b-2 border-gray-300">
-    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-        <h1 class="py-6 text-4xl text-pink-400 font-bold">Parents</h1>
-    </div>
+  <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+    <h1 class="py-6 text-4xl text-pink-400 font-bold">Professeurs Bénévoles</h1>
+  </div>
 </header>
 
 <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 mb-12">
 
-    <h2>Je suis un professeur de l’Education Nationale</h2>
+  <h2>Je suis un professeur de l’Education Nationale</h2>
 
-    <p>
-        Vous êtes enseignants de maternelle ou primaire (CP, CE1, CE2, CM1 ou CM2) ou professeurs des collèges et vous êtes disponibles pour nous rejoindre et enseigner aux enfants ?
-    </p>
+  <p>
+    Vous êtes enseignants de maternelle ou primaire (CP, CE1, CE2, CM1 ou CM2) et vous êtes disponibles pour nous rejoindre et enseigner aux enfants ?
+  </p>
 
-    <p>Nous vous mettons à disposition ce formulaire de contact (disponible en bas de page).</p>
+  <p>Merci de remplir ce formulaire de contact que nous traiterons sous 48-72h. Après validation de votre inscription, vous aurez alors accès à votre espace personnel qui vous permettra de réserver vos classes en fonction de vos disponibilités.</p>
 
-    <p>Merci de remplir ce formulaire de contact que nous traiterons sous 48-72h. Après validation de votre inscription, nous vous transmettrons les informations nécessaire à la tenue de vos classes (calendrier, mot de passe, etc…).</p>
+  <p>Nous vous remercions encore une fois pour votre coopération.</p>
 
-    <p>Nous vous remercions encore une fois pour votre coopération.</p>
+  <% if current_user&.teacher? %>
+  <span class="flex justify-center">
+    <%= link_to 'Accéder à mon espace personnel', classroom_animations_path, class: 'btn-red mt-12' %>
+  </span>
+  <% end %>
 
-    <span class="flex justify-center">
-        <%= link_to 'Accéder à la page de la classe virtuelle', page_path('politique-de-confidentialite'), class: 'btn-red mt-12' %>
-    </span>
+  <%= form_with(model: User, url: user_registration_path, local: true, html: { class: "w-full max-w-lg m-auto py-12" }) do |f| %>
 
-    <form class="w-full max-w-lg m-auto py-12">
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Prénom *
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="jane">
-                <p class="text-red-500 text-xs italic">Merci de remplir ce champs</p>
-            </div>
-            <div class="w-full md:w-1/2 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                    Nom *
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="doe">
-            </div>
-        </div>
+  <p>Création d'un compte professeur</p>
 
-        <div class="flex flex-wrap -mx-3 mb-6">
-            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Email *
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="jane.doe@gmail.com">
-            </div>
-            <div class="w-full md:w-1/2 px-3">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
-                    Téléphone *
-                </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="0606060606">
-            </div>
-        </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= f.label :first_name, 'Prénom *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+      <%= f.text_field :first_name, autofocus: true, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <%= f.label :last_name, 'Nom *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+      <%= f.text_field :last_name, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+  </div>
 
-        <p>Objet : Création d'un compte professeur</p>
-        
-        <div class="flex flex-wrap">
-            <div class="w-full">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-                    Message
-                </label>
-                <textarea class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="message"></textarea>
-            </div>
-        </div>
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= f.label :email, 'Email professionnel *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+      <%= f.email_field :email, placeholder: 'Ex : professeur@ac-paris.fr', required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <%= f.label :phone_number, 'Téléphone *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+      <%= f.phone_field :phone_number, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+  </div>
 
+  <div class="flex flex-wrap -mx-3 mb-6">
+    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+      <%= f.label :password, 'Mot de passe *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+      <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+    <div class="w-full md:w-1/2 px-3">
+      <%= f.label :password_confirmation, 'Confirmation de mot de passe *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white' %>
+    </div>
+  </div>
 
-        <div class="md:flex md:items-center my-6">
-            <label class="block text-gray-500 font-bold">
-            <input class="mr-2 leading-tight" type="checkbox">
-            <span class="text-sm">
-                J'accepte les conditions générales*
-            </span>
-            </label>
-        </div>
-        Politique de confidentialité :
-        <div class="md:flex md:items-center mb-6">
-            <label class="block text-gray-500 font-bold">
-            <input class="mr-2 leading-tight" type="checkbox">
-            <span class="text-sm">
-                En cochant cette case j’autorise "La classe à la maison" à enregistrer mes données personnelles (email, coordonnées, message)
-            </span>
-            </label>
-        </div>
-        <div class="md:flex md:items-center">
-            <div class="m-auto">
-            <button class="btn-pink" type="button">
-                Envoyer
-            </button>
-            </div>
-        </div>
+  <div class="md:flex md:items-center my-6">
+    <label class="block text-gray-500 font-bold">
+      <input class="mr-2 leading-tight" type="checkbox" required="true">
+      <span class="text-sm">
+        J'accepte les conditions générales*
+      </span>
+    </label>
+  </div>
+  Politique de confidentialité :
+  <div class="md:flex md:items-center mb-6">
+    <label class="block text-gray-500 font-bold">
+      <input class="mr-2 leading-tight" type="checkbox" required="true">
+      <span class="text-sm">
+        En cochant cette case j’autorise "La classe à la maison" à enregistrer mes données personnelles (email, coordonnées, message)
+      </span>
+    </label>
+  </div>
+
+  <div class="md:flex md:items-center">
+    <div class="m-auto">
+      <%= f.submit 'Envoyer', class: 'btn-pink' %>
+    </div>
+  </div>
+
+  <% end %>
 
 
-    </form>
+  <h2>Nos professeurs utilisent des classes en live</h2>
+  <p>
+    Chers professeurs,<br>
 
+    Merci infiniment pour le temps et l’énergie que vous consacrez à nos classes virtuelles.<br>
 
-    <h2>Nos professeurs utilisent des classes en live</h2>
-    <p>
-        Chers professeurs,<br>
+    Vous allez permettre à des enfants de pouvoir assurer une continuité pédagogique durant cette période de confinement.<br>
 
-        Merci infiniment pour le temps et l’énergie que vous consacrez à nos classes virtuelles.<br>
-        
-        Vous allez permettre à des enfants de pouvoir assurer une continuité pédagogique durant cette période de confinement.<br>
-        
-        Pour cela, notre site a besoin de vous, professeurs bénévoles, afin de garantir aux enfants des cours en live durant la semaine.<br>
-        
-        L’enseignement sera pour des enfants de maternelle et de primaire (CP, CE1, CE2, CM1, CM2).<br>
-        
-        Pour garder le lien parents/enfants et enseignants, nous avons mis à disposition une <a href="faq.html.erb" class="liens">FAQ</a>.<br>
-    </p>
+    Pour cela, notre site a besoin de vous, professeurs bénévoles, afin de garantir aux enfants des cours en live durant la semaine.<br>
 
-    <h2>Nos professeurs luttent contre le confinement</h2>
+    L’enseignement sera pour des enfants de maternelle et de primaire (CP, CE1, CE2, CM1, CM2).<br>
 
-    <p>Vous voulez aider les enfants ? </p>
+    Pour garder le lien parents/enfants et enseignants, nous avons mis à disposition une <%= link_to 'FAQ', page_path('faq'), class: 'liens' %>.<br>
+  </p>
 
-    <ul>
-        <li>Vous avez des micros et une webcam ? Vous pouvez donner des cours en live </li>
-        <li>Vous n’avez ni micro ni webcam ? Vous pouvez répondre aux questions et interagir avec les élèves sur le tchat.</li>
-    </ul>
+  <h2>Nos professeurs luttent contre le confinement</h2>
 
-    <p>Pour assurer la protection des enfants, l’accès à la room (classe virtuelle) « professeurs » est protégé par des identifiants. De plus, chaque professeur devra nous faire parvenir sa demande via son email professionnel.<br>
+  <p>Vous voulez aider les enfants ? </p>
+
+  <ul>
+    <li>Vous avez des micros et une webcam ? Vous pouvez donner des cours en live </li>
+    <li>Vous n’avez ni micro ni webcam ? Vous pouvez répondre aux questions et interagir avec les élèves sur le tchat.</li>
+  </ul>
+
+  <p>Pour assurer la protection des enfants, l’accès à la room (classe virtuelle) « professeurs » est protégé par des identifiants. De plus, chaque professeur devra nous faire parvenir sa demande via son email professionnel.<br>
 
     <p>Pour conclure, nous nous assurons que tous nos professeurs travaillent pour l’<a href="https://www.education.gouv.fr/" target="_blank" class="liens">éducation nationale</a>.</p>
 
-</div>
+  </div>
