@@ -11,6 +11,8 @@
             <%= link_to classroom.name, classroom_path(classroom), class: "btn-#{classroom.color}" %>
           </div>
         <% end %>
+        <% # Hack for PurgeCSS because btn-blue btn-purple btn-yellow are only used here %>
+        <!--<span class="btn-blue btn-purple btn-yellow"></span>-->
 
     </div>
 
