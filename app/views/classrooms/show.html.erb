@@ -10,7 +10,7 @@
 
         <% if @live_session %>
           <span class="mb-3 inline-flex rounded-md shadow-sm">
-            <%= link_to "Rejoindre la classe en directe", @live_session.live_url, target: "_blank", class: "btn-#{@classroom.color}" %>
+            <%= link_to "Rejoindre la classe en direct", @live_session.live_url, target: "_blank", class: "btn-#{@classroom.color}" %>
           </span>
         <% else %>
           <p class="btn-<%= @classroom.color %>">
