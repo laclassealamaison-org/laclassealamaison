@@ -1,9 +1,12 @@
 <hr class="bg-repeat-x p-2" style="background-image: url(<%= image_path 'ligne.png' %>)">
 <div class="bg-white">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-grow">
-    <%= link_to 'Mentions Légales', page_path('mentions-legales'), class: 'liensFooter' %> |
-    <%= link_to 'Politique de confidentialités des données', page_path('politique-de-confidentialite'), class: 'liensFooter' %>
-  </nav>
+  <div class="flex w-full justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav>
+      <%= link_to 'Mentions Légales', page_path('mentions-legales'), class: 'liensFooter' %> |
+      <%= link_to 'Politique de confidentialités des données', page_path('politique-de-confidentialite'), class: 'liensFooter' %>
+    </nav>
+    <%= link_to 'Signaler un bug', page_path('contact'), class: 'text-sm font-bold leading-5 text-red-500 hover:text-red-700' %>
+  </div>
   <div class="max-w-screen-xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
     <div class="flex justify-center md:order-2">
       <a href="https://www.facebook.com/laclassealamaison/" class="text-gray-400 hover:text-gray-500">
