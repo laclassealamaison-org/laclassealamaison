@@ -9,14 +9,14 @@
 *
 */
 h2{
-    @apply text-gray-600 text-4xl mt-12 mb-4
+  @apply text-gray-600 text-4xl mt-12 mb-4
 }
 p, li{
-    @apply text-lg text-gray-500 mb-4
+  @apply text-lg text-gray-500 mb-4
 }
 
 ol{
-    @apply list-decimal ml-20
+  @apply list-decimal ml-20
 }
 
 
@@ -26,31 +26,31 @@ ol{
 *
 */
 .liens {
-    @apply inline-flex items-center px-1 pt-1 text-sm font-bold leading-5 text-blue-500
+  @apply inline-flex items-center px-1 pt-1 text-sm font-bold leading-5 text-blue-500
 }
 
 .liens:hover{
-    @apply text-teal-400
+  @apply text-teal-400
 }
 
 .liens:focus{
-    @apply outline-none transition duration-150 ease-in-out
+  @apply outline-none transition duration-150 ease-in-out
 }
 
 .liensText{
-    @apply text-blue-500
+  @apply text-blue-500
 }
 
 .liensText:hover{
-    @apply text-teal-400
+  @apply text-teal-400
 }
 
 .liensFooter{
-    @apply text-sm font-bold leading-5 text-gray-400
+  @apply text-sm font-bold leading-5 text-gray-400
 }
 
 .liensFooter:hover{
-    @apply text-blue-500
+  @apply text-blue-500
 }
 
 
@@ -61,65 +61,117 @@ ol{
 */
 /* RED */
 .btn-red{
-    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-red-600
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-red-600
 }
 
 .btn-red:active{
-    @apply bg-red-600 transition ease-in-out duration-150
+  @apply bg-red-600 transition ease-in-out duration-150
 }
 
 .btn-red:hover{
-    @apply bg-red-700 underline
+  @apply bg-red-700
 }
 
 .btn-red:focus{
-    @apply outline-none border-red-500 shadow-outline-green 
+  @apply outline-none border-red-500 shadow-outline-green
 }
 /* GREEN */
 .btn-green{
-    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-green-400
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-green-400
 }
 
 .btn-green:active{
-    @apply bg-green-700 transition ease-in-out duration-150
+  @apply bg-green-700 transition ease-in-out duration-150
 }
 
 .btn-green:hover{
-    @apply bg-green-500 underline
+  @apply bg-green-500
 }
 
 .btn-green:focus{
-    @apply outline-none border-green-700 shadow-outline-green 
+  @apply outline-none border-green-700 shadow-outline-green
 }
 /* YELLOW-ORANGE */
 .btn-orange{
-    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-orange-400
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-orange-400
 }
 
 .btn-orange:active{
-    @apply bg-orange-400 transition ease-in-out duration-150
+  @apply bg-orange-400 transition ease-in-out duration-150
 }
 
 .btn-orange:hover{
-    @apply bg-orange-500 underline
+  @apply bg-orange-500
 }
 
 .btn-orange:focus{
-    @apply outline-none border-orange-700 shadow-outline-green 
+  @apply outline-none border-orange-700 shadow-outline-green
 }
 /* PINK */
 .btn-pink{
-    @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-pink-400
+  @apply inline-flex items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-pink-400
 }
 
 .btn-red:active{
-    @apply bg-pink-400 transition ease-in-out duration-150
+  @apply bg-pink-400 transition ease-in-out duration-150
 }
 
 .btn-red:hover{
-    @apply bg-pink-500 underline
+  @apply bg-pink-500
 }
 
 .btn-red:focus{
-    @apply outline-none border-pink-400 shadow-outline-green 
+  @apply outline-none border-pink-400 shadow-outline-green
+}
+
+/* BLUE */
+.btn-blue {
+  @apply items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-blue-400;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-500;
+}
+
+.btn-blue:focus {
+  @apply outline-none border-blue-700 shadow-outline-blue;
+}
+
+.btn-blue:active {
+  @apply bg-blue-700;
+}
+
+/* PURPLE */
+.btn-purple {
+  @apply items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-purple-400;
+}
+
+.btn-purple:hover {
+  @apply bg-purple-500;
+}
+
+.btn-purple:focus {
+  @apply outline-none border-purple-700 shadow-outline-purple;
+}
+
+.btn-purple:active {
+  @apply bg-purple-700;
+}
+
+
+/* YELLOW */
+.btn-yellow {
+  @apply items-center px-4 py-3 border border-transparent text-base leading-5 font-medium rounded-lg text-white bg-yellow-400;
+}
+
+.btn-yellow:hover {
+  @apply bg-yellow-500;
+}
+
+.btn-yellow:focus {
+  @apply outline-none border-yellow-700 shadow-outline-yellow;
+}
+
+.btn-yellow:active {
+  @apply bg-yellow-700;
 }
