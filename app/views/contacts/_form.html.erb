@@ -1,0 +1,58 @@
+<%= form_with(model: contact, url: contacts_path, local: true, html: { class: 'w-full max-w-lg m-auto py-12' }) do |form| %>
+    <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <%= form.label :first_name, 'Prénom *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+            <%= form.text_field :first_name, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+        </div>
+        <div class="w-full md:w-1/2 px-3">
+            <%= form.label :last_name, 'Nom *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+            <%= form.text_field :last_name, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap mb-6">
+        <div class="w-full">
+          <%= form.label :email, class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+          <%= form.text_field :email, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap mb-6">
+        <div class="w-full">
+          <%= form.label :subject, 'Objet', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+          <%= form.text_field :subject, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap mb-6">
+        <div class="w-full">
+            <%= form.label :message, class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+            <%= form.text_area :message, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+        </div>
+    </div>
+
+
+    <div class="md:flex md:items-center mb-6">
+        <label class="block text-gray-500 font-bold">
+        <input class="mr-2 leading-tight" type="checkbox" required="true">
+        <span class="text-sm">
+            J'accepte les conditions générales*
+        </span>
+        </label>
+    </div>
+    Politique de confidentialité :
+    <div class="md:flex md:items-center mb-6">
+        <label class="block text-gray-500 font-bold">
+        <input class="mr-2 leading-tight" type="checkbox" required="true">
+        <span class="text-sm">
+            En cochant cette case j’autorise "La classe à la maison" à enregistrer mes données personnelles (email, coordonnées, message)
+        </span>
+        </label>
+    </div>
+    <div class="md:flex md:items-center">
+        <div class="m-auto">
+          <%= form.submit 'Envoyer', class: 'btn-pink' %>
+        </div>
+    </div>
+
+<% end %>

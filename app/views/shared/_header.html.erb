@@ -4,7 +4,7 @@
     Chers Parents, en cliquant sur le bouton, vous pourrez vous inscrire pour être informés sur l'ouverture !
   </p>
   <span class="rounded-md shadow-sm ml-4">
-    <%= link_to 'Je veux être informé :)', page_path('newsletter'), class: 'btn-pink md:text-xs md:text-center md:py-1 md:px-2 md:mt-1' %>
+    <%= link_to 'Je veux être informé :)', new_newsletter_path, class: 'btn-pink md:text-xs md:text-center md:py-1 md:px-2 md:mt-1' %>
   </span>
 </header>
 
@@ -35,7 +35,7 @@
           <%= link_to 'Parents', page_path('espace-parents'), class: 'liens ml-8' %>
           <%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'liens ml-8' %>
           <%= link_to 'Questions/Réponses', page_path('faq'), class: 'liens ml-8' %>
-          <%= link_to 'Contact', page_path('contact'), class: 'liens ml-8' %>
+          <%= link_to 'Contact', new_contact_path, class: 'liens ml-8' %>
           <%= link_to 'Espace personnel', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
           <%= link_to 'Administration des professeurs', administration_teachers_path, class: 'liens ml-8' if current_user&.admin? %>
           <% if current_user %>

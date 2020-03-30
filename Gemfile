@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'high_voltage'
+gem 'mail_form'
 gem 'mailjet'
 gem 'meta-tags'
 gem 'pundit'
