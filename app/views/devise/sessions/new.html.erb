@@ -1,11 +1,16 @@
-<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300">
+    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <h1 class="py-6 text-4xl text-pink-400 font-bold">Se Connecter</h1>
+    </div>
+</header>
+<div class="py-12 bg-gray-50 flex flex-col justify-center sm:px-6 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-      Se connecter
+    <h2 class="mt-0">
+      <%= image_tag 'logo.png', alt: 'La classe à la maison', class: 'w-full' %>
     </h2>
   </div>
 
-  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="mt-1 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>        
         <div>
