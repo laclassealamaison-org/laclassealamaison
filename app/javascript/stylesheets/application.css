@@ -19,6 +19,10 @@ ol{
   @apply list-decimal ml-20
 }
 
+ul{
+  @apply list-disc ml-20
+}
+
 .flex-basis50{
     flex-basis: 50%;
     margin: 0 auto;
