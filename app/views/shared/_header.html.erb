@@ -46,6 +46,22 @@
         </div>
       </div>
     </div>
+    <div class="sm:hidden block flex justify-center text-center">
+      <ul class="py-4 ml-0 ">
+        <li class="list-none"><%= link_to 'Enfants', classrooms_path, class: 'liens' %></li>
+        <li class="list-none"><%= link_to 'Parents', page_path('espace-parents'), class: 'liens' %></li>
+        <li class="list-none"><%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'liens' %></li>
+        <li class="list-none"><%= link_to 'Questions/Réponses', page_path('faq'), class: 'liens' %></li>
+        <li class="list-none"><%= link_to 'Contact', new_contact_path, class: 'liens' %></li>
+        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace personnel', classroom_animations_path, class: 'liens' %></li><% end %>
+        <% if current_user&.admin? %><li class="list-none"><%= link_to 'Administration des professeurs', administration_teachers_path, class: 'liens' %></li><% end %>
+        <% if current_user %>
+          <li class="list-none"><%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'liens' %></li>
+        <% else %>
+          <li class="list-none"><%= link_to 'Se connecter', new_user_session_path,class: 'liens' %></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
 <hr class="bg-repeat-x p-2" style="background-image: url(<%= image_path 'ligne.png' %>)">
