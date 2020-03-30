@@ -9,7 +9,7 @@ class ClassroomsController < ApplicationController
     authorize @classroom
 
     @upcoming_sessions = @classroom.classroom_animations.upcoming
-    @live_session = @classroom.classroom_animations.live.first
+    @live_session = @classroom.classroom_animations.live.open.first
     @resources = @classroom.resources
   end
 end

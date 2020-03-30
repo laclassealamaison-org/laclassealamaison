@@ -28,6 +28,6 @@ class ClassroomAnimation < ApplicationRecord
 
   scope :live, -> { where("starts_at < current_timestamp AND starts_at + interval '1 hour' > current_timestamp") }
   scope :upcoming, -> { where("starts_at > current_timestamp") }
-  # scope :open
+  scope :open, -> { where(opened: true) }
   # scope :live_and_open
 end
