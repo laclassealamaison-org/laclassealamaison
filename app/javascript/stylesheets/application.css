@@ -190,19 +190,19 @@ ol{
 
   /* BLACK */
 .btn-black{
-    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-gray-800
+    @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-indigo-300
   }
   
   .btn-black:active{
-    @apply bg-gray-800 transition ease-in-out duration-150
+    @apply bg-indigo-300 transition ease-in-out duration-150
   }
   
   .btn-black:hover{
-    @apply bg-gray-900
+    @apply bg-indigo-400
   }
   
   .btn-black:focus{
-    @apply outline-none border-gray-800 shadow-outline-green
+    @apply outline-none border-indigo-300 shadow-outline-green
   }
 
 /* BLUE BIG */
