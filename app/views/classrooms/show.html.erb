@@ -4,16 +4,16 @@
     </div>
 </header>
 
-<div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8 ">
   <div class="flex flex-wrap justify-between text-center">
       <div class="my-12 flex-wrap flex-basis-2">
 
         <% if @live_session %>
           <span class="mb-3 inline-flex rounded-md shadow-sm">
-            <%= link_to "Rejoindre la classe en direct", @live_session.live_url, target: "_blank", class: "btn-blue-big" %>
+            <%= link_to "Rejoindre la classe en direct", @live_session.live_url, target: "_blank", class: "btn-#{classroom.color}" %>
           </span>
         <% else %>
-          <p class="btn-gray">
+          <p class="btn-<%= @classroom.color %> ">
             Il n'y a pas de direct pour le moment
           </p>
         <% end %>
@@ -25,20 +25,20 @@
       </div>
   </div>
 
-  <h2 class="text-3xl mt-6 mb-12">Planning des cours à venir</h2>
+  <h2 class="mt-1">Planning des cours à venir</h2>
 
   <% if @upcoming_sessions.empty? %>
     <p>Il n'y a pas de cours prévu prochainement...</p>
   <% else %>
     <% @upcoming_sessions.each do |session| %>
-      <div>
+      <p class="mb-0">
         <%= l(session.starts_at) %> (Capacité maximum : <%= session.childrens_maximum %>)
         <%#= session.user.email %>
-      </div>
+      </p>
     <% end %>
   <% end %>
 
-  <h2 class="text-3xl mt-6 mb-12">Autres ressources utiles</h2>
+  <h2>Autres ressources utiles</h2>
 
   <% @resources.each do |resource| %>
     <div class="my-12 text-center">
