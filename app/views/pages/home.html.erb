@@ -4,6 +4,12 @@
 
     <div class="text-center">
 
+      <% flash.each do |key, value| %>
+        <div class="mt-4">
+          <p class="btn-green"><%= value %></p>
+        </div>
+      <% end %>
+
       <h1 class="text-4xl mt-12 mb-4">La Classe à la Maison assure un soutien pédagogique</h1>
 
       <p class="mb-4">
@@ -27,7 +33,7 @@
         <%= image_tag 'enfants-devant-ecran.jpg', alt: 'Enfants devant un écran', class: 'mx-auto' %>
       </div>
 
-      
+
 
       <h2 class="text-4xl mt-12 mb-4">Une solution basée sur des valeurs humaines</h2>
 
@@ -55,7 +61,7 @@
           <%= link_to 'En savoir plus', page_path('espace-parents'), class: 'btn-red' %>
         </span>
 
-      
+
 
     </div>
 
