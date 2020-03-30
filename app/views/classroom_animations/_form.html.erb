@@ -1,0 +1,17 @@
+<%= form_with(model: classroom_animation, local: true) do |form| %>
+  <div class="mb-2">
+    <%= form.label :starts_at, 'Date :' %>
+    <%= form.datetime_select :starts_at, prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure' }, discard_minute: true %> heures
+  </div>
+  <div class="mb-2">
+    <%= form.label :classroom_id, 'Niveau :' %>
+    <%= form.collection_select :classroom_id, classrooms, :id, :name, { include_blank: true } %>
+  </div>
+  <div class="mb-2">
+    <%= form.label :childrens_maximum, 'Nombre d\'élèves maximum' %>
+    <%= form.number_field :childrens_maximum, required: true %>
+  </div>
+  <div class="mb-2">
+    <%= form.submit 'Planifier la session', class: 'btn-green' %>
+  </div>
+<% end %>

@@ -1,0 +1,51 @@
+<header class="flex justify-center bg-blue-400">
+  <p class="text-white text-center text-base mb-0 md:text-xs items-center">
+    Les cours ouvriront prochainement. Nous sommes en recherche d'enseignants bénévoles pour faire des tests avant d'ouvrir le site Internet !<br>
+    Chers Parents, en cliquant sur le bouton, vous pourrez vous inscrire pour être informés sur l'ouverture !
+  </p>
+  <span class="rounded-md shadow-sm ml-4">
+    <%= link_to 'Je veux être informé :)', new_newsletter_path, class: 'btn-pink md:text-xs md:text-center md:py-1 md:px-2 md:mt-1' %>
+  </span>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <p class="pt-2">
+    <a href="mailto:contact@laclassealamaison.org" class="text-gray-400 hover:text-blue-500 flex">
+      <svg id="Capa_1" class="text-gray-400 mt-2 mr-2" enable-background="new 0 0 479.058 479.058" height="15" viewBox="0 0 479.058 479.058" width="15" xmlns="http://www.w3.org/2000/svg">
+        <path d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"/>
+      </svg>
+      contact@laclassealamaison.org
+    </a>
+  </p>
+</div>
+
+<nav class="bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex">
+        <div class="w-full flex-shrink-0 flex items-center text-gray-500">
+          <%= link_to root_path do %>
+            <%= image_tag 'logo.png', alt: 'La classe à la maison' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="hidden text-center sm:ml-6 sm:flex sm:items-center">
+        <div class="hidden sm:ml-6 sm:flex">
+          <%= link_to 'Enfants', classrooms_path, class: 'liens' %>
+          <%= link_to 'Parents', page_path('espace-parents'), class: 'liens ml-8' %>
+          <%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'liens ml-8' %>
+          <%= link_to 'Questions/Réponses', page_path('faq'), class: 'liens ml-8' %>
+          <%= link_to 'Contact', new_contact_path, class: 'liens ml-8' %>
+          <%= link_to 'Espace personnel', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
+          <%= link_to 'Administration des professeurs', administration_teachers_path, class: 'liens ml-8' if current_user&.admin? %>
+          <% if current_user %>
+            <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'liens ml-8' %>
+          <% else %>
+            <%= link_to 'Se connecter', new_user_session_path,class: 'liens ml-8' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<hr class="bg-repeat-x p-2" style="background-image: url(<%= image_path 'ligne.png' %>)">

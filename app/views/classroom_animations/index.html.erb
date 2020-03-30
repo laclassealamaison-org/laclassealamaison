@@ -1,0 +1,66 @@
+<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300 mb-6">
+    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+        <h1 class="py-6 text-4xl text-pink-400 font-bold">Sessions</h1>
+    </div>
+</header>
+
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8 mb-12">
+  <div class="flex flex-col">
+    <%= link_to 'Planifier une session', new_classroom_animation_path, class: 'btn-green mb-6' %>
+
+    <h2>Session en cours</h2>
+    <div class="mb-6">
+    <% @current_classroom_animations.each do |classroom_animation| %>
+      Session de <%= classroom_animation.classroom&.name %>
+      le <%= classroom_animation.starts_at.strftime("%d/%m/%Y à %HH") %>
+      de <%= classroom_animation.childrens_maximum %> élèves maximum
+
+      <% if current_user&.teacher? %>
+        <div class="mb-2">
+          <%= link_to 'Rejoindre la salle de classe', classroom_animation.live_url, target: '_blank', class: 'btn-green' %>
+        </div>
+
+        <div class="mb-2">
+          <% if classroom_animation.opened? %>
+            <%= render 'classroom_animations/closures/form', classroom_animation: classroom_animation %>
+          <% else %>
+            <%= render 'classroom_animations/openings/form', classroom_animation: classroom_animation %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
+    <h2>Sessions à venir</h2>
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <table class="min-w-full">
+          <thead>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Classe</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Date</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre d'élèves maximum</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+          </thead>
+          <tbody>
+            <% @future_classroom_animations.each do |classroom_animation| %>
+            <tr>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <%= classroom_animation.classroom&.name %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <%= classroom_animation.starts_at.strftime("%d/%m/%Y à %HH") %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <%= classroom_animation.childrens_maximum %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <%= link_to 'Voir les détails de la session', classroom_animation_path(classroom_animation), class: 'btn-green' %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

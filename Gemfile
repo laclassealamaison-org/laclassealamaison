@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
+gem 'dotenv-rails', require: 'dotenv/rails-now', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 # Use postgresql as the database for Active Record
@@ -30,7 +32,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'high_voltage'
+gem 'mail_form'
+gem 'mailjet'
 gem 'meta-tags'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -38,6 +43,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
+  gem 'letter_opener'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'

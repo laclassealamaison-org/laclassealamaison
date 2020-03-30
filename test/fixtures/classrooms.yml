@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: classrooms
+#
+#  id         :uuid             not null, primary key
+#  color      :string
+#  name       :string
+#  position   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+one:
+  name: MyString
+  position: 1
+  color: MyString
+  videoconference_url: MyString
+  ressources_url: MyString
+
+two:
+  name: MyString
+  position: 1
+  color: MyString
+  videoconference_url: MyString
+  ressources_url: MyString
