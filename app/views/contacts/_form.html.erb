@@ -12,21 +12,21 @@
 
     <div class="flex flex-wrap mb-6">
         <div class="w-full">
-          <%= form.label :email, class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+          <%= form.label :email, 'Email *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
           <%= form.text_field :email, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
         </div>
     </div>
 
     <div class="flex flex-wrap mb-6">
         <div class="w-full">
-          <%= form.label :subject, 'Objet', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+          <%= form.label :subject, 'Objet *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
           <%= form.text_field :subject, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
         </div>
     </div>
 
     <div class="flex flex-wrap mb-6">
         <div class="w-full">
-            <%= form.label :message, class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+            <%= form.label :message, 'Message *', class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
             <%= form.text_area :message, required: true, class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
         </div>
     </div>
