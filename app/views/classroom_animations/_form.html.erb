@@ -1,7 +1,7 @@
 <%= form_with(model: classroom_animation, local: true) do |form| %>
   <div class="mb-2">
     <%= form.label :starts_at, 'Date :' %>
-    <%= form.datetime_select :starts_at, prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure' }, discard_minute: true %> heures
+    <%= form.datetime_select :starts_at, prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure', minute: 'Minutes' } %>
   </div>
   <div class="mb-2">
     <%= form.label :classroom_id, 'Niveau :' %>
