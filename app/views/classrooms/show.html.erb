@@ -44,8 +44,8 @@
 
   <% @resources.each do |resource| %>
     <div class="my-12 text-center">
-      <p><%= resource.description %></p>
       <%= link_to resource.name, resource.url, target: "_blank", class: "btn-pink" %>
+      <p><%= resource.description %></p>
     </div>
   <% end %>
 
