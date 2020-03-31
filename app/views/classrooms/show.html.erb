@@ -30,20 +30,22 @@
   <% if @upcoming_sessions.empty? %>
     <p>Il n'y a pas de cours prévu prochainement...</p>
   <% else %>
-    <% @upcoming_sessions.each do |session| %>
-      <p class="mb-0">
-        <%= l(session.starts_at) %> (Capacité maximum : <%= session.childrens_maximum %>)
-        <%#= session.user.email %>
-      </p>
-    <% end %>
+    <ul>
+      <% @upcoming_sessions.each do |session| %>
+        <li>
+          <%= l(session.starts_at) %> (Capacité maximum : <%= session.childrens_maximum %> enfants)
+          <%#= session.user.email %>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 
   <h2>Autres ressources utiles</h2>
 
   <% @resources.each do |resource| %>
     <div class="my-12 text-center">
-      <p><%= resource.description %></p>
       <%= link_to resource.name, resource.url, target: "_blank", class: "btn-pink" %>
+      <p><%= resource.description %></p>
     </div>
   <% end %>
 
