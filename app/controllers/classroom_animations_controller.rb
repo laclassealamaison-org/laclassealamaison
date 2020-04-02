@@ -1,12 +1,14 @@
 class ClassroomAnimationsController < ApplicationController
   def index
-    @current_classroom_animations = current_user.classroom_animations
-                                                .live
-                                                .order(starts_at: :asc)
+    authorize ClassroomAnimation
+    model = if current_user.admin?
+              ClassroomAnimation
+            else
+              current_user.classroom_animations
+            end
+    @current_classroom_animations = model.live.order(starts_at: :asc)
 
-    @future_classroom_animations = current_user.classroom_animations
-                                                .where('starts_at > ?', DateTime.now - 1.hour)
-                                                .order(starts_at: :asc)
+    @future_classroom_animations = model.where('starts_at > ?', DateTime.now - 1.hour).order(starts_at: :asc)
   end
 
   def show

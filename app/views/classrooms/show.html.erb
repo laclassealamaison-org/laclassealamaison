@@ -33,7 +33,7 @@
     <ul>
       <% @upcoming_sessions.each do |session| %>
         <li>
-          <%= l(session.starts_at) %> (Capacité maximum : <%= session.childrens_maximum %> enfants)
+          <%= l(session.starts_at, format: "%A %d/%m/%Y à %H:%M") %> (Capacité maximum : <%= session.childrens_maximum %> enfants)
           <%#= session.user.email %>
         </li>
       <% end %>
