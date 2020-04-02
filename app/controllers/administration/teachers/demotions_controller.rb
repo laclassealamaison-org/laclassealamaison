@@ -3,6 +3,6 @@ class Administration::Teachers::DemotionsController < ApplicationController
     @teacher = User.find(params[:teacher_id])
     authorize [:administration, :teachers, :demotion], :create?
     @teacher.update(role: :user)
-    redirect_to administration_teachers_path
+    redirect_to administration_users_path
   end
 end

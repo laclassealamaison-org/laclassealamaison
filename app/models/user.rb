@@ -45,6 +45,9 @@ class User < ApplicationRecord
   has_many :classroom_animations
 
   scope :not_admin, -> { where.not(role: :admin) }
+  scope :responsible_parents, -> { where(role: :responsible_parent) }
+  scope :teachers, -> { where(role: :teacher) }
+  scope :simple_users, -> { where(role: :user) }
 
   def set_default_role
     self.role ||= :user
