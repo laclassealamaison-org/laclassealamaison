@@ -1,0 +1,26 @@
+<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300 mb-6">
+  <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+    <h1 class="py-6 text-2xl md:text-4xl text-pink-400 font-bold">
+      Administration
+    </h1>
+  </div>
+</header>
+
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-8 mb-12">
+  <div class="flex flex-col">
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <p>
+        <%= link_to 'Administration des nouveaux utilisateurs', administration_users_path, class: 'btn-blue' %>
+      </p>
+      <p>
+        <%= link_to 'Administration des professeurs', administration_teachers_path, class: 'btn-blue' %>
+      </p>
+      <p>
+        <%= link_to 'Administration des parents', administration_responsible_parents_path, class: 'btn-blue' %>
+      </p>
+      <p>
+        <%= link_to 'Administration des sessions', classroom_animations_path, class: 'btn-blue' %>
+      </p>
+    </div>
+  </div>
+</div>

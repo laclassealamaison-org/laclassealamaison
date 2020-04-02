@@ -36,7 +36,7 @@
           <%= link_to 'Questions/Réponses', page_path('faq'), class: 'liens ml-8' %>
           <%= link_to 'Contact', new_contact_path, class: 'liens ml-8' %>
           <%= link_to 'Espace personnel', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
-          <%= link_to 'Administration des professeurs', administration_teachers_path, class: 'liens ml-8' if current_user&.admin? %>
+          <%= link_to 'Administration', administration_menus_path, class: 'liens ml-8' if current_user&.admin? %>
           <% if current_user %>
             <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'liens ml-8' %>
           <% else %>

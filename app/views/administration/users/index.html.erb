@@ -1,7 +1,7 @@
 <header class="bg-gray-100 border-t-2 border-b-2 border-gray-300 mb-6">
   <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
     <h1 class="py-6 text-2xl md:text-4xl text-pink-400 font-bold">
-      Gestion des professeurs
+      Gestion des utilisateurs
     </h1>
   </div>
 </header>
@@ -20,8 +20,13 @@
             <tr>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= user.email %></td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                Est actuellement professeur.
-                <%= render 'administration/teachers/demotions/form', user: user %>
+                Est actuellement un simple utilisateur.
+                <p>
+                  <%= render 'administration/teachers/promotings/form', user: user %>
+                </p>
+                <p>
+                  <%= render 'administration/responsible_parents/promotings/form', user: user %>
+                </p>
               </td>
             </tr>
             <% end %>

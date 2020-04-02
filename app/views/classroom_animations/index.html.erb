@@ -12,7 +12,7 @@
     <div class="mb-6">
     <% @current_classroom_animations.each do |classroom_animation| %>
       Session de <%= classroom_animation.classroom&.name %>
-      le <%= classroom_animation.starts_at.strftime("%d/%m/%Y à %HH") %>
+      le <%= l(classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M") %>
       de <%= classroom_animation.childrens_maximum %> élèves maximum
 
       <% if current_user&.teacher? %>
@@ -48,7 +48,7 @@
                 <%= classroom_animation.classroom&.name %>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <%= classroom_animation.starts_at.strftime("%d/%m/%Y à %HH") %>
+                <%= l(classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M") %>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= classroom_animation.childrens_maximum %>

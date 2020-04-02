@@ -9,9 +9,15 @@ Rails.application.routes.draw do
   resources :newsletters, only: [:new, :create]
   resources :questions, only: [:new, :create]
   namespace :administration do
+    resources :menus, only: [:index]
+    resources :responsible_parents, only: [:index] do
+      resources :promotings, only: [:create], controller: 'responsible_parents/promotings'
+      resources :demotions, only: [:create], controller: 'responsible_parents/demotions'
+    end
     resources :teachers, only: [:index] do
       resources :promotings, only: [:create], controller: 'teachers/promotings'
       resources :demotions, only: [:create], controller: 'teachers/demotions'
     end
+    resources :users, only: [:index]
   end
 end
