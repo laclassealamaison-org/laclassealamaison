@@ -35,6 +35,30 @@ class ClassroomAnimationsController < ApplicationController
     end
   end
 
+  def edit
+    @classroom_animation = ClassroomAnimation.find(params[:id])
+    authorize @classroom_animation
+    @classrooms = Classroom.all
+  end
+
+  def update
+    @classroom_animation = ClassroomAnimation.find(params[:id])
+    authorize @classroom_animation
+    if @classroom_animation.update(classroom_animation_params)
+      redirect_to classroom_animation_path(@classroom_animation)
+    else
+      @classrooms = Classrooms.all
+      render :edit
+    end
+  end
+
+  def destroy
+    @classroom_animation = ClassroomAnimation.find(params[:id])
+    authorize @classroom_animation
+    @classroom_animation.destroy
+    redirect_to classroom_animations_path
+  end
+
   private
 
   def classroom_animation_params
