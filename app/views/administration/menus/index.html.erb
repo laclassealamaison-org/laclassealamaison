@@ -9,8 +9,18 @@
 <div class="max-w-4xl mx-auto sm:px-6 lg:px-8 mb-12">
   <div class="flex flex-col">
     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-      <%= link_to 'Administration des professeurs', administration_teachers_path, class: 'btn-blue' %>
-      <%= link_to 'Administration des sessions', classroom_animations_path, class: 'btn-blue' %>
+      <p>
+        <%= link_to 'Administration des nouveaux utilisateurs', administration_users_path, class: 'btn-blue' %>
+      </p>
+      <p>
+        <%= link_to 'Administration des professeurs', administration_teachers_path, class: 'btn-blue' %>
+      </p>
+      <p>
+        <%= link_to 'Administration des parents', administration_responsible_parents_path, class: 'btn-blue' %>
+      </p>
+      <p>
+        <%= link_to 'Administration des sessions', classroom_animations_path, class: 'btn-blue' %>
+      </p>
     </div>
   </div>
 </div>
