@@ -17,4 +17,16 @@ class ClassroomAnimationPolicy < ApplicationPolicy
   def create?
     @user&.teacher?
   end
+
+  def edit?
+    @user&.teacher? && @classroom_animation.user_id == @user.id
+  end
+
+  def update?
+    @user&.teacher? && @classroom_animation.user_id == @user.id
+  end
+
+  def destroy?
+    @user&.teacher? && @classroom_animation.user_id == @user.id
+  end
 end
