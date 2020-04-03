@@ -20,13 +20,19 @@
       </p>
 
       <div class="my-12 flex justify-around">
-        <span class="inline-flex rounded-md shadow-sm mr-2">
+        <div class="mr-2">
           <%= link_to 'Entrée enfant', classrooms_path, class: 'btn-green' %>
-        </span>
+          <p>
+            Déjà <%= ClassroomAnimation.pasted.count %> heures de cours
+          </p>
+        </div>
 
-        <span class="inline-flex rounded-md shadow-sm">
+        <div>
           <%= link_to 'Entrée professeur', page_path('professeurs-benevoles'), class: 'btn-blue' %>
-        </span>
+          <p>
+            <%= User.teachers.count %> professeurs inscrits
+          </p>
+        </div>
       </div>
 
       <div class="my-12">

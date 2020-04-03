@@ -28,8 +28,9 @@ class ClassroomAnimation < ApplicationRecord
   belongs_to :user
 
   scope :live, -> { where("starts_at < current_timestamp AND starts_at + interval '1 hour' > current_timestamp") }
-  scope :upcoming, -> { where("starts_at > current_timestamp") }
   scope :open, -> { where(opened: true) }
+  scope :pasted, -> { where('starts_at < current_timestamp') }
+  scope :upcoming, -> { where('starts_at > current_timestamp') }
 
   validates_uniqueness_of :starts_at, scope: :classroom_id
 end
