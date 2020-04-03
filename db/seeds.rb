@@ -14,11 +14,11 @@ puts "...ok"
 
 
 User.create!([
-  { email: 'administrateur@laclassealamaison.org', password: 'admin@.org', role: :admin },
+  { email: 'administrateur@laclassealamaison.org', password: 'admin@.org', role: :admin, first_name: 'Administrateur', last_name: 'Bénévole' },
   { email: 'parent@laclassealamaison.org', password: 'parent@.org', role: :responsible_parent },
   { email: 'utilisateur@laclassealamaison.org', password: 'user@.org', role: :user }
 ])
-teacher = User.create!(email: 'professeur@laclassealamaison.org', password: 'teacher@.org', role: :teacher)
+teacher = User.create!(email: 'professeur@laclassealamaison.org', password: 'teacher@.org', role: :teacher, first_name: 'Professeur', last_name: 'Bénévole')
 
 puts "Building Session instances..."
 
