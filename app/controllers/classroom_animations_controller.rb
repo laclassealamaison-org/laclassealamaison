@@ -31,6 +31,11 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation.user = current_user
     @classroom_animation.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
     if @classroom_animation.save
+      webhook_body = {
+        text: "Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
+      }
+      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type' => 'application/json' })
+
       redirect_to classroom_animation_path(@classroom_animation)
     else
       @classrooms = Classroom.all
