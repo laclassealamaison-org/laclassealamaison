@@ -22,7 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       webhook_body = {
         text: "Nouvel inscrit : #{resource.email}"
       }
-      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type' => 'application/json' })
+      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
 
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up

@@ -34,7 +34,7 @@ class ClassroomAnimationsController < ApplicationController
       webhook_body = {
         text: "Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
       }
-      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type' => 'application/json' })
+      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
@@ -53,6 +53,11 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.find(params[:id])
     authorize @classroom_animation
     if @classroom_animation.update(classroom_animation_params)
+      webhook_body = {
+        text: "Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
+      }
+      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+
       redirect_to classroom_animation_path(@classroom_animation)
     else
       @classrooms = Classrooms.all
@@ -64,6 +69,12 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.find(params[:id])
     authorize @classroom_animation
     @classroom_animation.destroy
+
+    webhook_body = {
+      text: "Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
+    }
+    HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+    
     redirect_to classroom_animations_path
   end
 
