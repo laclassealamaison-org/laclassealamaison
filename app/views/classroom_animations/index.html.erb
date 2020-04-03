@@ -15,19 +15,17 @@
       le <%= l(classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M") %>
       de <%= classroom_animation.childrens_maximum %> élèves maximum
 
-      <% if current_user&.teacher? %>
-        <div class="mb-2">
-          <%= link_to 'Rejoindre la salle de classe', classroom_animation.live_url, target: '_blank', class: 'btn-green' %>
-        </div>
+      <div class="mb-2">
+        <%= link_to 'Rejoindre la salle de classe', classroom_animation.live_url, target: '_blank', class: 'btn-green' %>
+      </div>
 
-        <div class="mb-2">
-          <% if classroom_animation.opened? %>
-            <%= render 'classroom_animations/closures/form', classroom_animation: classroom_animation %>
-          <% else %>
-            <%= render 'classroom_animations/openings/form', classroom_animation: classroom_animation %>
-          <% end %>
-        </div>
-      <% end %>
+      <div class="mb-2">
+        <% if classroom_animation.opened? %>
+          <%= render 'classroom_animations/closures/form', classroom_animation: classroom_animation %>
+        <% else %>
+          <%= render 'classroom_animations/openings/form', classroom_animation: classroom_animation %>
+        <% end %>
+      </div>
     <% end %>
     </div>
 
@@ -36,6 +34,7 @@
       <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
         <table class="min-w-full">
           <thead>
+            <% if current_user.admin? %><th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Professeur</th><% end %>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Classe</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Date</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre d'élèves maximum</th>
@@ -44,6 +43,11 @@
           <tbody>
             <% @future_classroom_animations.each do |classroom_animation| %>
             <tr>
+              <% if current_user.admin? %>
+                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                  <%= classroom_animation.user&.full_name %>
+                </td>
+              <% end %>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= classroom_animation.classroom&.name %>
               </td>
