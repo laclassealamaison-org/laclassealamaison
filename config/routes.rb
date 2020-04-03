@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   resources :classrooms, only: [:index, :show]
   resources :classroom_animations do
     resources :closures, only: [:create], controller: 'classroom_animations/closures'
