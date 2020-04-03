@@ -4,6 +4,7 @@
 #
 #  id                :uuid             not null, primary key
 #  childrens_maximum :integer          default("0")
+#  comment           :text
 #  live_url          :string
 #  opened            :boolean          default("false")
 #  starts_at         :datetime

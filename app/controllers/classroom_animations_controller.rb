@@ -20,7 +20,8 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.new
     authorize @classroom_animation
     @classroom_animation.user = current_user
-    @classroom_animation.starts_at = DateTime.now
+    @classroom_animation.starts_at = 1.day.from_now.change(hour: 9)
+    @classroom_animation.childrens_maximum = 15
     @classrooms = Classroom.all
   end
 
