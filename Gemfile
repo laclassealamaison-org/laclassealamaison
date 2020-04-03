@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
 gem 'high_voltage'
+gem 'httparty'
 gem 'mail_form'
 gem 'mailjet'
 gem 'meta-tags'
@@ -44,6 +45,7 @@ end
 
 group :development do
   gem 'annotate'
+  gem 'dotenv-rails'
   gem 'letter_opener'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
