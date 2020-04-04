@@ -1,0 +1,43 @@
+<div class="flex flex-col">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+      <div class="flex justify-center my-2">
+        <span class="relative z-0 inline-flex shadow-sm">
+          <%= link_to t('simple_calendar.previous', default: 'Semaine précédente'), calendar.url_for_previous_view, class: 'relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150' %>
+          <% if calendar.number_of_weeks == 1 %>
+            <span class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">Semaine <%= calendar.week_number %></span>
+          <%else%>
+              <span class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">Semaine <%= calendar.week_number %> - <%= calendar.end_week %></span>
+          <%end%>
+          <%= link_to t('simple_calendar.next', default: 'Semaine suivante'), calendar.url_for_next_view, class: '-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150' %>
+        </span>
+      </div>
+
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <% date_range.slice(0, 7).each do |day| %>
+              <th class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"><%= t('date.abbr_day_names')[day.wday] %></th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <tbody class="bg-white">
+          <% date_range.each_slice(7) do |week| %>
+            <tr>
+              <% week.each do |day| %>
+                <%= content_tag :td, class: 'px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500' do %>
+                  <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(block) %>
+                    <% capture_haml(day, sorted_events.fetch(day, []), &block) %>
+                  <% else %>
+                    <% block.call day, sorted_events.fetch(day, []) %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

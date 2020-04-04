@@ -33,4 +33,8 @@ class ClassroomAnimation < ApplicationRecord
   scope :upcoming, -> { where('starts_at > current_timestamp') }
 
   validates_uniqueness_of :starts_at, scope: :classroom_id
+
+  def start_time
+    self.starts_at
+  end
 end
