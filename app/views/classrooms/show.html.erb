@@ -4,7 +4,7 @@
     </div>
 </header>
 
-<div class="max-w-4xl mx-auto sm:px-6 lg:px-8 ">
+<div class="max-w-4xl mx-auto sm:px-6 lg:px-0">
   <div class="flex flex-wrap justify-between text-center">
       <div class="my-12 flex-wrap flex-basis-2">
 
@@ -30,14 +30,24 @@
   <% if @upcoming_sessions.empty? %>
     <p>Il n'y a pas de cours prévu prochainement...</p>
   <% else %>
-    <ul>
-      <% @upcoming_sessions.each do |session| %>
-        <li>
-          <%= l(session.starts_at, format: "%A %d/%m/%Y à %H:%M") %> (Capacité maximum : <%= session.childrens_maximum %> enfants)
-          <%#= session.user.email %>
-        </li>
+
+    <%= week_calendar events: @upcoming_sessions do |date, classroom_animations| %>
+      <div class="py-2 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+        <%= l date %>
+      </div>
+
+      <% if classroom_animations.empty? %>
+        <span class="text-xs">-</span>
+      <% else %>
+        <% classroom_animations.each do |classroom_animation| %>
+          <div class="mb-2 text-sm leading-5 text-green-500">
+            de <%= l(classroom_animation.starts_at, format: "%H:%M") %>
+            à <%= l(classroom_animation.starts_at + 1.hour, format: "%H:%M") %><br>
+            pour <%= classroom_animation.childrens_maximum %> enfants
+          </div>
+        <% end %>
       <% end %>
-    </ul>
+    <% end %>
   <% end %>
 
   <h2>Autres ressources utiles</h2>
