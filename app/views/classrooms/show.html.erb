@@ -40,7 +40,7 @@
         <span class="text-xs">-</span>
       <% else %>
         <% classroom_animations.each do |classroom_animation| %>
-          <div class="mb-2 text-sm leading-5 text-<%= classroom_animation.classroom.color %>-500">
+          <div class="mb-2 text-sm leading-5 text-green-500">
             de <%= l(classroom_animation.starts_at, format: "%H:%M") %>
             à <%= l(classroom_animation.starts_at + 1.hour, format: "%H:%M") %><br>
             pour <%= classroom_animation.childrens_maximum %> enfants
