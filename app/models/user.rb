@@ -57,4 +57,8 @@ class User < ApplicationRecord
     [first_name, last_name].join(' ')
   end
 
+  def full_name_with_email
+    full_name + "(#{email})"
+  end
+
 end
