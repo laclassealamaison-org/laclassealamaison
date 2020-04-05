@@ -81,6 +81,6 @@ class ClassroomAnimationsController < ApplicationController
   private
 
   def classroom_animation_params
-    params.require(:classroom_animation).permit(:classroom_id, :starts_at, :childrens_maximum)
+    params.require(:classroom_animation).permit(:classroom_id, :starts_at, :childrens_maximum, :comment)
   end
 end
