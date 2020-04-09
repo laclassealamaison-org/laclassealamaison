@@ -42,11 +42,16 @@ gem 'simple_calendar'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
+  gem 'simplecov'
+  gem 'ffaker'
+  gem 'factory_bot'
+  gem 'database_cleaner'
 end
 
 group :development do
   gem 'annotate'
-  gem 'dotenv-rails'
   gem 'letter_opener'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
