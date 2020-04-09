@@ -23,5 +23,5 @@ Rails.application.routes.draw do
     resources :users, only: [:index] do
       patch :impersonate, on: :collection
     end
-   end
+  end
 end
