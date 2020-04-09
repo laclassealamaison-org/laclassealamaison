@@ -62,6 +62,20 @@ ul{
   @apply text-blue-500
 }
 
+.tooltip .tooltip-text {
+  visibility: hidden;
+  text-align: center;
+  padding: 3px 10px;
+  position: absolute;
+  z-index: 100;
+}
+
+.tooltip:hover .tooltip-text {
+  @apply bg-white border rounded-lg text-gray-500;
+  visibility: visible;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
 
 /*
 *
@@ -179,15 +193,15 @@ ul{
 .btn-gray{
     @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-gray-400
   }
-  
+
   .btn-gray:active{
     @apply bg-gray-400 transition ease-in-out duration-150
   }
-  
+
   .btn-gray:hover{
     @apply bg-gray-500
   }
-  
+
   .btn-gray:focus{
     @apply outline-none border-gray-700 shadow-outline-green
   }
@@ -196,15 +210,15 @@ ul{
 .btn-black{
     @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-indigo-300
   }
-  
+
   .btn-black:active{
     @apply bg-indigo-300 transition ease-in-out duration-150
   }
-  
+
   .btn-black:hover{
     @apply bg-indigo-400
   }
-  
+
   .btn-black:focus{
     @apply outline-none border-indigo-300 shadow-outline-green
   }
