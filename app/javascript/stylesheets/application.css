@@ -73,6 +73,8 @@ ul{
 .tooltip:hover .tooltip-text {
   @apply bg-white border rounded-lg text-gray-500;
   visibility: visible;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 /*
