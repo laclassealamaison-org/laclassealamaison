@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  impersonates :user
   include Pundit
   protect_from_forgery
 

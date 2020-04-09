@@ -38,6 +38,8 @@ gem 'mailjet'
 gem 'meta-tags'
 gem 'pundit'
 gem 'simple_calendar'
+gem 'haml'
+gem 'pretender'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
