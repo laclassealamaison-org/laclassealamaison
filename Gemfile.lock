@@ -94,6 +94,9 @@ GEM
     ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    haml (5.1.2)
+      temple (>= 0.8.0)
+      tilt
     high_voltage (3.1.2)
     http-accept (1.7.0)
     http-cookie (1.0.3)
@@ -145,6 +148,8 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    pretender (0.3.4)
+      actionpack (>= 4.2)
     public_suffix (4.0.3)
     puma (4.3.3)
       nio4r (~> 2.0)
@@ -222,6 +227,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -265,6 +271,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   devise
   dotenv-rails
+  haml
   high_voltage
   httparty
   jbuilder (~> 2.7)
@@ -274,6 +281,7 @@ DEPENDENCIES
   mailjet
   meta-tags
   pg (>= 0.18, < 2.0)
+  pretender
   puma (~> 4.1)
   pundit
   rails (~> 6.0.2, >= 6.0.2.2)
