@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :contacts, only: [:new, :create]
   resources :newsletters, only: [:new, :create]
   resources :questions, only: [:new, :create]
+  namespace :teachers do
+    resources :courses
+  end
   namespace :administration do
     resources :menus, only: [:index]
     resources :responsible_parents, only: [:index] do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_203629) do
+ActiveRecord::Schema.define(version: 2020_04_09_173743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 2020_04_03_203629) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "comment"
+    t.uuid "course_id"
     t.index ["classroom_id"], name: "index_classroom_animations_on_classroom_id"
+    t.index ["course_id"], name: "index_classroom_animations_on_course_id"
     t.index ["user_id"], name: "index_classroom_animations_on_user_id"
   end
 
@@ -36,6 +38,19 @@ ActiveRecord::Schema.define(version: 2020_04_03_203629) do
     t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description", null: false
+    t.text "content", null: false
+    t.uuid "user_id", null: false
+    t.uuid "classroom_id", null: false
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_courses_on_classroom_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

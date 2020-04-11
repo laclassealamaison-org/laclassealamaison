@@ -43,6 +43,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :classroom_animations
+  has_many :courses
 
   scope :not_admin, -> { where.not(role: :admin) }
   scope :responsible_parents, -> { where(role: :responsible_parent) }

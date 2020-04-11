@@ -1,0 +1,10 @@
+= render "layouts/common" do
+  .flex.my-10
+    .ui.vertical.menu
+      .header.item Mon espace personnel
+      = active_link_to "Mes cours", teachers_courses_path, class: 'item'
+      = active_link_to "Mes sessions", classroom_animations_path, class: 'item'
+    .flex-1
+      .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
+        .flex.flex-col
+          = yield

@@ -3,16 +3,16 @@
     <div class="sm:col-span-4">
       <%= form.label :starts_at, 'Date :', class: 'block text-sm font-medium leading-5 text-gray-700' %>
         <div class="mt-1 flex rounded-md shadow-sm">
-        <%= form.datetime_select :starts_at, 
-              { prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure', minute: 'Minutes' } }, 
+        <%= form.datetime_select :starts_at,
+              { prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure', minute: 'Minutes' } },
               { class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' }
         %>
       </div>
     </div>
     <div class="sm:col-span-4">
-      <%= form.label :classroom_id, 'Niveau :' %>
+      <%= form.label :course_id, 'Cours :' %>
       <div class="mt-1 flex rounded-md shadow-sm">
-        <%= form.collection_select :classroom_id, classrooms, :id, :name, { include_blank: true }, { class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' } %>
+        <%= form.collection_select :course_id, current_user.courses.where(published: true), :id, :title, { include_blank: true }, { class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' } %>
       </div>
     </div>
     <div class="sm:col-span-4">

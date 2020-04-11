@@ -38,6 +38,7 @@
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Classe</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Date</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre d'élèves maximum</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Cours</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
           </thead>
           <tbody>
@@ -57,6 +58,9 @@
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= classroom_animation.childrens_maximum %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <%= classroom_animation.course&.title.truncate(30) %>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= link_to 'Voir les détails de la session', classroom_animation_path(classroom_animation), class: 'btn-green' %>

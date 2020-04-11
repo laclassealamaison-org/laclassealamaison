@@ -1,4 +1,5 @@
 class ClassroomAnimationsController < ApplicationController
+  layout "teacher"
   def index
     authorize ClassroomAnimation
     model = if current_user.admin?
@@ -28,6 +29,7 @@ class ClassroomAnimationsController < ApplicationController
   def create
     @classroom_animation = ClassroomAnimation.new(classroom_animation_params)
     authorize @classroom_animation
+    @classroom_animation.classroom = @classroom_animation.course.classroom
     @classroom_animation.user = current_user
     @classroom_animation.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
     if @classroom_animation.save
@@ -74,13 +76,13 @@ class ClassroomAnimationsController < ApplicationController
       text: "Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
     }
     HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
-    
+
     redirect_to classroom_animations_path
   end
 
   private
 
   def classroom_animation_params
-    params.require(:classroom_animation).permit(:classroom_id, :starts_at, :childrens_maximum, :comment)
+    params.require(:classroom_animation).permit(:classroom_id, :course_id, :starts_at, :childrens_maximum, :comment)
   end
 end
