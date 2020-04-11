@@ -4,6 +4,8 @@ fr:
     attributes:
       classroom_animation:
         starts_at: "Date"
+      child:
+        classroom: Classe
     errors:
       messages:
         record_invalid: 'La validation a échoué : %{errors}'

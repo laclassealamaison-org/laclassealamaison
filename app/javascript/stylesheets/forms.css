@@ -1,3 +1,6 @@
 .field_with_errors {
   @apply flex;
 }
+form .field {
+  @apply my-3;
+}

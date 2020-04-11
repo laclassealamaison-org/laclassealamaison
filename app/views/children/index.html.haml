@@ -1,0 +1,6 @@
+- content_for(:page_title, "Mes enfants")
+= link_to new_child_path, style: "background-color: #31C48D", class: 'ui green button collection_action' do
+  %i.ui.add.icon
+  Ajouter un enfant
+.courses.w-full.flex.flex-wrap
+  = render partial: 'child', collection: @children

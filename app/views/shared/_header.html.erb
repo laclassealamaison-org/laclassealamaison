@@ -31,7 +31,7 @@
       <div class="hidden text-center lg:ml-6 lg:flex lg:items-center">
         <div class="hidden sm:ml-6 sm:flex">
           <%= link_to 'Enfants', classrooms_path, class: 'liens' %>
-          <%= link_to 'Espace personnel', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
+          <%= link_to 'Espace professeur', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
 
           <% if ! current_user %>
           <%= link_to 'Parents', page_path('espace-parents'), class: 'liens ml-8' %>
@@ -53,7 +53,7 @@
     <div class="lg:hidden block flex justify-center text-center">
       <ul class="py-4 ml-0 ">
         <li class="list-none"><%= link_to 'Enfants', classrooms_path, class: 'liens' %></li>
-        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace personnel', classroom_animations_path, class: 'liens' %></li><% end %>
+        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace professeur', classroom_animations_path, class: 'liens' %></li><% end %>
         <% if ! current_user %>
         <li class="list-none"><%= link_to 'Parents', page_path('espace-parents'), class: 'liens' %></li>
         <li class="list-none"><%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'liens' %></li>
