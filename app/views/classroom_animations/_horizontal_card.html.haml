@@ -1,0 +1,13 @@
+.item
+  .content
+    %a.header= classroom_animation.human_time
+    -# .meta
+    -#   %span.cinema
+    .description
+      %p
+    .extra
+      = link_to new_parent_classroom_animation_reservation_path(classroom_animation_id: classroom_animation) do
+        .ui.right.floated.btn-green
+          Inscrire un enfant
+          %i.right.chevron.icon
+      .ui.label 0/12

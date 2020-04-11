@@ -4,3 +4,11 @@
 form .field {
   @apply my-3;
 }
+
+form.course_search {
+  @apply my-3 flex items-center;
+}
+
+form.course_search > * {
+  @apply mx-1;
+}

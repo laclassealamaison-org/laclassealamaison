@@ -41,6 +41,7 @@ gem 'simple_calendar'
 gem 'haml'
 gem 'pretender'
 gem 'active_link_to'
+gem 'ransack'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

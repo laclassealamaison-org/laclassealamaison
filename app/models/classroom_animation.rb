@@ -45,7 +45,11 @@ class ClassroomAnimation < ApplicationRecord
     end
   end
 
-  def start_time
+  def start_time # Used implicitly by week_calendar, don't remove
+    self.starts_at
+  end
+
+  def human_time
     if starts_at < Time.now + 7.days
       I18n.l(starts_at, format: "%A à %H:%M")
     else

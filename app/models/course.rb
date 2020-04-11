@@ -21,4 +21,8 @@ class Course < ApplicationRecord
   belongs_to :user
   belongs_to :classroom
   has_many :classroom_animations
+
+  def available?
+    classroom_animations.upcoming.exists?
+  end
 end
