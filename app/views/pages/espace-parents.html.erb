@@ -1,7 +1,7 @@
 <% title 'Les parents' %>
 <% description "Pour lutter contre le confinement, nous avons mis en place un site Internet pour la continuité pédagogique des enfants de maternelle et primaire" %>
 <% keywords 'classe, virtuelle, confinement, maternelle, primaire, enfants, école, interactif, continuité, pédagogie, professeur, en ligne, room, pédagogie, lutte contre le covid' %>
-<% set_meta_tags og: { 
+<% set_meta_tags og: {
     title:    'Les parents - La classe à la maison',
     type:     'website',
     url:      'https://laclassealamaison.org/espace-parents',
@@ -20,19 +20,23 @@
   }
 } %>
 
-<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300">
-    <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-        <h1 class="py-6 text-2xl md:text-4xl text-pink-400 font-bold">Parents</h1>
+<header class="calm-header">
+    <div class="calm-content">
+        <h1>Parents</h1>
     </div>
 </header>
 
-<div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+
+<div class="calm-content">
 
       <h2>Classe virtuelle</h2>
-
       <p>
-        Chers Parents,<br>
-        Bienvenue sur laclassealamaison.org.<br>
+        Chers Parents,
+      </p>
+      <p>
+        Bienvenue sur laclassealamaison.org.
+      </p>
+      <p>
         Vous vous posez sûrement des questions sur ce site, et ce qu’il pourra apporter à vos enfants.
         Nous allons tenter d’y répondre et rendre le fonctionnement de cette plateforme le plus clair possible.
       </p>
@@ -64,7 +68,12 @@
             <li>"C’est pas sorcier" pour les primaires</li>
         </ul>
       </p>
-
+      <p class='m-auto text-center'>
+        <%= link_to new_user_registration_path(role: :parent), class: 'ui green button' do %>
+          <i class='ui user circle icon'></i>
+          Créer mon compte parent
+        <% end %>
+      </p>
       <h2>Sécurité</h2>
 
       <p>
@@ -81,11 +90,11 @@
 
         <div class="my-12">
             <span class="inline-flex rounded-md shadow-sm mr-2">
-            <%= link_to 'Politique de confidentialité des données de vos enfants', page_path('politique-de-confidentialite'), class: 'btn-red' %>
+            <%= link_to 'Politique de confidentialité des données de vos enfants', page_path('politique-de-confidentialite'), class: 'btn-blue' %>
             </span>
 
             <span class="inline-flex rounded-md shadow-sm">
-            <%= link_to 'MaClasseALaMaison site de la CNED', 'https://www.cned.fr/maclassealamaison/', target: '_blank', class: 'btn-green' %>
+            <%= link_to 'MaClasseALaMaison site de la CNED', 'https://www.cned.fr/maclassealamaison/', target: '_blank', class: 'btn-gray' %>
             </span>
         </div>
 

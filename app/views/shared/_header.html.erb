@@ -1,11 +1,11 @@
-<header class="flex items-stretch justify-center bg-blue-400">
+<!-- <header class="flex items-stretch justify-center bg-blue-400">
   <p class="text-white text-center text-base mb-0 md:text-xs self-center">
     Professeurs du 1er cycle, rejoignez la classe à la maison pendant la période de confinement.
   </p>
   <span class="rounded-md shadow-sm ml-4 self-center">
     <%= link_to "Création d'un compte professeur", page_path('professeurs-benevoles'), class: 'btn-pink my-1 md:text-xs md:text-center md:px-2' %>
   </span>
-</header>
+</header> -->
 
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
   <p class="pt-2">
@@ -22,7 +22,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <div class="flex">
-        <div class="w-full flex-shrink-0 flex items-center text-gray-500">
+        <div class="flex-shrink-0 flex items-center text-gray-500">
           <%= link_to root_path do %>
             <%= image_tag 'logo.png', alt: 'La classe à la maison', class: 'w-full' %>
           <% end %>
@@ -31,11 +31,16 @@
       <div class="hidden text-center lg:ml-6 lg:flex lg:items-center">
         <div class="hidden sm:ml-6 sm:flex">
           <%= link_to 'Enfants', classrooms_path, class: 'liens' %>
+          <%= link_to 'Espace personnel', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
+
+          <% if ! current_user %>
           <%= link_to 'Parents', page_path('espace-parents'), class: 'liens ml-8' %>
           <%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'liens ml-8' %>
+          <% end %>
+          <% if ! current_user || !current_user.teacher? %>
           <%= link_to 'Questions/Réponses', page_path('faq'), class: 'liens ml-8' %>
           <%= link_to 'Contact', new_contact_path, class: 'liens ml-8' %>
-          <%= link_to 'Espace personnel', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
+          <% end %>
           <%= link_to 'Administration', administration_menus_path, class: 'liens ml-8' if current_user&.admin? %>
           <% if current_user %>
             <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'liens ml-8' %>
@@ -48,11 +53,15 @@
     <div class="lg:hidden block flex justify-center text-center">
       <ul class="py-4 ml-0 ">
         <li class="list-none"><%= link_to 'Enfants', classrooms_path, class: 'liens' %></li>
+        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace personnel', classroom_animations_path, class: 'liens' %></li><% end %>
+        <% if ! current_user %>
         <li class="list-none"><%= link_to 'Parents', page_path('espace-parents'), class: 'liens' %></li>
         <li class="list-none"><%= link_to 'Professeurs Bénévoles', page_path('professeurs-benevoles'), class: 'liens' %></li>
+        <% end %>
+        <% if ! current_user || !current_user.teacher? %>
         <li class="list-none"><%= link_to 'Questions/Réponses', page_path('faq'), class: 'liens' %></li>
         <li class="list-none"><%= link_to 'Contact', new_contact_path, class: 'liens' %></li>
-        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace personnel', classroom_animations_path, class: 'liens' %></li><% end %>
+        <% end %>
         <% if current_user&.admin? %><li class="list-none"><%= link_to 'Administration des professeurs', administration_teachers_path, class: 'liens' %></li><% end %>
         <% if current_user %>
           <li class="list-none"><%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'liens' %></li>
