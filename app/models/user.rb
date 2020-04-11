@@ -45,6 +45,7 @@ class User < ApplicationRecord
   has_many :classroom_animations
   has_many :courses
   has_many :children, foreign_key: :parent_id, inverse_of: :parent
+  has_many :classroom_animation_reservations, through: :children
 
   scope :not_admin, -> { where.not(role: :admin) }
   scope :responsible_parents, -> { where(role: :responsible_parent) }

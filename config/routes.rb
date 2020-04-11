@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
   resources :children
 
+  namespace :parent do
+    resources :classroom_animation_reservations
+  end
+
   namespace :teachers do
     resources :courses
   end

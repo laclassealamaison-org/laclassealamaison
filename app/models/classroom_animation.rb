@@ -37,7 +37,19 @@ class ClassroomAnimation < ApplicationRecord
 
   validates_uniqueness_of :starts_at, scope: :classroom_id
 
+  def to_s
+    if course.present?
+      "#{course.title} le #{starts_at}"
+    else
+      "#{classroom.name} le #{starts_at}"
+    end
+  end
+
   def start_time
-    self.starts_at
+    if starts_at < Time.now + 7.days
+      I18n.l(starts_at, format: "%A à %H:%M")
+    else
+      I18n.l(starts_at, format: "%A %d/%m/%Y à %H:%M")
+    end
   end
 end
