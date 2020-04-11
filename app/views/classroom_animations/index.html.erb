@@ -60,7 +60,7 @@
                 <%= classroom_animation.childrens_maximum %>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <%= classroom_animation.course&.title.truncate(30) %>
+                <%= classroom_animation.course&.title&.truncate(30) %>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= link_to 'Voir les détails de la session', classroom_animation_path(classroom_animation), class: 'btn-green' %>

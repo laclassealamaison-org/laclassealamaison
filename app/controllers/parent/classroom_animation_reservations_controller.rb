@@ -28,6 +28,7 @@ class Parent::ClassroomAnimationReservationsController < ApplicationController
 
   def new
     @car = current_user.classroom_animation_reservations.build
+    @car.classroom_animation = ClassroomAnimation.where(id: params[:classroom_animation_id]).first
   end
 
   private
