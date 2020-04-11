@@ -1,8 +1,8 @@
 <%= form_with(model: classroom_animation, local: true) do |form| %>
   <div class="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
-    <div class="sm:col-span-4">
+    <div class="sm:col-span-6">
       <%= form.label :starts_at, 'Date :', class: 'block text-sm font-medium leading-5 text-gray-700' %>
-        <div class="mt-1 flex rounded-md shadow-sm">
+      <div class="mt-1 flex rounded-md shadow-sm">
         <%= form.datetime_select :starts_at,
               { prompt: { day: 'Jour', month: 'Mois', year: 'Année', hour: 'Heure', minute: 'Minutes' } },
               { class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' }
@@ -12,7 +12,7 @@
     <div class="sm:col-span-4">
       <%= form.label :course_id, 'Cours :' %>
       <div class="mt-1 flex rounded-md shadow-sm">
-        <%= form.collection_select :course_id, current_user.courses.where(published: true), :id, :title, { include_blank: true }, { class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' } %>
+        <%= form.collection_select :course_id, current_user.courses.where(published: true), :id, :title, { include_blank: true }, { required: true, class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' } %>
       </div>
     </div>
     <div class="sm:col-span-4">

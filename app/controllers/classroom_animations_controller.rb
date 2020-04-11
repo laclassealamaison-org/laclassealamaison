@@ -29,18 +29,16 @@ class ClassroomAnimationsController < ApplicationController
   def create
     @classroom_animation = ClassroomAnimation.new(classroom_animation_params)
     authorize @classroom_animation
-    @classroom_animation.classroom = @classroom_animation.course.classroom
+    @classroom_animation.classroom = @classroom_animation.course&.classroom
     @classroom_animation.user = current_user
     @classroom_animation.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
     if @classroom_animation.save
-      webhook_body = {
-        text: "Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
-      }
-      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+      notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
       @classrooms = Classroom.all
+      flash.now[:alert] = @classroom_animation.errors.full_messages
       render :new
     end
   end
@@ -55,10 +53,7 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.find(params[:id])
     authorize @classroom_animation
     if @classroom_animation.update(classroom_animation_params)
-      webhook_body = {
-        text: "Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
-      }
-      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+      notify("Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
@@ -72,10 +67,7 @@ class ClassroomAnimationsController < ApplicationController
     authorize @classroom_animation
     @classroom_animation.destroy
 
-    webhook_body = {
-      text: "Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}"
-    }
-    HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+    notify("Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
 
     redirect_to classroom_animations_path
   end

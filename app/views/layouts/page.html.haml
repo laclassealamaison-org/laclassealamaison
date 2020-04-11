@@ -6,4 +6,9 @@
           = yield :page_title
   .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
     .flex.flex-col
+      - flash.each do |key, value|
+        .mt-4.text-green
+          %p
+            = key
+            = value
       = yield
