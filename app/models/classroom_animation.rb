@@ -2,17 +2,18 @@
 #
 # Table name: classroom_animations
 #
-#  id                :uuid             not null, primary key
-#  childrens_maximum :integer          default("0")
-#  comment           :text
-#  live_url          :string
-#  opened            :boolean          default("false")
-#  starts_at         :datetime
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  classroom_id      :uuid             not null
-#  course_id         :uuid
-#  user_id           :uuid             not null
+#  id                                     :uuid             not null, primary key
+#  childrens_maximum                      :integer          default("0")
+#  classroom_animation_reservations_count :integer          default("0"), not null
+#  comment                                :text
+#  live_url                               :string
+#  opened                                 :boolean          default("false")
+#  starts_at                              :datetime
+#  created_at                             :datetime         not null
+#  updated_at                             :datetime         not null
+#  classroom_id                           :uuid             not null
+#  course_id                              :uuid
+#  user_id                                :uuid             not null
 #
 # Indexes
 #
@@ -30,11 +31,13 @@ class ClassroomAnimation < ApplicationRecord
   belongs_to :course, optional: true
   belongs_to :user
   has_many :classroom_animation_reservations
+  has_many :children, through: :classroom_animation_reservations
 
   scope :live, -> { where("starts_at < current_timestamp AND starts_at + interval '1 hour' > current_timestamp") }
   scope :open, -> { where(opened: true) }
   scope :pasted, -> { where('starts_at < current_timestamp') }
   scope :upcoming, -> { where('starts_at > current_timestamp') }
+  scope :available, -> { where("classroom_animation_reservations_count < childrens_maximum") }
 
   validates_uniqueness_of :starts_at, scope: :classroom_id
 
@@ -46,8 +49,12 @@ class ClassroomAnimation < ApplicationRecord
     end
   end
 
+  def full?
+    classroom_animation_reservations_count >= childrens_maximum
+  end
+
   def occupation
-    "#{classroom_animation_reservations.count}/#{childrens_maximum}"
+    full? ? "complet" : "#{classroom_animation_reservations_count}/#{childrens_maximum}"
   end
 
   def start_time # Used implicitly by week_calendar, don't remove

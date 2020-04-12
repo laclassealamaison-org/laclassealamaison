@@ -14,5 +14,5 @@
 - if @course.classroom_animations.upcoming.exists?
   Prochaines sessions :
   .ui.divided.items
-    - @course.classroom_animations.upcoming.each do |ca|
+    - @course.classroom_animations.order(:starts_at).upcoming.each do |ca|
       = render partial: "classroom_animations/horizontal_card_item", locals: {classroom_animation: ca}

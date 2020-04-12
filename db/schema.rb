@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_134817) do
+ActiveRecord::Schema.define(version: 2020_04_12_190058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_134817) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["child_id", "classroom_animation_id"], name: "unique_reservation_idx", unique: true
     t.index ["child_id"], name: "index_classroom_animation_reservations_on_child_id"
     t.index ["classroom_animation_id"], name: "car_ca_id"
   end
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_04_11_134817) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "comment"
     t.uuid "course_id"
+    t.integer "classroom_animation_reservations_count", default: 0, null: false
     t.index ["classroom_id"], name: "index_classroom_animations_on_classroom_id"
     t.index ["course_id"], name: "index_classroom_animations_on_course_id"
     t.index ["user_id"], name: "index_classroom_animations_on_user_id"

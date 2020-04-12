@@ -13,10 +13,11 @@
 #
 #  car_ca_id                                           (classroom_animation_id)
 #  index_classroom_animation_reservations_on_child_id  (child_id)
+#  unique_reservation_idx                              (child_id,classroom_animation_id) UNIQUE
 #
 class ClassroomAnimationReservation < ApplicationRecord
   belongs_to :child
-  belongs_to :classroom_animation
+  belongs_to :classroom_animation, counter_cache: true
   enum status: {
     subscribed: 0,
     waiting: 1,
@@ -24,8 +25,8 @@ class ClassroomAnimationReservation < ApplicationRecord
     canceled: 3
   }
 
-  scope :former, -> { joins(:classroom_animation).where('classroom_animations.starts_at <= current_timestamp') }
-  scope :upcoming, -> { joins(:classroom_animation).where('classroom_animations.starts_at > current_timestamp') }
+  scope :former, -> { joins(:classroom_animation).where('classroom_animations.starts_at <= current_timestamp').order(:starts_at) }
+  scope :upcoming, -> { joins(:classroom_animation).where('classroom_animations.starts_at > current_timestamp').order(:starts_at) }
 
   def title
     classroom_animation.course&.title || classroom_animation.classroom.name

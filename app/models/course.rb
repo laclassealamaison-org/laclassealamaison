@@ -25,4 +25,8 @@ class Course < ApplicationRecord
   def available?
     classroom_animations.upcoming.exists?
   end
+
+  def self.available
+    where(id: classroom_animation.upcoming.available.select(:course_id))
+  end
 end

@@ -47,7 +47,6 @@ class User < ApplicationRecord
   has_many :children, foreign_key: :parent_id, inverse_of: :parent
   has_many :classroom_animation_reservations, through: :children
 
-  scope :not_admin, -> { where.not(role: :admin) }
   scope :responsible_parents, -> { where(role: :responsible_parent) }
   scope :teachers, -> { where(role: :teacher) }
   scope :simple_users, -> { where(role: :user) }
@@ -57,7 +56,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    [first_name, last_name].join(' ')
+    [first_name, last_name].join(' ').presence || email
   end
 
   def full_name_with_email
@@ -66,6 +65,14 @@ class User < ApplicationRecord
 
   def reservations_for(classroom_animation)
     classroom_animation.classroom_animation_reservations.where(child: children)
+  end
+
+  def children_for(classroom_animation)
+    children.where(id: classroom_animation.classroom_animation_reservations.select(:child_id))
+  end
+
+  def available_children_for(classroom_animation)
+    children.where.not(id: children_for(classroom_animation))
   end
 
 end

@@ -22,4 +22,8 @@ class Child < ApplicationRecord
   def next_animation
     classroom_animation_reservations.upcoming.first&.classroom_animation
   end
+
+  def name_with_parent
+    "#{name} (#{parent.full_name})"
+  end
 end
