@@ -23,7 +23,7 @@ class Course < ApplicationRecord
   has_many :classroom_animations
 
   def available?
-    classroom_animations.upcoming.exists?
+    classroom_animations.upcoming.available.exists?
   end
 
   def self.available
