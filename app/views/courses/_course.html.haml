@@ -8,7 +8,9 @@
       %span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
       - if course.available?
         %span.inline-block.bg-green-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Session disponible
-      - else
+      - elsif course.classroom_animations.upcoming.exists?
         %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Complet
+      - else
+        %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 À venir
     -# .tooltip-text
     -#   = course.content
