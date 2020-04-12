@@ -46,6 +46,10 @@ class ClassroomAnimation < ApplicationRecord
     end
   end
 
+  def occupation
+    "#{classroom_animation_reservations.count}/#{childrens_maximum}"
+  end
+
   def start_time # Used implicitly by week_calendar, don't remove
     self.starts_at
   end

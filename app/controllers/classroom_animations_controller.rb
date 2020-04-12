@@ -14,6 +14,7 @@ class ClassroomAnimationsController < ApplicationController
 
   def show
     @classroom_animation = ClassroomAnimation.find(params[:id])
+    @reservations = @classroom_animation.classroom_animation_reservations
     authorize @classroom_animation
   end
 
