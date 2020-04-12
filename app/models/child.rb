@@ -20,6 +20,6 @@ class Child < ApplicationRecord
   has_many :classroom_animation_reservations
 
   def next_animation
-    classroom_animation_reservations.first&.classroom_animation
+    classroom_animation_reservations.upcoming.first&.classroom_animation
   end
 end

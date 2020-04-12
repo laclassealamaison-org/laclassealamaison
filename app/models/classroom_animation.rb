@@ -29,6 +29,7 @@ class ClassroomAnimation < ApplicationRecord
   belongs_to :classroom
   belongs_to :course, optional: true
   belongs_to :user
+  has_many :classroom_animation_reservations
 
   scope :live, -> { where("starts_at < current_timestamp AND starts_at + interval '1 hour' > current_timestamp") }
   scope :open, -> { where(opened: true) }
@@ -50,10 +51,14 @@ class ClassroomAnimation < ApplicationRecord
   end
 
   def human_time
-    if starts_at < Time.now + 7.days
-      I18n.l(starts_at, format: "%A à %H:%M")
+    format = if starts_at.to_date == Date.today
+      "Aujourd'hui à %kh"
+    elsif starts_at < Time.now + 7.days
+      "%A à %kh"
     else
-      I18n.l(starts_at, format: "%A %d %B à %H:%M")
+      "%A %d %B à %kh"
     end
+    format += "%M" if starts_at.min != 0
+    I18n.l(starts_at, format: format)
   end
 end

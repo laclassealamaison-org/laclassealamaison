@@ -23,7 +23,15 @@ class ClassroomAnimationReservation < ApplicationRecord
     booked: 2,
     canceled: 3
   }
+
+  scope :former, -> { joins(:classroom_animation).where('classroom_animations.starts_at <= current_timestamp') }
+  scope :upcoming, -> { joins(:classroom_animation).where('classroom_animations.starts_at > current_timestamp') }
+
   def title
     classroom_animation.course&.title || classroom_animation.classroom.name
+  end
+
+  def to_s
+    "#{child.name}, #{classroom_animation}"
   end
 end

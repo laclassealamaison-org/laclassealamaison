@@ -64,4 +64,8 @@ class User < ApplicationRecord
     full_name + "(#{email})"
   end
 
+  def reservations_for(classroom_animation)
+    classroom_animation.classroom_animation_reservations.where(child: children)
+  end
+
 end
