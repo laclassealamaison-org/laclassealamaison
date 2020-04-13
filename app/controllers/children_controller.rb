@@ -13,6 +13,10 @@ class ChildrenController < ApplicationController
     @child = current_user.children.find(params[:id])
   end
 
+  def show
+    @child = current_user.children.find(params[:id])
+  end
+
   def update
     @child = current_user.children.find(params[:id])
     @child.update!(child_params)
