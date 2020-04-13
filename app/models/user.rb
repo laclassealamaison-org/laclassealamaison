@@ -52,7 +52,7 @@ class User < ApplicationRecord
   scope :simple_users, -> { where(role: :user) }
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :responsible_parent
   end
 
   def full_name
