@@ -10,9 +10,16 @@
     </h2>
   </div>
 
+  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+    <h3 class="m-6 text-1xl">
+      Vous êtes déjà inscrit ?
+      <%= link_to "cliquez ici", new_registration_path(resource_name), class:'underline' %><br />
+    </h3>
+  </div>
+
   <div class="mt-1 sm:mx-auto sm:w-full sm:max-w-md">
     <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>        
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div>
           <%= f.label :email, class: 'block text-sm font-medium leading-5 text-gray-700' %>
           <div class="mt-1 rounded-md shadow-sm">
