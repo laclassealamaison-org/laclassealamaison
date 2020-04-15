@@ -1,0 +1,21 @@
+= content_for(:page_title, "Session de #{@classroom_animation.classroom&.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum")
+= link_to 'Revenir à la liste des sessions', classroom_animations_path, class: 'btn-blue'
+
+%h2 Actions
+.my-2
+  = link_to 'Rejoindre la salle de classe', @classroom_animation.live_url, target: '_blank', class: 'btn-green'
+.mb-2
+  - if @classroom_animation.opened?
+    = render 'classroom_animations/closures/form', classroom_animation: @classroom_animation
+  - else
+    = render 'classroom_animations/openings/form', classroom_animation: @classroom_animation
+  %p
+    = link_to 'Modifier la session', edit_classroom_animation_path(@classroom_animation), class: 'btn-orange'
+    = link_to 'Supprimer la session', classroom_animation_path(@classroom_animation), method: :delete, class: 'btn-red'
+
+%h2 Inscriptions (#{@classroom_animation.occupation})
+.ui.big.relaxed.divided.list
+  - @reservations.each do |reservation|
+    .item
+      %i.user.icon
+      .content= reservation.child.name_with_parent

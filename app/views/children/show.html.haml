@@ -1,0 +1,14 @@
+- content_for(:page_title, "Profil de #{@child.name}")
+= link_to edit_child_path(@child), style: "background-color: #31C48D", class: 'ui green button collection_action' do
+  %i.ui.edit.icon
+  Modifier le profil
+
+%h2 Profil
+Classe :
+= @child.classroom.name
+%h2.header Inscriptions
+
+.ui.divided.list
+  = render partial: "parent/classroom_animation_reservations/horizontal_card_item",
+            collection: @child.classroom_animation_reservations,
+            as: :reservation

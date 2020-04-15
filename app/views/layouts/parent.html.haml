@@ -1,0 +1,21 @@
+= render "layouts/common" do
+  .flex.my-10.flex-col.md:flex-row
+    .md:hidden.mb-3
+      .ui.secondary.pointing.blue.menu
+        = active_link_to "Mes enfants", children_path, class: 'item'
+        = active_link_to "Mes inscriptions", parent_classroom_animation_reservations_path, class: 'item'
+    .hidden.md:block
+      .ui.vertical.menu
+        .header.item Mon espace parent
+        = active_link_to "Mes enfants", children_path, class: 'item'
+        = active_link_to "Mes inscriptions", parent_classroom_animation_reservations_path, class: 'item'
+    .flex-1
+      .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
+        - if content_for?(:page_title)
+          .hidden.md:block
+            %header.bg-gray-100.border-t-2.border-b-2.border-gray-300.mb-6
+              .max-w-6xl.mx-auto.sm:px-6.lg:px-8
+                %h1.py-6.text-2xl.md:text-4xl.text-pink-400.font-bold
+                  = yield :page_title
+        .flex.flex-col
+          = yield

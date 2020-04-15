@@ -1,8 +1,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-
+@import "./forms";
+@import "./calendar";
 /*
 *
 * GENERAL
@@ -68,6 +68,12 @@ ul{
   padding: 3px 10px;
   position: absolute;
   z-index: 100;
+}
+.tooltip .tooltip-text .title {
+  @apply font-bold text-lg;
+}
+.tooltip .tooltip-text .meta {
+  @apply font-semibold text-gray-400 text-lg;
 }
 
 .tooltip:hover .tooltip-text {

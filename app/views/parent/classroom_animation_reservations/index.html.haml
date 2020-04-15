@@ -1,0 +1,10 @@
+- content_for(:page_title, "Mes inscriptions")
+= link_to courses_path, style: "background-color: #31C48D", class: 'ui green button collection_action' do
+  %i.ui.search.icon
+  Trouver un cours
+%h2 À venir
+.courses.w-full.flex.flex-wrap
+  = render partial: 'car', collection: @cars.upcoming
+%h2 Passées
+.courses.w-full.flex.flex-wrap
+  = render partial: 'car', collection: @cars.former

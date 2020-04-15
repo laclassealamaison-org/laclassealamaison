@@ -1,0 +1,12 @@
+- content_for(:page_title, "Les cours")
+= search_form_for @q do |f|
+  .ui.icon.input{data: {"children-count": 1}}
+    = f.search_field :title_or_description_or_content_or_classroom_name_or_user_last_name_cont, placeholder: "Rechercher un cours"
+    %i.search.icon
+  = f.submit class: "btn-green"
+  = link_to "Effacer", courses_path, class: 'btn-gray'
+
+= "#{@courses.count} cours"
+
+.courses.w-full.flex.flex-wrap
+  = render partial: 'course', collection: @courses

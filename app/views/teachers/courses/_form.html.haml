@@ -1,0 +1,21 @@
+= form_for @course, url: url_for([:teachers, @course]) do |f|
+  .field
+    = f.label :classroom, for: :classroom_id
+    = f.collection_select :classroom_id, Classroom.all, :id, :name, {}, class: 'block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
+  .field
+    = f.label :title, for: :title
+    = f.text_field :title, placeholder: "ex: Le cours de l'eau", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+  .field
+    = f.label :description, for: :description
+    = f.text_area :description, placeholder: "ex: Du nuage à l'océan", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+  .field
+    = f.label :content, for: :content
+    = f.text_area :content, rows: 7, placeholder: "Décrivez en quelques lignes les notions abordées", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+  .field
+    = f.label :published, for: :published
+    = f.check_box :published
+  = f.submit (@course.persisted? ? "Modifier le cours" : "Ajouter le cours"), class: 'btn-green'
+  = link_to "Annuler", teachers_courses_path, class: 'btn-gray'
+
+:javascript
+  $('.ui.dropdown').dropdown();

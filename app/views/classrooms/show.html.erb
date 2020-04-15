@@ -44,14 +44,23 @@
             de <%= l(classroom_animation.starts_at, format: "%H:%M") %>
             à <%= l(classroom_animation.starts_at + 1.hour, format: "%H:%M") %><br>
             pour <%= classroom_animation.childrens_maximum %> enfants
-            <span class="tooltip-text">
-              <%= classroom_animation.comment %>
-            </span>
+            <div class="tooltip-text">
+              <div class='title'><%= classroom_animation.course&.title%></div>
+              <div class='meta'><%= classroom_animation.course&.description%></div>
+              <div class='content'><%= classroom_animation.comment %></div>
+            </div>
           </div>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
+
+  <p class='m-auto text-center my-4'>
+    <%= link_to new_user_registration_path(role: :parent), class: 'ui green button' do %>
+      <i class='ui user circle icon'></i>
+      Participer à un cours
+    <% end %>
+  </p>
 
   <h2>Autres ressources utiles</h2>
 

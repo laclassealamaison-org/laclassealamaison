@@ -1,7 +1,11 @@
 <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
-    <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900">
-      S'enregistrer
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+      <% if params[:role] == "parent" %>
+        Créer mon compte parent pour participer à un cours
+      <% else %>
+        M'inscrire
+      <% end %>
     </h2>
     ou
     <h3 class="mt-2 text-2xl underline">
@@ -36,7 +40,7 @@
         </div>
 
         <div class="mt-6">
-          <%= f.label :email, 'Email professionnel *', class: 'block text-sm font-medium leading-5 text-gray-700' %>
+          <%= f.label :email, params[:role] == "parent" ? 'Email' : 'Email professionnel *', class: 'block text-sm font-medium leading-5 text-gray-700' %>
           <div class="mt-1 rounded-md shadow-sm">
             <%= f.email_field :email, required: true, autocomplete: "email", class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5' %>
           </div>

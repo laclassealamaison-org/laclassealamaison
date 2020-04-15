@@ -1,0 +1,20 @@
+.item
+  .content
+    %a.header= classroom_animation.human_time
+    -# .meta
+    -#   %span.cinema
+    .description
+      %p
+    .extra
+      - cars = current_user.reservations_for(classroom_animation)
+      .ui.right.floated
+        - if cars.exists?
+          - cars.each do |car|
+            = link_to edit_parent_classroom_animation_reservation_path(car), class: "ui green button" do
+              %i.ui.edit.icon
+              = car.child.name
+        - if current_user.available_children_for(classroom_animation).exists? && ! classroom_animation.full?
+          = link_to new_parent_classroom_animation_reservation_path(classroom_animation_id: classroom_animation), class: "ui #{cars.exists? ? "" : "green"} right labeled icon button" do
+            %i.right.chevron.icon
+            = cars.exists? ? "Inscrire un autre enfant" : "Inscrire un enfant"
+      .ui.label= classroom_animation.occupation
