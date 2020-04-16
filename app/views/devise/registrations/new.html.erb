@@ -1,12 +1,17 @@
 <div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+    <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900">
       <% if params[:role] == "parent" %>
         Créer mon compte parent pour participer à un cours
       <% else %>
         M'inscrire
       <% end %>
     </h2>
+    ou
+    <h3 class="mt-2 text-1xl">
+      Vous êtes déjà inscrit ?
+      <%= link_to "Cliquez ici", new_session_path(resource_name), class: "underline" %><br />
+    </h3>
   </div>
 
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
