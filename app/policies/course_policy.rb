@@ -1,22 +1,30 @@
-class ClassroomAnimationPolicy < ApplicationPolicy
+class CoursePolicy < ApplicationPolicy
   def index?
-    user.teacher? || user.admin?
+    user.admin? || user.teacher?
   end
 
   def show?
-    user.teacher? || user.admin?
+    user.admin? || record.user_id == user.id
+  end
+
+  def new?
+    index?
   end
 
   def create?
-    user.teacher? || user.admin?
+    index?
+  end
+
+  def edit?
+    show?
   end
 
   def update?
-    (user.teacher? && record.user_id == user.id) || user.admin?
+    show?
   end
 
   def destroy?
-    update?
+    show?
   end
 
   class Scope < Scope
