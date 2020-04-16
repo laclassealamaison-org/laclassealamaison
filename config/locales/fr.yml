@@ -1,5 +1,6 @@
 ---
 fr:
+  description: Thématique (en une phrase)
   activerecord:
     attributes:
       classroom_animation_reservation:
