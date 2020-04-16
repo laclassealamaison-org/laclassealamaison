@@ -1,0 +1,60 @@
+- content_for(:page_title, "Cours de #{@course.title}")
+= link_to edit_teachers_course_path(@course), title: @course.title, style: "background-color: #31C48D", class: 'ui green button collection_action' do
+  %i.ui.edit.icon
+  Modifier le cours
+
+%h2 Classe pour :
+= @course.classroom.name
+%h2 Titre :
+= @course.title
+%h2 Description :
+= @course.description
+%h2 Content :
+= @course.content
+
+%h2 Session en cours
+.mb-6
+  - @current_classroom_animations.each do |classroom_animation|
+    - if classroom_animation.course_id == params[:id]
+      Session de #{classroom_animation.classroom&.name}
+      le #{l(classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")}
+      de #{classroom_animation.childrens_maximum} élèves maximum
+      .mb-2
+        = link_to 'Rejoindre la salle de classe', classroom_animation.live_url, target: '_blank', class: 'btn-green'
+      .mb-2
+        - if classroom_animation.opened?
+          = render 'classroom_animations/closures/form', classroom_animation: classroom_animation
+        - else
+          = render 'classroom_animations/openings/form', classroom_animation: classroom_animation
+
+%h2 Sessions à venir
+.-my-2.py-2.overflow-x-auto.sm:-mx-6.sm:px-6.lg:-mx-8.lg:px-8
+  .align-middle.inline-block.min-w-full.shadow.overflow-hidden.sm:rounded-lg.border-b.border-gray-200
+    %table.min-w-full
+      %thead
+        - if current_user.admin?
+          %th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider Professeur
+        %th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider Classe
+        %th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider Date
+        %th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider Nombre d'élèves maximum
+        %th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider Cours
+        %th.px-6.py-3.border-b.border-gray-200.bg-gray-50.text-left.text-xs.leading-4.font-medium.text-gray-500.uppercase.tracking-wider Actions
+      %tbody
+        - @future_classroom_animations.each do |classroom_animation|
+          - if classroom_animation.course_id == params[:id]
+            %tr
+              - if current_user.admin?
+                %td.px-6.py-4.whitespace-no-wrap.border-b.border-gray-200
+                  = classroom_animation.user.full_name
+                  %br/
+                  = link_to classroom_animation.user.email, "mailto:#{classroom_animation.user.email}", class: 'text-blue-500'
+              %td.px-6.py-4.whitespace-no-wrap.border-b.border-gray-200
+                = classroom_animation.classroom&.name
+              %td.px-6.py-4.whitespace-no-wrap.border-b.border-gray-200
+                = l(classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")
+              %td.px-6.py-4.whitespace-no-wrap.border-b.border-gray-200
+                = classroom_animation.childrens_maximum
+              %td.px-6.py-4.whitespace-no-wrap.border-b.border-gray-200
+                = classroom_animation.course&.title&.truncate(30)
+              %td.px-6.py-4.whitespace-no-wrap.border-b.border-gray-200
+                = link_to 'Voir les détails de la session', classroom_animation_path(classroom_animation), class: 'btn-green'
