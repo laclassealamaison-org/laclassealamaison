@@ -3,7 +3,7 @@ fr:
   activerecord:
     attributes:
       classroom_animation_reservation:
-        child: Enfant
+        child: "Choisir un enfant :"
         classroom: Classe
       classroom_animation:
         starts_at: Date

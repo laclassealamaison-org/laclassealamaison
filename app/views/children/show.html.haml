@@ -12,3 +12,7 @@ Classe :
   = render partial: "parent/classroom_animation_reservations/horizontal_card_item",
             collection: @child.classroom_animation_reservations,
             as: :reservation
+
+= link_to courses_path, class: 'ui button w-1/3' do
+  %i.ui.search.icon
+  Trouver un cours
