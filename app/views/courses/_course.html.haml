@@ -5,12 +5,18 @@
       %p.text-gray-700.text-base
         = course.description
     .px-6.py-4
-      %span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
+      %span.inline-block.bg-purple-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.user.full_name
+      - unless defined? hide_classroom
+        %span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
       - if course.available?
         %span.inline-block.bg-green-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Session disponible
       - elsif course.classroom_animations.upcoming.exists?
         %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Complet
       - else
-        %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 À venir
+        %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Pas de session
+    - if course.available?
+      .ui.button.w-full M'inscrire
+    - else
+      .ui.bottom.button.w-full Me prévenir
     -# .tooltip-text
     -#   = course.content

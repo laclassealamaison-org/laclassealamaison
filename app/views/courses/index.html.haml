@@ -8,5 +8,11 @@
 
 = "#{@courses.count} cours"
 
+- Classroom.where(id: current_user.children.select(:classroom_id)).each do |classroom|
+  %h2= classroom.name
+  .courses.w-full.flex.flex-wrap
+    = render partial: 'course', collection: @courses.where(classroom: classroom), locals: {hide_classroom: true}
+
+%h2 Les autres cours
 .courses.w-full.flex.flex-wrap
-  = render partial: 'course', collection: @courses
+  = render partial: 'course', collection: @courses.where.not(classroom: current_user.children.select(:classroom_id)), locals: {wrong_classroom: true}

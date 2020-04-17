@@ -2,14 +2,10 @@ class ClassroomAnimationsController < ApplicationController
   layout "teacher"
   def index
     authorize ClassroomAnimation
-    model = if current_user.admin?
-              ClassroomAnimation
-            else
-              current_user.classroom_animations
-            end
-    @current_classroom_animations = model.live.order(starts_at: :asc)
+    animations = policy_scope(ClassroomAnimation)
+    @current_classroom_animations = animations.live.order(starts_at: :asc)
 
-    @future_classroom_animations = model.where('starts_at > ?', DateTime.now - 1.hour).order(starts_at: :asc)
+    @future_classroom_animations = animations.where('starts_at > ?', DateTime.now - 1.hour).order(starts_at: :asc)
   end
 
   def show

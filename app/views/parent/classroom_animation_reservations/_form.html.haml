@@ -12,7 +12,7 @@
     = f.label :child, for: :child_id
     = f.collection_select :child_id, @available_children, :id, :name, {}, class: 'block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline'
   .field
-    = f.submit (@car.persisted? ? "Modifier l'inscription" : "Inscrire mon enfant"), class: 'btn-green'
+    = f.submit (@car.persisted? ? "Modifier l'inscription" : "Confirmer l'inscription"), class: 'btn-green'
     = link_to "Annuler", children_path, class: 'btn-gray'
     - if @car.persisted?
       = link_to "Supprimer", [:parent, @car], class: 'btn-red', method: :delete, data: {confirm: "Voulez vous vraiment supprimer l'inscription"}

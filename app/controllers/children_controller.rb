@@ -11,6 +11,7 @@ class ChildrenController < ApplicationController
 
   def edit
     @child = current_user.children.find(params[:id])
+    authorize @child
   end
 
   def show
@@ -19,12 +20,14 @@ class ChildrenController < ApplicationController
 
   def update
     @child = current_user.children.find(params[:id])
+    authorize @child
     @child.update!(child_params)
     redirect_to children_path
   end
 
   def destroy
     @child = current_user.children.find(params[:id])
+    authorize @child
     @child.destroy!
     redirect_to children_path
   end
