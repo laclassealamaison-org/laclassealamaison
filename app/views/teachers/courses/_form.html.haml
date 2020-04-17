@@ -6,7 +6,7 @@
     = f.label :title, for: :title
     = f.text_field :title, placeholder: "ex: Le cours de l'eau", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
   .field
-    = f.label I18n.t(:description), for: :description
+    = f.label :description, for: :description
     = f.text_area :description, placeholder: "ex: Du nuage à l'océan", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
   .field
     = f.label :content, for: :content
