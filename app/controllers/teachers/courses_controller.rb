@@ -32,14 +32,11 @@ class Teachers::CoursesController < ApplicationController
   def show
     @course = current_user.courses.find(params[:id])
 
-    model = if current_user.admin?
-              ClassroomAnimation
-            else
-              current_user.classroom_animations
-            end
-    @current_classroom_animations = model.live.order(starts_at: :asc)
+    animations = @course.classroom_animations
 
-    @future_classroom_animations = model.where('starts_at > ?', DateTime.now - 1.hour).order(starts_at: :asc)
+    @current_classroom_animations = animations.live.order(starts_at: :asc)
+
+    @future_classroom_animations = animations.where('starts_at > ?', DateTime.now - 1.hour).order(starts_at: :asc)
   end
 
   private

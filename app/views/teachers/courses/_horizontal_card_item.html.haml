@@ -1,0 +1,10 @@
+.item
+  .content
+    %a.header= @course.classroom.name
+    %span
+      = l(animation.starts_at, format: "%A %d/%m/%Y à %H:%M")
+    .meta
+      %span #{animation.childrens_maximum} élèves maximum
+    .extra
+      .ui.right.floated
+        = link_to 'Voir les détails de la session', classroom_animation_path(animation), class: 'ui button'
