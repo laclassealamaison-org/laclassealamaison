@@ -2,5 +2,10 @@
 = link_to new_child_path, style: "background-color: #31C48D", class: 'ui green button collection_action' do
   %i.ui.add.icon
   Ajouter un enfant
-.courses.w-full.flex.flex-wrap
-  = render partial: 'child', collection: @children
+- if @children.exists?
+  .courses.w-full.flex.flex-wrap
+    = render partial: 'child', collection: @children
+- else
+  .ui.message
+    %i.ui.info.icon
+    Ajoutez un enfant pour pouvoir l'inscrire à une session de cours.

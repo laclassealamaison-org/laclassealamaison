@@ -17,4 +17,8 @@
           = link_to new_parent_classroom_animation_reservation_path(classroom_animation_id: classroom_animation), class: "ui #{cars.exists? ? "" : "green"} right labeled icon button" do
             %i.right.chevron.icon
             = cars.exists? ? "Inscrire un autre enfant" : "Inscrire un enfant"
+        - if current_user.responsible_parent? && current_user.children.none?
+          = link_to new_child_path, class: "ui green right icon button" do
+            %i.plus.icon
+            Ajouter un enfant pour pouvoir vous inscrire
       .ui.label= classroom_animation.occupation + " élèves"
