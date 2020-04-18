@@ -10,6 +10,8 @@ fr:
       child:
         classroom: Classe
         name: Nom
+      course:
+        description: Thématique (en une phrase)
     errors:
       messages:
         record_invalid: 'La validation a échoué : %{errors}'

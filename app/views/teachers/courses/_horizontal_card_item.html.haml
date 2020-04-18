@@ -1,0 +1,9 @@
+.item
+  .content
+    %a.header= @course.classroom.name
+    %span= animation.human_time
+    .meta
+      %span #{animation.childrens_maximum} élèves maximum
+    .extra
+      .ui.right.floated
+        = link_to 'Voir les détails de la session', classroom_animation_path(animation), class: 'ui button'

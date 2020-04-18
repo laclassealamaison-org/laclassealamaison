@@ -13,7 +13,7 @@
     = link_to 'Modifier la session', edit_classroom_animation_path(@classroom_animation), class: 'btn-orange'
     = link_to 'Supprimer la session', classroom_animation_path(@classroom_animation), method: :delete, class: 'btn-red'
 
-%h2 Inscriptions (#{@classroom_animation.occupation})
+%h2 Inscriptions (#{@classroom_animation.occupation} élèves)
 .ui.big.relaxed.divided.list
   - @reservations.each do |reservation|
     .item

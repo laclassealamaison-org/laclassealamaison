@@ -29,6 +29,16 @@ class Teachers::CoursesController < ApplicationController
     authorize @course
   end
 
+  def show
+    @course = current_user.courses.find(params[:id])
+
+    animations = @course.classroom_animations
+
+    @current_classroom_animations = animations.live.order(starts_at: :asc)
+
+    @future_classroom_animations = animations.where('starts_at > ?', DateTime.now - 1.hour).order(starts_at: :asc)
+  end
+
   private
 
   def course_params
