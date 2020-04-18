@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   namespace :administration do
     resources :menus, only: [:index]
+    resources :courses
     resources :responsible_parents, only: [:index] do
       resources :promotings, only: [:create], controller: 'responsible_parents/promotings'
       resources :demotions, only: [:create], controller: 'responsible_parents/demotions'
