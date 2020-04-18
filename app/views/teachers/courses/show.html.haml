@@ -13,9 +13,8 @@
   = @course.content
 
 %h2 Sessions à venir
-- @future_classroom_animations.each do |classroom_animations|
-  .ui.divided.list
-    = render "horizontal_card_item", animation: classroom_animations
+.ui.divided.list
+  = render partial: "horizontal_card_item", collection: @future_classroom_animations, as: :animation
 
 = link_to new_classroom_animation_path, class: 'ui button collection_action' do
   Ajouter une session
