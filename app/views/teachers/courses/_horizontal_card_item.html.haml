@@ -1,8 +1,7 @@
 .item
   .content
     %a.header= @course.classroom.name
-    %span
-      = l(animation.starts_at, format: "%A %d/%m/%Y à %H:%M")
+    %span= animation.human_time
     .meta
       %span #{animation.childrens_maximum} élèves maximum
     .extra
