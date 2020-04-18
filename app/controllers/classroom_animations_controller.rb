@@ -1,5 +1,6 @@
 class ClassroomAnimationsController < ApplicationController
-  layout "teacher"
+  layout :get_layout
+
   def index
     authorize ClassroomAnimation
     animations = policy_scope(ClassroomAnimation)
@@ -70,6 +71,10 @@ class ClassroomAnimationsController < ApplicationController
   end
 
   private
+
+  def get_layout
+    current_user.admin? ? "administration" : "teacher"
+  end
 
   def classroom_animation_params
     params.require(:classroom_animation).permit(:classroom_id, :course_id, :starts_at, :childrens_maximum, :comment)
