@@ -8,9 +8,5 @@
     .flex.flex-col
       - if content_for?(:back_link)
         = yield :back_link
-      - flash.each do |key, value|
-        .mt-4.text-green
-          %p
-            = key
-            = value
+      = render "shared/flash"
       = yield
