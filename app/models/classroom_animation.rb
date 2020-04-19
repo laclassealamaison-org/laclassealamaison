@@ -45,9 +45,9 @@ class ClassroomAnimation < ApplicationRecord
 
   def to_s
     if course.present?
-      "#{course.title}, #{human_time}"
+      course.title
     else
-      "#{classroom.name}, #{human_time}"
+      classroom.name
     end
   end
 
@@ -56,7 +56,7 @@ class ClassroomAnimation < ApplicationRecord
   end
 
   def occupation
-    full? ? "complet" : "#{classroom_animation_reservations_count}/#{childrens_maximum}"
+    full? ? "complet" : "#{classroom_animation_reservations_count}/#{childrens_maximum} élèves"
   end
 
   def start_time # Used implicitly by week_calendar, don't remove
