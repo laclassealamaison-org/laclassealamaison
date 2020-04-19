@@ -1,7 +1,7 @@
 <% if current_user %>
   <% current_user.reserved_animations.hot.each do |animation| %>
 
-    <header class="flex items-stretch justify-center bg-blue-400 p-5">
+    <header class="flex items-stretch justify-center bg-teal-500 p-3">
 
       <p class="text-white text-center text-lg mb-0 md:text-lg self-center">
         Pour <%= animation.children.find_by(parent: current_user).name %>, <%= animation %>
@@ -9,7 +9,7 @@
 
       <% if animation.opened? %>
         <span class="rounded-md shadow-sm ml-4 p-2 self-center">
-          <%= link_to "Rejoindre le direct", animation.live_url, target: '_blank', class: 'btn-pink my-1 md:text-lg md:text-center md:px-2' %>
+          <%= link_to "Rejoindre le direct", animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' %>
         </span>
       <% else %>
         <span class="bg-pink-500 text-white font-bold mx-4 py-2 px-4 rounded opacity-50 cursor-not-allowed">
