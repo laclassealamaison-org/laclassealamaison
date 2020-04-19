@@ -55,10 +55,6 @@ class ClassroomAnimation < ApplicationRecord
     classroom_animation_reservations_count >= childrens_maximum
   end
 
-  def open?
-    opened
-  end
-
   def occupation
     full? ? "complet" : "#{classroom_animation_reservations_count}/#{childrens_maximum}"
   end

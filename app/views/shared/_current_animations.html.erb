@@ -4,10 +4,10 @@
     <header class="flex items-stretch justify-center bg-blue-400 p-5">
 
       <p class="text-white text-center text-lg mb-0 md:text-lg self-center">
-        Pour <%= animation.children.find_by(parent: current_user).name %>, <%= animation.course.title %>
+        Pour <%= animation.children.find_by(parent: current_user).name %>, <%= animation %>
       </p>
 
-      <% if animation.open? %>
+      <% if animation.opened? %>
         <span class="rounded-md shadow-sm ml-4 p-2 self-center">
           <%= link_to "Rejoindre le direct", animation.live_url, target: '_blank', class: 'btn-pink my-1 md:text-lg md:text-center md:px-2' %>
         </span>
