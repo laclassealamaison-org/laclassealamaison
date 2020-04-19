@@ -1,6 +1,6 @@
 - content_for(:page_title, @course.title)
 = link_to edit_teachers_course_path(@course), title: @course.title, style: "background-color: #31C48D", class: 'ui green button collection_action' do
-  %i.ui.edit.icon
+  %i.fas.fa-edit.mx-2
   Modifier le cours
 %h2 Classe :
 = @course.classroom.name

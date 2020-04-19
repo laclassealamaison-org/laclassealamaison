@@ -1,11 +1,11 @@
 - content_for(:page_title, "Mes enfants")
 = link_to new_child_path, style: "background-color: #31C48D", class: 'ui green button collection_action' do
-  %i.ui.add.icon
+  %i.fas.fa-plus.mx-2
   Ajouter un enfant
 - if @children.exists?
   .courses.w-full.flex.flex-wrap
     = render partial: 'child', collection: @children
 - else
   .ui.message
-    %i.ui.info.icon
+    %i.fas.fa-info.mx-2
     Ajoutez un enfant pour pouvoir l'inscrire à une session de cours.
