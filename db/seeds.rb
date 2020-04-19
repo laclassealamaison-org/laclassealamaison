@@ -20,7 +20,7 @@ User.create!([
 ])
 teacher = User.create!(email: 'professeur@laclassealamaison.org', password: 'teacher@.org', role: :teacher, first_name: 'Professeur', last_name: 'Bénévole')
 
-User.all.map(&:confirm!)
+User.all.map(&:confirm)
 
 puts "Building Session instances..."
 
