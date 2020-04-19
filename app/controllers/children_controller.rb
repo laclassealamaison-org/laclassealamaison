@@ -1,4 +1,5 @@
 class ChildrenController < ApplicationController
+  before_action :authenticate_user!
   layout "parent"
   def index
     @children = current_user.children

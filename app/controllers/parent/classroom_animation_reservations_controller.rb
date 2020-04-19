@@ -1,4 +1,5 @@
 class Parent::ClassroomAnimationReservationsController < ApplicationController
+  before_action :authenticate_user!
   layout "parent"
   def index
     @cars = policy_scope(ClassroomAnimationReservation).includes(:classroom_animation).order("classroom_animations.starts_at ASC")
