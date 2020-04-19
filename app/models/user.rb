@@ -59,6 +59,10 @@ class User < ApplicationRecord
     [first_name, last_name].join(' ').presence || email
   end
 
+  def professor_name
+    "#{first_name} #{last_name.chars.first}.".presence || 'Unknown'
+  end
+
   def full_name_with_email
     full_name + "(#{email})"
   end

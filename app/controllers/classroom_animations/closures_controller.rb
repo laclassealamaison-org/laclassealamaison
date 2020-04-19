@@ -4,7 +4,7 @@ class ClassroomAnimations::ClosuresController < ApplicationController
     authorize @classroom_animation
     @classroom_animation.update(opened: false)
 
-    notify("Fermeture de la salle de #{@classroom_animation.classroom.name} du #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
+    notify("Fermeture de la salle de #{@classroom_animation.classroom.name} du #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.professor_name}")
     
     redirect_to classroom_animation_path(@classroom_animation)
   end
