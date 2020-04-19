@@ -1,0 +1,33 @@
+<% content_for :page_title do %>
+  <div class="flex flex-wrap justify-between">
+    <%= "Mes enfants" %>
+  </div>
+<% end %>
+
+
+<%= link_to new_child_path, class: 'sbtn btn-green' do %>
+  <i class="fas fa-plus mr-2"></i> Ajouter un enfant
+<% end %>
+
+<% if @children.exists?%>
+  <div class='courses w-full flex flex-wrap my-6'>
+    <%= render partial: 'child', collection: @children %>
+  </div>
+<% else %>
+  <div class="calm-message">
+    <p><i class="fas fa-info"></i> Ajoutez un enfant pour pouvoir l'inscrire à une session de cours.</p>
+  </div>
+<% end %>
+
+<!--
+- content_for(:page_title, "Mes enfants")
+= link_to new_child_path, class: 'btn-green' do
+  Ajouter un enfant
+- if @children.exists?
+  .courses.w-full.flex.flex-wrap
+    = render partial: 'child', collection: @children
+- else
+  .calm-message
+    %i.fas.fa-info
+    Ajoutez un enfant pour pouvoir l'inscrire à une session de cours.
+-->

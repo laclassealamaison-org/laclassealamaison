@@ -17,6 +17,7 @@ class ChildrenController < ApplicationController
 
   def show
     @child = current_user.children.find(params[:id])
+    @classroom_animation_reservation = ClassroomAnimationReservation.new
   end
 
   def update
