@@ -3,11 +3,22 @@
 @import "tailwindcss/utilities";
 @import "./forms";
 @import "./calendar";
+@import "./message";
+@import "./menu";
+
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
 /*
 *
 * GENERAL
 *
 */
+
 h2{
   @apply text-gray-600 text-4xl mt-12 mb-4
 }

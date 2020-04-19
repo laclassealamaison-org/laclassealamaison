@@ -11,7 +11,7 @@
         - if cars.exists?
           - cars.each do |car|
             = link_to edit_parent_classroom_animation_reservation_path(car), class: "ui green button" do
-              %i.ui.edit.icon
+              %i.fas.fa-edit.mx-2
               = car.child.name
         - if current_user.available_children_for(classroom_animation).exists? && ! classroom_animation.full?
           = link_to new_parent_classroom_animation_reservation_path(classroom_animation_id: classroom_animation), class: "ui #{cars.exists? ? "" : "green"} right labeled icon button" do
@@ -19,6 +19,6 @@
             = cars.exists? ? "Inscrire un autre enfant" : "Inscrire un enfant"
         - if current_user.responsible_parent? && current_user.children.none?
           = link_to new_child_path, class: "ui green right icon button" do
-            %i.plus.icon
-            Ajouter un enfant pour pouvoir l'inscrire
+            %i.fas.fa-plus.mx-2
+            Ajouter mon enfant pour l'inscrire
       .ui.label= classroom_animation.occupation + " élèves"

@@ -1,8 +1,10 @@
 class Administration::UsersController < ApplicationController
-  layout "administration"
-  def index
-    @users = User.simple_users.order(created_at: :desc)
-    authorize [:administration, :user], :index?
+  include AdministrationUserConcern
+
+  private
+
+  def user_role
+    :user
   end
 
   def impersonate
