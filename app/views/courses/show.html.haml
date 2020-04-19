@@ -1,7 +1,7 @@
 - content_for(:page_title, @course.title)
 - set_back_link("Retourner à la liste des cours", courses_path)
 
-%h2 Par #{@course.user.full_name}
+%h2 Par #{@course.user.teacher_name}
 
 .labels
   .ui.label=  @course.classroom.name

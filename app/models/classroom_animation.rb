@@ -34,7 +34,9 @@ class ClassroomAnimation < ApplicationRecord
   has_many :children, through: :classroom_animation_reservations
 
   scope :live, -> { where("starts_at < current_timestamp AND starts_at + interval '1 hour' > current_timestamp") }
+  scope :hot, -> { where("starts_at < current_timestamp + interval '10 minute' AND starts_at + interval '1 hour' > current_timestamp") }
   scope :open, -> { where(opened: true) }
+  scope :closed, -> { where(opened: false) }
   scope :pasted, -> { where('starts_at < current_timestamp') }
   scope :upcoming, -> { where('starts_at > current_timestamp') }
   scope :available, -> { where("classroom_animation_reservations_count < childrens_maximum") }

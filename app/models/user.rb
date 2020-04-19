@@ -46,7 +46,7 @@ class User < ApplicationRecord
   has_many :courses
   has_many :children, foreign_key: :parent_id, inverse_of: :parent
   has_many :classroom_animation_reservations, through: :children
-
+  has_many :reserved_animations, through: :classroom_animation_reservations, source: :classroom_animation
   scope :responsible_parents, -> { where(role: :responsible_parent) }
   scope :teachers, -> { where(role: :teacher) }
   scope :simple_users, -> { where(role: :user) }
@@ -57,6 +57,14 @@ class User < ApplicationRecord
 
   def full_name
     [first_name, last_name].join(' ').presence || email
+  end
+
+  def teacher_name
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name.chars.first}."
+    else
+      "Anonymisé"
+    end
   end
 
   def full_name_with_email

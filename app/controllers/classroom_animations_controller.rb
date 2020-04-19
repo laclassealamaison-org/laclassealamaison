@@ -31,7 +31,7 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation.user = current_user
     @classroom_animation.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
     if @classroom_animation.save
-      notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
+      notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
@@ -51,7 +51,7 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.find(params[:id])
     authorize @classroom_animation
     if @classroom_animation.update(classroom_animation_params)
-      notify("Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
+      notify("Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
@@ -65,7 +65,7 @@ class ClassroomAnimationsController < ApplicationController
     authorize @classroom_animation
     @classroom_animation.destroy
 
-    notify("Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.full_name}")
+    notify("Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
     redirect_to classroom_animations_path
   end

@@ -15,12 +15,12 @@ puts "...ok"
 
 User.create!([
   { email: 'administrateur@laclassealamaison.org', password: 'admin@.org', role: :admin, first_name: 'Administrateur', last_name: 'Bénévole' },
-  { email: 'parent@laclassealamaison.org', password: 'parent@.org', role: :responsible_parent },
+  { email: 'parent@laclassealamaison.org', password: 'parent@.org', role: :responsible_parent, first_name: 'Parent', last_name: 'dEnfant' },
   { email: 'utilisateur@laclassealamaison.org', password: 'user@.org', role: :user }
 ])
 teacher = User.create!(email: 'professeur@laclassealamaison.org', password: 'teacher@.org', role: :teacher, first_name: 'Professeur', last_name: 'Bénévole')
 
-User.all.map(&:confirm!)
+User.all.map(&:confirm)
 
 puts "Building Session instances..."
 

@@ -1,12 +1,15 @@
 class Administration::TeacherPolicy < ApplicationPolicy
-  attr_reader :user, :teacher
-
-  def initialize(user, teacher)
-    @user = user
-    @teacher = teacher
+  def index?
+    user.admin?
   end
 
-  def index?
-    @user&.admin?
+  def update?
+    user.admin?
+  end
+
+  class Scope < Scope
+    def resolve
+      User.teacher
+    end
   end
 end
