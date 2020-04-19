@@ -1,0 +1,25 @@
+<div class="item">
+  <div class="content">
+    <a class="header">
+      <%= reservation.title %>
+    </a>
+    <div class="meta">
+      <span>
+        <%= reservation.classroom_animation.human_time %>
+      </span>
+    </div>
+    <div class="description">
+      <p>
+        <%= reservation.classroom_animation.course&.description %>
+      </p>
+    </div>
+    <div class="extra">
+      <div class="ui right floated">
+        <%= link_to [:edit, :parent, reservation], class: 'ui button' do %>
+          <i class="edit icon"></i>
+          Modifier
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
