@@ -1,11 +1,11 @@
-= link_to course_path(course), title: course.title, class: "w-full md:w-1/2 lg:w-1/3 xl:w-1/3 rounded shadow-lg" do
-  .tooltip
+= link_to course_path(course), title: course.title, class: "display-block rounded shadow-xl my-2 mx-2 border border-gray-200" do
+  .tooltip.flex.flex-col{style: "min-height: 200px"}
     .px-6.py-4
       .font-bold.text-xl.mb-2= course.title
       %p.text-gray-700.text-base
         = course.description
-    .px-6.py-4
-      %span.inline-block.bg-purple-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.user.full_name
+    .px-6.py-4.mt-auto
+      %span.inline-block.bg-purple-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-1= course.user.full_name
       - unless defined? hide_classroom
         %span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
       - if course.available?
@@ -14,9 +14,11 @@
         %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Complet
       - else
         %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Pas de session
-    - if course.available?
-      .ui.button.w-full M'inscrire
-    - else
-      .ui.bottom.button.w-full Me prévenir
+    .mt-auto
+      - if current_user
+        - if course.available?
+          .btn-bottom-gray.w-full.justify-center M'inscrire
+        - else
+          .btn-bottom-gray.w-full.justify-center Bientôt disponible
     -# .tooltip-text
     -#   = course.content

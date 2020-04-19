@@ -229,6 +229,10 @@ ul{
     @apply outline-none border-indigo-300 shadow-outline-green
   }
 
+.btn-bottom-gray {
+  @apply btn-gray rounded-t-none rounded-b;
+}
+
 /* BLUE BIG */
 .btn-blue-big{
   @apply inline-flex items-center px-4 py-3 border border-transparent text-lg leading-5 font-medium rounded-lg text-white bg-blue-400

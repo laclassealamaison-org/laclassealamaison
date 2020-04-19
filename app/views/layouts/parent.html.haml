@@ -1,5 +1,12 @@
-= content_for(:menu_title, "Espace parent")
-= content_for(:menu) do
-  = active_link_to "Mes enfants", children_path, class: 'item'
-  = active_link_to "Mes inscriptions", parent_classroom_animation_reservations_path, class: 'item'
-= render "layouts/page_with_menu"
+= render "layouts/common" do
+  .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
+    - if content_for?(:back_link)
+      = yield :back_link
+    - if content_for?(:page_title)
+      .hidden.md:block
+        %header.bg-gray-100.border-t-2.border-b-2.border-gray-300.mb-6
+          .max-w-6xl.mx-auto.sm:px-6.lg:px-8
+            %h1.py-6.text-2xl.md:text-4xl.text-pink-400.font-bold
+              = yield :page_title
+    .flex.flex-col
+      = yield

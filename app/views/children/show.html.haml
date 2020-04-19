@@ -1,18 +1,21 @@
-- content_for(:page_title, "Profil de #{@child.name}")
+- content_for(:page_title, "Profil de #{@child}, #{@child.classroom}")
+- content_for(:back_link) do
+  .my-3
+    = link_to children_path do
+      %i.ui.left.arrow.icon
+      Revenir à la liste de mes enfants
 = link_to edit_child_path(@child), style: "background-color: #31C48D", class: 'ui green button collection_action' do
   %i.ui.edit.icon
   Modifier le profil
 
-%h2 Profil
-Classe :
-= @child.classroom.name
-%h2.header Inscriptions
+%h2.header Cette semaine
 
 .ui.divided.list
   = render partial: "parent/classroom_animation_reservations/horizontal_card_item",
             collection: @child.classroom_animation_reservations,
             as: :reservation
 
-= link_to courses_path, class: 'ui button w-1/3' do
-  %i.ui.search.icon
-  Trouver un cours
+.ui.divided.list
+  = render partial: "classroom_animations/horizontal_card_item2",
+            collection: @child.classroom.classroom_animations.upcoming,
+            as: :classroom_animation

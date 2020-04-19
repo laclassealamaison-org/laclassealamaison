@@ -19,6 +19,10 @@ class Child < ApplicationRecord
   belongs_to :classroom
   has_many :classroom_animation_reservations
 
+  def to_s
+    name
+  end
+
   def next_animation
     classroom_animation_reservations.upcoming.first&.classroom_animation
   end
