@@ -31,15 +31,15 @@ Rails.application.routes.draw do
   namespace :administration do
     resources :menus, only: [:index]
     resources :courses
-    resources :responsible_parents, only: [:index] do
+    resources :responsible_parents, only: [:index, :edit, :update] do
       resources :promotings, only: [:create], controller: 'responsible_parents/promotings'
       resources :demotions, only: [:create], controller: 'responsible_parents/demotions'
     end
-    resources :teachers, only: [:index] do
+    resources :teachers, only: [:index, :edit, :update] do
       resources :promotings, only: [:create], controller: 'teachers/promotings'
       resources :demotions, only: [:create], controller: 'teachers/demotions'
     end
-    resources :users, only: [:index] do
+    resources :users, only: [:index, :edit, :update] do
       patch :impersonate, on: :collection
     end
   end
