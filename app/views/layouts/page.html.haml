@@ -1,6 +1,4 @@
 = render "layouts/common" do
-  - if content_for?(:back_link)
-    = yield :back_link
   - if content_for?(:page_title)
     %header.bg-gray-100.border-t-2.border-b-2.border-gray-300.mb-6
       .max-w-6xl.mx-auto.sm:px-6.lg:px-8
@@ -8,6 +6,8 @@
           = yield :page_title
   .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
     .flex.flex-col
+      - if content_for?(:back_link)
+        = yield :back_link
       - flash.each do |key, value|
         .mt-4.text-green
           %p

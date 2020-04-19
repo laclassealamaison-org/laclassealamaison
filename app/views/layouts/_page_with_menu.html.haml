@@ -9,6 +9,8 @@
         = yield :menu
     .flex-1
       .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
+        - if content_for?(:back_link)
+          .my-3= yield :back_link
         - if content_for?(:page_title)
           .hidden.md:block
             %header.bg-gray-100.border-t-2.border-b-2.border-gray-300.mb-6
