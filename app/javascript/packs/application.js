@@ -18,4 +18,5 @@ require("channels")
 
 import "@fortawesome/fontawesome-free/js/all";
 
-import '../stylesheets/application.css'
+import '../stylesheets/application.scss'
+import '../stylesheets/fontawesome.css'

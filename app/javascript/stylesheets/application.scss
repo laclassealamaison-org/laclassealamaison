@@ -5,13 +5,7 @@
 @import "./calendar";
 @import "./message";
 @import "./menu";
-
-$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
-@import '@fortawesome/fontawesome-free/scss/fontawesome';
-@import '@fortawesome/fontawesome-free/scss/solid';
-@import '@fortawesome/fontawesome-free/scss/regular';
-@import '@fortawesome/fontawesome-free/scss/brands';
-@import '@fortawesome/fontawesome-free/scss/v4-shims';
+// @import "./fontawesome";
 
 /*
 *
@@ -20,18 +14,19 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 */
 
 h2{
-  @apply text-gray-600 text-4xl mt-12 mb-4
+  @apply text-gray-600 text-4xl mt-12 mb-4;
 }
+
 p, li{
-  @apply text-lg text-gray-500 mb-4
+  @apply text-lg text-gray-500 mb-4;
 }
 
 ol{
-  @apply list-decimal ml-20
+  @apply list-decimal ml-20;
 }
 
 ul{
-  @apply list-disc ml-20
+  @apply list-disc ml-20;
 }
 
 .flex-basis50{
