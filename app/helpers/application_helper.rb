@@ -10,4 +10,11 @@ module ApplicationHelper
       root_path
     end
   end
+  def set_back_link(title, url)
+    content_for(:back_link) do
+      link_to url do
+        content_tag(:i, "", class: 'fas fa-arrow-left mx-2') + title
+      end
+    end
+  end
 end

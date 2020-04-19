@@ -1,6 +1,5 @@
 - content_for(:page_title, @course.title)
-
-= link_to "Retourner à la liste des cours", courses_path
+- set_back_link("Retourner à la liste des cours", courses_path)
 
 %h2 Par #{@course.user.professor_name}
 

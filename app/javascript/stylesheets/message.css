@@ -1,0 +1,7 @@
+.calm-message {
+  @apply p-3 my-2 border border-gray-200 bg-gray-100 rounded-sm;
+}
+
+.calm-message .fas, .calm-message .svg-inline--fa {
+  @apply mx-2;
+}

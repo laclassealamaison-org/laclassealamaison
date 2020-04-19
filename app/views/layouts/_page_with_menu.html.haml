@@ -1,14 +1,16 @@
 = render "layouts/common" do
   .flex.my-10.flex-col.md:flex-row
     .md:hidden.mb-3
-      .ui.secondary.pointing.blue.menu
+      .calm.secondary.pointing.blue.menu
         = yield :menu
     .hidden.md:block
-      .ui.vertical.menu
+      .calm.vertical.menu
         .header.item= yield :menu_title
         = yield :menu
     .flex-1
       .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
+        - if content_for?(:back_link)
+          .my-3= yield :back_link
         - if content_for?(:page_title)
           .hidden.md:block
             %header.bg-gray-100.border-t-2.border-b-2.border-gray-300.mb-6
