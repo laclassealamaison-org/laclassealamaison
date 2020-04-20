@@ -1,0 +1,45 @@
+<%= link_to teachers_course_path(course), title: course.title, class: 'w-full  md:w-1/2 lg:w-1/3 xl:w-1/4 rounded px-2 pb-6' do %>
+  <div class="px-6 py-4 flex h-40 min-h-40 shadow">
+    <div class="font-bold text-xl mb-2 text-orange-500">
+        <%= course.title %>
+
+        <p class="text-gray-500 text-base mt-2">
+            <i class="far fa-calendar mx-2"></i>
+            <%= course.description %>
+        </p>
+
+        <div class="m-auto px-6 py-4">
+            <% if course.published %>
+                <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-2">
+                    Publié
+                </span>
+            <% else %>
+                <span class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-2">
+                    Non publié
+                </span>
+            <% end %>
+        </div>
+    </div>
+  </div>
+<% end %>
+
+
+
+
+
+<!--
+= link_to teachers_course_path(course), title: course.title, class: "w-full sm:w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 rounded shadow-lg" do
+  .tooltip.flex.flex-col{style: "min-height: 160px"}
+    .px-6.py-4
+      .font-bold.text-xl.mb-2= course.title
+      %p.text-gray-700.text-base
+        = course.description
+    .mt-auto.px-6.py-4
+      %span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
+      - if course.published
+        %span.inline-block.bg-green-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Publié
+      - else
+        %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Non publié
+    -# .tooltip-text
+    -#   = course.content
+-->

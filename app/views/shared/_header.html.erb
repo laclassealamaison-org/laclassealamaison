@@ -49,7 +49,7 @@
         <% if current_user %>
           <li class="list-none"><%= link_to 'Cours', courses_path, class: 'liens' %></li>
         <% end %>
-        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace professeur', classroom_animations_path, class: 'liens' %></li><% end %>
+        <% if current_user&.teacher? %><li class="list-none"><%= link_to 'Espace professeur', teachers_courses_path, class: 'liens' %></li><% end %>
         <% if current_user&.responsible_parent? %><li class="list-none"><%= link_to 'Espace parent', children_path, class: 'liens' %></li><% end %>
         <% if ! current_user %>
         <li class="list-none"><%= link_to 'Enfants', classrooms_path, class: 'liens' %></li>
