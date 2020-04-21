@@ -11,12 +11,3 @@
               = yield :page_title
     .flex.flex-col
       = yield
-
-
-
-
--#= content_for(:menu_title, "Espace professeur")
--#= content_for(:menu) do
-  -#= active_link_to "Mes cours", teachers_courses_path, class: 'item'
-  -#= active_link_to "Mes sessions", classroom_animations_path, class: 'item'
--#= render "layouts/page_with_menu"
