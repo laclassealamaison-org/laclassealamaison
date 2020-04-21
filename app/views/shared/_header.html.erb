@@ -23,7 +23,7 @@
         <div class="hidden sm:ml-6 sm:flex">
 
           <%= link_to 'Cours', courses_path, class: 'liens ml-8' if current_user %>
-          <%= link_to 'Espace professeur', classroom_animations_path, class: 'liens ml-8' if current_user&.teacher? %>
+          <%= link_to 'Espace professeur', teachers_courses_path, class: 'liens ml-8' if current_user&.teacher? %>
           <%= link_to 'Espace parent', children_path, class: 'liens ml-8' if current_user&.responsible_parent? %>
 
           <% if ! current_user %>
