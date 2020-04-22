@@ -18,16 +18,3 @@
     <p><i class="fas fa-info"></i> Ajoutez un enfant pour pouvoir l'inscrire à une session de cours.</p>
   </div>
 <% end %>
-
-<!--
-- content_for(:page_title, "Mes enfants")
-= link_to new_child_path, class: 'btn-green' do
-  Ajouter un enfant
-- if @children.exists?
-  .courses.w-full.flex.flex-wrap
-    = render partial: 'child', collection: @children
-- else
-  .calm-message
-    %i.fas.fa-info
-    Ajoutez un enfant pour pouvoir l'inscrire à une session de cours.
--->

@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <div class="flex flex-wrap justify-between">
+    <%= "Mes cours" %>
+  </div>
+<% end %>
+
+<%= link_to new_teachers_course_path, class: 'sbtn btn-green' do %>
+  <i class="fas fa-plus mr-2"></i> Ajouter un cours
+<% end %>
+
+<div class="courses w-full flex flex-wrap my-6">
+  <%= render partial: 'course', collection: @courses %>
+</div>
