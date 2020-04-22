@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Classroom < ApplicationRecord
-  has_many :resources
+  has_many :classroom_resources
   has_many :classroom_animations
 
   def to_s

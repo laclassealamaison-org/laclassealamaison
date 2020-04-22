@@ -19,5 +19,5 @@
 #  fk_rails_...  (classroom_id => classrooms.id)
 #
 class Resource < ApplicationRecord
-  belongs_to :classroom
+  has_many :classroom_resources
 end
