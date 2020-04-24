@@ -12,7 +12,7 @@
       - unless defined? hide_classroom
         %span.inline-block.bg-orange-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
       - if course.available?
-        %span.inline-block.bg-orange-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Session disponible
+        %span.inline-block.bg-green-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Session disponible
       - elsif course.classroom_animations.upcoming.exists?
         %span.inline-block.bg-red-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Complet
       - else
