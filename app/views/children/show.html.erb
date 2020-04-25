@@ -131,17 +131,10 @@
               <%= link_to course_path(classroom_animation.course), class: 'self-center mr-4' do %>
                 <i class="fas fa-sort-down pb-1 mr-1"></i> En savoir plus
               <% end %>
-              <% if @child.id.in?(classroom_animation.children.pluck(:id)) %>
-                <%= link_to "#TODO: Désinscrire #{@child}", '#', class: 'btn-orange' %>
-              <% else %>
-                <%= form_with(model: @classroom_animation_reservation, url: parent_classroom_animation_reservations_path, local: true) do |form| %>
-                  <%= form.hidden_field :child_id, value: @child.id %>
-                  <%= form.hidden_field :classroom_animation_id, value: classroom_animation.id %>
-                  <%= form.submit "Inscrire #{@child}", class: 'btn-green' %>
-                <% end %>
-              <% end %>
+              <%= render 'parent/classroom_animation_reservations/child_reservation_button',
+                child: @child, animation: classroom_animation
+              %>
             </div>
-            
           </div>
         </div>
       </div>
