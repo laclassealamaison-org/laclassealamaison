@@ -39,7 +39,7 @@ class ClassroomAnimation < ApplicationRecord
   scope :closed, -> { where(opened: false) }
   scope :pasted, -> { where('starts_at < current_timestamp') }
   scope :upcoming, -> { where('starts_at > current_timestamp') }
-  scope :available, -> { where("classroom_animation_reservations_count < childrens_maximum") }
+  scope :available, -> { where('classroom_animation_reservations_count < childrens_maximum') }
 
   validates_uniqueness_of :starts_at, scope: :classroom_id
 
@@ -56,22 +56,22 @@ class ClassroomAnimation < ApplicationRecord
   end
 
   def occupation
-    full? ? "complet" : "#{classroom_animation_reservations_count}/#{childrens_maximum} élèves"
+    full? ? 'complet' : "#{classroom_animation_reservations_count}/#{childrens_maximum} élèves"
   end
 
   def start_time # Used implicitly by week_calendar, don't remove
-    self.starts_at
+    starts_at
   end
 
   def human_time
     format = if starts_at.to_date == Date.today
-      "Aujourd'hui à %kh"
-    elsif starts_at < Time.now + 7.days
-      "%A à %kh"
-    else
-      "%A %d %B à %kh"
+               "Aujourd'hui à %kh"
+             elsif starts_at < Time.now + 7.days
+               '%A à %kh'
+             else
+               '%A %d %B à %kh'
     end
-    format += "%M" if starts_at.min != 0
+    format += '%M' if starts_at.min != 0
     I18n.l(starts_at, format: format)
   end
 end

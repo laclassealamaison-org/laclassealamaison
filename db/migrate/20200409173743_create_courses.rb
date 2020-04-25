@@ -11,7 +11,7 @@ class CreateCourses < ActiveRecord::Migration[6.0]
     end
 
     change_table :classroom_animations do |t|
-      t.belongs_to  :course, type: :uuid
+      t.belongs_to :course, type: :uuid
     end
   end
 end

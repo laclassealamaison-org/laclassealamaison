@@ -2,7 +2,7 @@
   <div class="px-6 py-4 flex h-50 min-h-40 shadow mx-2">
       <div class="text-xl mb-2">
         <%= link_to classroom_animation_path(animation) , class: 'header font-bold text-orange-500' do %>
-          <%= @course.classroom.name %><br>
+          <%= course.classroom.name %><br>
           <%= animation.human_time %>
         <% end %>
 
@@ -18,19 +18,3 @@
       </div>
   </div>
 </div>
-
-
-
-
-
-<!--
-.item
-  .content
-    %a.header= @course.classroom.name
-    %span= animation.human_time
-    .meta
-      %span #{animation.childrens_maximum} élèves maximum
-    .extra
-      .ui.right.floated
-        = link_to 'Voir les détails de la session', classroom_animation_path(animation), class: 'ui button'
--->

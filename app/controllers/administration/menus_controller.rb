@@ -1,5 +1,5 @@
 class Administration::MenusController < ApplicationController
   def index
-    authorize [:administration, :menu], :index?
+    authorize %i[administration menu], :index?
   end
 end

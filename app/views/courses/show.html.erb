@@ -51,3 +51,35 @@
   <strong>Contenu du cours :</strong>
   <%= @course.content %>
 </p>
+
+<% if @course.classroom_animations.upcoming %>
+  <h2>Prochaines sessions</h2>
+
+  <% @course.classroom_animations.upcoming.each do |animation| %>
+    <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 rounded px-2 pb-6">
+      <div class="px-6 py-4 flex h-50 min-h-40 shadow mx-2">
+          <div class="text-xl mb-2">
+            <%= link_to classroom_animation_path(animation) , class: 'header font-bold text-pink-400' do %>
+              <%= @course.classroom.name %><br>
+              <%= animation.human_time %>
+            <% end %>
+
+            <div class="meta text-base">
+              <%= animation.childrens_maximum %> élèves maximum
+            </div>
+
+            <div class="extra mt-6">
+              <div class="ui right floated">
+                <% if current_user %>
+                  <% @children.each do |child| %>
+                    <%= render 'parent/classroom_animation_reservations/child_reservation_button',
+                      child: child, animation: animation %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

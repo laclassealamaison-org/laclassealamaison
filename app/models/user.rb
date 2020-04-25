@@ -39,8 +39,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
-  enum role: [:user, :responsible_parent, :teacher, :admin]
-  after_initialize :set_default_role, :if => :new_record?
+  enum role: %i[user responsible_parent teacher admin]
+  after_initialize :set_default_role, if: :new_record?
 
   has_many :classroom_animations
   has_many :courses
@@ -63,7 +63,7 @@ class User < ApplicationRecord
     if first_name.present? && last_name.present?
       "#{first_name} #{last_name.chars.first}."
     else
-      "Anonymisé"
+      'Anonymisé'
     end
   end
 
@@ -82,5 +82,4 @@ class User < ApplicationRecord
   def available_children_for(classroom_animation)
     children.where.not(id: children_for(classroom_animation))
   end
-
 end

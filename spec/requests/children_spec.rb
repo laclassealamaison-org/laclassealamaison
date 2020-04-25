@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "ChildrenController", type: :request do
-  include_context "With default models"
+RSpec.describe 'ChildrenController', type: :request do
+  include_context 'With default models'
 
-  describe "#index" do
-    include_context "when logged as a parent"
-    subject {
+  describe '#index' do
+    include_context 'when logged as a parent'
+    subject do
       get children_path
       response.body
-    }
-    describe "show children" do
+    end
+    describe 'show children' do
       before do
         child
         other_child
@@ -19,19 +19,16 @@ RSpec.describe "ChildrenController", type: :request do
     end
   end
 
-  describe "#show" do
-    include_context "when logged as a parent"
-    include_context "with animations"
-    subject {
+  describe '#show' do
+    include_context 'when logged as a parent'
+    include_context 'with animations'
+    subject do
       get child_path(child)
       response.body
-    }
+    end
     it { is_expected.to include child.name }
-    it("has a register form for future animation") {
-      is_expected.to have_tag('form') do
-        with_tag('input', with: {value: future_classroom_animation.id})
-        with_tag('input', with: {value: child.id})
-      end
+    it('has a register form for future animation') {
+      is_expected.to have_tag('form')
     }
   end
 end

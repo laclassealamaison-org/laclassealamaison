@@ -5,13 +5,17 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-
   def notify(text)
     return unless ENV['WEBHOOK_URL'].present?
+
     webhook_body = {
       text: text
     }
-    HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+    HTTParty.post(
+      ENV['WEBHOOK_URL'],
+      body: webhook_body.to_json,
+      headers: { 'Content-Type': 'application/json' }
+    )
   end
 
   def after_sign_in_path_for(resource)
