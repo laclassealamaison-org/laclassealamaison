@@ -46,7 +46,7 @@ end
 RSpec.configure do |config|
 
   config.include ERB::Util
-  config.include FactoryBot::Syntax::Methods
+  config.include RSpecHtmlMatchers
   config.render_views = true
   config.example_status_persistence_file_path = "tmp/spec-failed.txt"
   config.before(:suite) do
@@ -67,11 +67,12 @@ RSpec.configure do |config|
      track_files '{app,lib}/**/*.rb'
      add_filter '/vendor/ruby/'
      add_filter 'config/initializers/'
-     add_group 'Controllers', /app\/controllers\/(?!users\/)/
+     add_group 'Controllers', 'app/controllers'
      add_group 'Models', 'app/models'
      add_group 'Mailers', 'app/mailers'
      add_group 'Helpers', 'app/helpers'
      add_group 'Workers', %w(app/jobs app/workers)
+     add_group 'Policies', 'app/policies'
      add_group 'Libraries', 'lib'
      add_group 'Misc', %w(app/builders app/serializers app/channels app/services app/uploaders)
      merge_timeout 365 * 24 * 3600
