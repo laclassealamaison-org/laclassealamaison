@@ -58,6 +58,8 @@ jobs:
         cmd: install
 
     - name: Compile Assets
+      env:
+        RAILS_ENV: test
       shell: bash
       run: |
         if [[ ! -d public/packs-test ]]; then
