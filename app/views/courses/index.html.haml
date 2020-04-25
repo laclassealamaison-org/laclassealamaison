@@ -1,0 +1,21 @@
+- content_for(:page_title, "Les cours")
+= search_form_for @q do |f|
+  .ui.icon.input{data: {"children-count": 1}}
+    = f.search_field :title_or_description_or_content_or_classroom_name_or_user_last_name_cont, placeholder: "Rechercher un cours"
+    %i.search.icon
+  = f.submit class: "btn-green"
+  = link_to "Effacer", courses_path, class: 'btn-gray'
+
+= "#{@courses.count} cours"
+
+- if current_user
+  - Classroom.where(id: current_user.children.select(:classroom_id)).each do |classroom|
+    %h2= classroom.name
+    .courses.w-full.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3
+      = render partial: 'course', collection: @courses.where(classroom: classroom), locals: {hide_classroom: true}
+
+  %h2 Les autres cours
+  .courses.w-full.grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3
+    = render partial: 'course', collection: @courses.where.not(classroom: current_user.children.select(:classroom_id)), locals: {wrong_classroom: true}
+- else
+  = render partial: 'course', collection: @courses

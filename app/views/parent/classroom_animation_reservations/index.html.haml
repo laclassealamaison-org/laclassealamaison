@@ -1,0 +1,10 @@
+- content_for(:page_title, "Mes inscriptions")
+= link_to courses_path, class: 'btn-green' do
+  %i.fas.fa-search.mx-2
+  Trouver un cours
+%h2 À venir
+.courses.w-full.flex.flex-wrap
+  = render partial: 'car', collection: @cars.upcoming
+%h2 Passées
+.courses.w-full.flex.flex-wrap
+  = render partial: 'car', collection: @cars.former

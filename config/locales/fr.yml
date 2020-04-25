@@ -1,6 +1,17 @@
 ---
 fr:
   activerecord:
+    attributes:
+      classroom_animation_reservation:
+        child: "Choisir un enfant :"
+        classroom: Classe
+      classroom_animation:
+        starts_at: Date
+      child:
+        classroom: Classe
+        name: Nom
+      course:
+        description: Thématique (en une phrase)
     errors:
       messages:
         record_invalid: 'La validation a échoué : %{errors}'

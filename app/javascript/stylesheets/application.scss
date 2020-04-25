@@ -1,26 +1,32 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
+@import "./forms";
+@import "./calendar";
+@import "./message";
+@import "./menu";
+// @import "./fontawesome";
 
 /*
 *
 * GENERAL
 *
 */
+
 h2{
-  @apply text-gray-600 text-4xl mt-12 mb-4
+  @apply text-gray-600 text-4xl mt-12 mb-4;
 }
+
 p, li{
-  @apply text-lg text-gray-500 mb-4
+  @apply text-lg text-gray-500 mb-4;
 }
 
 ol{
-  @apply list-decimal ml-20
+  @apply list-decimal ml-20;
 }
 
 ul{
-  @apply list-disc ml-20
+  @apply list-disc ml-20;
 }
 
 .flex-basis50{
@@ -68,6 +74,12 @@ ul{
   padding: 3px 10px;
   position: absolute;
   z-index: 100;
+}
+.tooltip .tooltip-text .title {
+  @apply font-bold text-lg;
+}
+.tooltip .tooltip-text .meta {
+  @apply font-semibold text-gray-400 text-lg;
 }
 
 .tooltip:hover .tooltip-text {
@@ -222,6 +234,10 @@ ul{
   .btn-black:focus{
     @apply outline-none border-indigo-300 shadow-outline-green
   }
+
+.btn-bottom-gray {
+  @apply btn-gray rounded-t-none rounded-b;
+}
 
 /* BLUE BIG */
 .btn-blue-big{

@@ -1,0 +1,12 @@
+= render "layouts/common" do
+  - if content_for?(:page_title)
+    %header.bg-gray-100.border-2.border-gray-300.mb-6
+      .max-w-6xl.mx-auto.sm:px-6.lg:px-8
+        %h1.py-6.text-2xl.md:text-4xl.text-pink-400.font-bold
+          = yield :page_title
+  .max-w-6xl.mx-auto.sm:px-6.lg:px-8.mb-12
+    .flex.flex-col
+      - if content_for?(:back_link)
+        = yield :back_link
+      = render "shared/flash"
+      = yield

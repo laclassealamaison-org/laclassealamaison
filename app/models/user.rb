@@ -43,22 +43,44 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :classroom_animations
-
-  scope :not_admin, -> { where.not(role: :admin) }
+  has_many :courses
+  has_many :children, foreign_key: :parent_id, inverse_of: :parent
+  has_many :classroom_animation_reservations, through: :children
+  has_many :reserved_animations, through: :classroom_animation_reservations, source: :classroom_animation
   scope :responsible_parents, -> { where(role: :responsible_parent) }
   scope :teachers, -> { where(role: :teacher) }
   scope :simple_users, -> { where(role: :user) }
 
   def set_default_role
-    self.role ||= :user
+    self.role ||= :responsible_parent
   end
 
   def full_name
-    [first_name, last_name].join(' ')
+    [first_name, last_name].join(' ').presence || email
+  end
+
+  def teacher_name
+    if first_name.present? && last_name.present?
+      "#{first_name} #{last_name.chars.first}."
+    else
+      "Anonymisé"
+    end
   end
 
   def full_name_with_email
     full_name + "(#{email})"
+  end
+
+  def reservations_for(classroom_animation)
+    classroom_animation.classroom_animation_reservations.where(child: children)
+  end
+
+  def children_for(classroom_animation)
+    children.where(id: classroom_animation.classroom_animation_reservations.select(:child_id))
+  end
+
+  def available_children_for(classroom_animation)
+    children.where.not(id: children_for(classroom_animation))
   end
 
 end

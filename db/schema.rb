@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_03_203629) do
+ActiveRecord::Schema.define(version: 2020_04_12_190058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "children", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.uuid "classroom_id", null: false
+    t.uuid "parent_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_children_on_classroom_id"
+    t.index ["parent_id"], name: "index_children_on_parent_id"
+  end
+
+  create_table "classroom_animation_reservations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "classroom_animation_id", null: false
+    t.uuid "child_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["child_id", "classroom_animation_id"], name: "unique_reservation_idx", unique: true
+    t.index ["child_id"], name: "index_classroom_animation_reservations_on_child_id"
+    t.index ["classroom_animation_id"], name: "car_ca_id"
+  end
 
   create_table "classroom_animations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "classroom_id", null: false
@@ -26,7 +47,10 @@ ActiveRecord::Schema.define(version: 2020_04_03_203629) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "comment"
+    t.uuid "course_id"
+    t.integer "classroom_animation_reservations_count", default: 0, null: false
     t.index ["classroom_id"], name: "index_classroom_animations_on_classroom_id"
+    t.index ["course_id"], name: "index_classroom_animations_on_course_id"
     t.index ["user_id"], name: "index_classroom_animations_on_user_id"
   end
 
@@ -36,6 +60,19 @@ ActiveRecord::Schema.define(version: 2020_04_03_203629) do
     t.string "color"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description", null: false
+    t.text "content", null: false
+    t.uuid "user_id", null: false
+    t.uuid "classroom_id", null: false
+    t.boolean "published", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_courses_on_classroom_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

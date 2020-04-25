@@ -3,7 +3,7 @@
 require 'httparty'
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -18,11 +18,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     yield resource if block_given?
     if resource.persisted?
-
-      webhook_body = {
-        text: "Nouvel inscrit : #{resource.email}"
-      }
-      HTTParty.post(ENV['WEBHOOK_URL'], body: webhook_body.to_json, headers: { 'Content-Type': 'application/json' })
+      
+      notify("Nouvel inscrit : #{resource.email}")
 
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
@@ -67,9 +64,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

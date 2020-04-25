@@ -1,0 +1,36 @@
+<div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 rounded px-2 pb-6">
+  <div class="px-6 py-4 flex h-50 min-h-40 shadow mx-2">
+      <div class="text-xl mb-2">
+        <%= link_to classroom_animation_path(animation) , class: 'header font-bold text-orange-500' do %>
+          <%= @course.classroom.name %><br>
+          <%= animation.human_time %>
+        <% end %>
+
+        <div class="meta text-base">
+          <%= animation.childrens_maximum %> élèves maximum
+        </div>
+
+        <div class="extra mt-6">
+          <div class="ui right floated">
+              <%= link_to 'Voir les détails de la session', classroom_animation_path(animation) , class: 'btn btn-blue' %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<!--
+.item
+  .content
+    %a.header= @course.classroom.name
+    %span= animation.human_time
+    .meta
+      %span #{animation.childrens_maximum} élèves maximum
+    .extra
+      .ui.right.floated
+        = link_to 'Voir les détails de la session', classroom_animation_path(animation), class: 'ui button'
+-->

@@ -1,0 +1,23 @@
+.calm.menu {
+  @apply flex flex-col mx-auto border border-gray-300 bg-white rounded-sm;
+}
+
+.calm.menu .item {
+  @apply py-3 px-4;
+}
+
+.calm.menu .item.header {
+  @apply font-bold;
+}
+
+.calm.menu a.item {
+  @apply text-gray-500;
+}
+
+.calm.menu .item.active {
+  @apply bg-gray-100 text-gray-600;
+}
+
+.calm.secondary.menu {
+  @apply flex flex-row;
+}

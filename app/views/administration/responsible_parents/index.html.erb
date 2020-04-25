@@ -1,4 +1,4 @@
-<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300 mb-6">
+<header class="bg-gray-100 border-2 border-gray-300 mb-6">
   <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
     <h1 class="py-6 text-2xl md:text-4xl text-pink-400 font-bold">
       Gestion des parents
@@ -12,12 +12,17 @@
       <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
         <table class="min-w-full">
           <thead>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Prénom</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nom</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Email</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Edition</th>
           </thead>
           <tbody>
             <% @users.each do |user| %>
             <tr>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= user.first_name %></td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= user.last_name %></td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= user.email %></td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 Est actuellement un parent.
@@ -27,6 +32,9 @@
                 <p>
                   <%= render 'administration/responsible_parents/demotions/form', user: user %>
                 </p>
+              </td>
+              <td>
+                <%= link_to content_tag(:i, "", class: 'fas fa-edit'), edit_administration_responsible_parent_path(user) %>
               </td>
             </tr>
             <% end %>

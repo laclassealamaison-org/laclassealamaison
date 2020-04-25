@@ -1,0 +1,20 @@
+<%= link_to child_path(child), title: child.name, class: "w-full  md:w-1/2 lg:w-1/3 xl:w-1/4 rounded px-2 pb-6" do %>
+  
+  <div class="px-6 py-4 flex h-40 min-h-40 shadow">
+    <div class="font-bold text-xl mb-2 text-orange-500">
+      <%= child.name %>
+      <% if child.next_animation %>
+        <p class="text-gray-500 text-base mt-2">
+          <i class="far fa-calendar mx-2"></i>
+          <%= child.next_animation %>, <%= child.next_animation.human_time %>
+        </p>
+      <% end %>
+      <div class="m-auto">
+        <span class="inline-block bg-orange-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-2">
+          <%= child.classroom.name %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+<% end %>
