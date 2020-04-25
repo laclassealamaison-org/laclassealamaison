@@ -9,5 +9,6 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.where(published: true).find(params[:id])
+    @children = current_user.children.where(classroom: @course.classroom) if current_user
   end
 end

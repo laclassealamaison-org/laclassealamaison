@@ -1,0 +1,27 @@
+<% content_for :page_title, 'Les cours' %>
+
+<p>
+  <%= @courses.count %> cours
+</p>
+
+<% if current_user %>
+  <% Classroom.where(id: current_user.children.select(:classroom_id)).each do |classroom| %>
+    <h2><%= classroom.name %></h2>
+    <div class="courses w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <%= render partial: 'course',
+        collection: @courses.where(classroom: classroom),
+        locals: { hide_classroom: true }
+      %>
+    </div>
+  <% end %>
+
+  <h2>Les autres cours</h2>
+  <div class="courses w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <%= render partial: 'course',
+      collection: @courses.where.not(classroom: current_user.children.select(:classroom_id)),
+      locals: { wrong_classroom: true }
+    %>
+  </div>
+<% else %>
+  <%= render partial: 'course', collection: @courses, locals: { child: @child } %>
+<% end %>
