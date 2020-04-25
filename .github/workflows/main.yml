@@ -56,9 +56,9 @@ jobs:
         bin/rails db:setup
 
     - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 10.13.0
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.13.0
 
     - name: Find yarn cache location
       id: yarn-cache
