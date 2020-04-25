@@ -1,15 +1,15 @@
 class Parent::ClassroomAnimationReservationsController < ApplicationController
   before_action :authenticate_user!
-  layout "parent"
+  layout 'parent'
   def index
-    @cars = policy_scope(ClassroomAnimationReservation).includes(:classroom_animation).order("classroom_animations.starts_at ASC")
+    @cars = policy_scope(ClassroomAnimationReservation).includes(:classroom_animation).order('classroom_animations.starts_at ASC')
   end
 
   def create
     @car = ClassroomAnimationReservation.new(car_params)
     authorize @car
     @car.save!
-    redirect_to parent_classroom_animation_reservations_path
+    redirect_to parent_classroom_animation_reservations_path, notice: 'L\'inscription a été effectuée avec succès.'
   end
 
   def edit
@@ -29,7 +29,7 @@ class Parent::ClassroomAnimationReservationsController < ApplicationController
     @car = current_user.classroom_animation_reservations.find(params[:id])
     authorize @car
     @car.destroy!
-    redirect_to parent_classroom_animation_reservations_path
+    redirect_to parent_classroom_animation_reservations_path, notice: 'La désinscription a été effectuée avec succès.'
   end
 
   def new
@@ -45,6 +45,6 @@ class Parent::ClassroomAnimationReservationsController < ApplicationController
   private
 
   def car_params
-    params.require(:classroom_animation_reservation).permit(:child_id, :classroom_animation_id)
+    params.permit(:child_id, :classroom_animation_id)
   end
 end

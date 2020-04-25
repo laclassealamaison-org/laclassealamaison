@@ -1,0 +1,12 @@
+<% if child.id.in?(animation.children.pluck(:id)) %>
+  <%= link_to "Désinscrire #{child}", parent_classroom_animation_reservation_path(
+      child.classroom_animation_reservations.find_by(classroom_animation: animation.id)
+    ), method: :delete, class: 'btn-orange' %>
+<% else %>
+  <%= form_with(model: ClassroomAnimationReservation,
+    url: parent_classroom_animation_reservations_path(
+      child_id: child, classroom_animation_id: animation
+    ), local: true) do |form| %>
+    <%= form.submit "Inscrire #{child}", class: 'btn-green' %>
+  <% end %>
+<% end %>
