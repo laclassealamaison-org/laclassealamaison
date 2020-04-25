@@ -5,13 +5,13 @@ Rails.application.routes.draw do
 
   # Website
 
-  resources :contacts, only: [:new, :create]
-  resources :newsletters, only: [:new, :create]
-  resources :questions, only: [:new, :create]
+  resources :contacts, only: %i[new create]
+  resources :newsletters, only: %i[new create]
+  resources :questions, only: %i[new create]
 
   # Application
 
-  resources :classrooms, only: [:index, :show]
+  resources :classrooms, only: %i[index show]
   resources :classroom_animations do
     resources :closures, only: [:create], controller: 'classroom_animations/closures'
     resources :openings, only: [:create], controller: 'classroom_animations/openings'
@@ -31,15 +31,15 @@ Rails.application.routes.draw do
   namespace :administration do
     resources :menus, only: [:index]
     resources :courses
-    resources :responsible_parents, only: [:index, :edit, :update] do
+    resources :responsible_parents, only: %i[index edit update] do
       resources :promotings, only: [:create], controller: 'responsible_parents/promotings'
       resources :demotions, only: [:create], controller: 'responsible_parents/demotions'
     end
-    resources :teachers, only: [:index, :edit, :update] do
+    resources :teachers, only: %i[index edit update] do
       resources :promotings, only: [:create], controller: 'teachers/promotings'
       resources :demotions, only: [:create], controller: 'teachers/demotions'
     end
-    resources :users, only: [:index, :edit, :update] do
+    resources :users, only: %i[index edit update] do
       patch :impersonate, on: :collection
     end
   end

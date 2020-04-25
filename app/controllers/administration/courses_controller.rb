@@ -1,5 +1,5 @@
 class Administration::CoursesController < ApplicationController
-  layout "administration"
+  layout 'administration'
 
   before_action :check_authorization
 
@@ -34,7 +34,7 @@ class Administration::CoursesController < ApplicationController
   private
 
   def check_authorization
-    authorize [:administration, :courses]
+    authorize %i[administration courses]
   end
 
   def course_params

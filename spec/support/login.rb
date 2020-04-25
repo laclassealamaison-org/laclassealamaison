@@ -1,14 +1,14 @@
 shared_context 'when logged in' do
-  before {
+  before do
     post user_session_path(user: {
-      email: param_login_email,
-      password: param_login_password
-    })
-  }
+                             email: param_login_email,
+                             password: param_login_password
+                           })
+  end
 end
 
 shared_context 'when logged in with user' do
-  include_context "when logged in" do
+  include_context 'when logged in' do
     let(:param_login_email) { authenticate_with.email }
     let(:param_login_password) { authenticate_with.password }
   end

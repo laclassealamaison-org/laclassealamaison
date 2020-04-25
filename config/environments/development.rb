@@ -65,6 +65,6 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.generators do |g|
-    g.test_framework  :rspec, fixture: false
+    g.test_framework :rspec, fixture: false
   end
 end

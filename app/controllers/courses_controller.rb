@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  layout "page"
+  layout 'page'
 
   def index
     @q = Course.where(published: true).ransack(params[:q])

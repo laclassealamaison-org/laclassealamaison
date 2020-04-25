@@ -37,7 +37,11 @@
 <h2>Session à venir : </h2>
 
 <div class="w-full flex flex-wrap my-6">
-  <%= render partial: "horizontal_card_item", collection: @future_classroom_animations, as: :animation %>
+  <%= render partial: 'horizontal_card_item',
+    collection: @future_classroom_animations,
+    as: :animation,
+    locals: { course: @course }
+  %>
 </div>
 
 <%= link_to new_classroom_animation_path(course_id: @course) , class: 'sbtn btn-green' do %>
