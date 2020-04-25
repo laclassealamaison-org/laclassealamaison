@@ -7,17 +7,42 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:11.5
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - uses: actions/checkout@v1
+
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
       with:
         ruby-version: 2.6.6
-    - name: Build and test with Rake
+
+    - name: Install PostgreSQL 11 client
       run: |
-        gem install bundler -v '2.1.4'
+        sudo apt-get -yqq install libpq-dev
+
+    - name: Build App
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        gem install bundler
         bundle install --jobs 4 --retry 3
-        COVERAGE=true bundle exec rspec
+        bin/rails db:setup
+
+    - name: Run Rspec
+      env:
+        PGHOST: localhost
+        PGUSER: postgres
+        RAILS_ENV: test
+      run: |
+        bundle exec rspec -fd
+
     - name: Upload coverage results
       uses: actions/upload-artifact@master
       if: always()
