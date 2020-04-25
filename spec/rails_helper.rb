@@ -46,6 +46,7 @@ end
 RSpec.configure do |config|
 
   config.include ERB::Util
+  config.include RSpecHtmlMatchers
   config.render_views = true
   config.example_status_persistence_file_path = "tmp/spec-failed.txt"
   config.before(:suite) do

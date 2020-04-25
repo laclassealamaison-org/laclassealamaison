@@ -13,10 +13,7 @@ RSpec.describe "ClassroomAnimationsController", type: :request do
 
     context "as an teacher" do
       include_context "when logged as a teacher"
-      let!(:past_classroom_animation) { create :classroom_animation, :past, course: course, user: teacher }
-      let!(:current_classroom_animation) { create :classroom_animation, :current, course: course, user: teacher }
-      let!(:future_classroom_animation) { create :classroom_animation, :future, course: course, user: teacher }
-      let!(:other_future_classroom_animation) { create :classroom_animation, :future, course: course, user: other_teacher }
+      include_context "with animations"
 
       it { is_expected.to have_http_status :ok }
       it { expect(subject.body).to match current_classroom_animation.live_url }
