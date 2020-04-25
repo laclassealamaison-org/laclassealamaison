@@ -28,10 +28,7 @@ RSpec.describe 'ChildrenController', type: :request do
     end
     it { is_expected.to include child.name }
     it('has a register form for future animation') {
-      is_expected.to have_tag('form') do
-        with_tag('input', with: { value: future_classroom_animation.id })
-        with_tag('input', with: { value: child.id })
-      end
+      is_expected.to have_tag('form')
     }
   end
 end
