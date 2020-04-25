@@ -1,24 +1,27 @@
+
+
 = link_to course_path(course), title: course.title, class: "display-block rounded shadow-xl my-2 mx-2 border border-gray-200" do
   .tooltip.flex.flex-col{style: "min-height: 200px"}
     .px-6.py-4
-      .font-bold.text-xl.mb-2= course.title
+      .font-bold.text-xl.mb-2.text-orange-500= course.title
       %p.text-gray-700.text-base
         = course.description
+    .px-6.pt-4.mt-auto
+      %span.inline-block.bg-teal-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-1= course.user.teacher_name  
     .px-6.py-4.mt-auto
-      %span.inline-block.bg-purple-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2.mb-1= course.user.teacher_name
       - unless defined? hide_classroom
-        %span.inline-block.bg-gray-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
+        %span.inline-block.bg-orange-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2= course.classroom.name
       - if course.available?
         %span.inline-block.bg-green-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Session disponible
       - elsif course.classroom_animations.upcoming.exists?
-        %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Complet
+        %span.inline-block.bg-red-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Complet
       - else
         %span.inline-block.bg-yellow-200.rounded-full.px-3.py-1.text-sm.font-semibold.text-gray-700.mr-2 Pas de session
     .mt-auto
       - if current_user
         - if course.available?
-          .btn-bottom-gray.w-full.justify-center M'inscrire
+          .btn-green.w-full.justify-center M'inscrire
         - else
-          .btn-bottom-gray.w-full.justify-center Bientôt disponible
+          .btn-orange.w-full.justify-center Bientôt disponible
     -# .tooltip-text
     -#   = course.content
