@@ -58,13 +58,13 @@ jobs:
         cmd: install
 
     - name: Compile Assets
-       shell: bash
-       run: |
-          if [[ ! -d public/packs-test ]]; then
-            bin/rails webpacker:compile
-          else
-            echo "No need to compile assets."
-          fi
+      shell: bash
+      run: |
+        if [[ ! -d public/packs-test ]]; then
+          bin/rails webpacker:compile
+        else
+          echo "No need to compile assets."
+        fi
 
     - name: Run Rspec
       env:
