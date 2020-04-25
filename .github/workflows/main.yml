@@ -14,14 +14,24 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
-    - uses: actions/cache@v1
+    - name: Gems Cache
+      uses: actions/cache@v1
       with:
         path: vendor/bundle
         key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-gems-
+
+    - name: Assets Cache
+      id: assets-cache
+      uses: actions/cache@v1
+      with:
+        path: public/packs-test
+        key: ${{ runner.os }}-assets-${{ steps.extract_branch.outputs.branch }}
+        restore-keys: |
+          ${{ runner.os }}-assets-
 
     - name: Set up Ruby 2.6
       uses: actions/setup-ruby@v1
@@ -42,6 +52,19 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
         bin/rails db:setup
+
+   - uses: borales/actions-yarn@v2.0.0
+      with:
+        cmd: install
+
+    - name: Compile Assets
+       shell: bash
+       run: |
+          if [[ ! -d public/packs-test ]]; then
+            bin/rails webpacker:compile
+          else
+            echo "No need to compile assets."
+          fi
 
     - name: Run Rspec
       env:
