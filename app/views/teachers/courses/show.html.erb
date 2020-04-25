@@ -22,7 +22,7 @@
 <h2> Classe : </h2>
 <%= @course.classroom.name %>
 
-<p class="mt-0"><h2>Titre :</h2> 
+<p class="mt-0"><h2>Titre :</h2>
 <%= @course.title %></p>
 
 <h2>Description : </h2>
@@ -40,6 +40,6 @@
   <%= render partial: "horizontal_card_item", collection: @future_classroom_animations, as: :animation %>
 </div>
 
-<%= link_to new_classroom_animation_path , class: 'sbtn btn-green' do %>
+<%= link_to new_classroom_animation_path(course_id: @course) , class: 'sbtn btn-green' do %>
   <i class="fas fa-edit mx-2"></i> Ajouter une session
 <% end %>

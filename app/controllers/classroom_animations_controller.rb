@@ -16,7 +16,8 @@ class ClassroomAnimationsController < ApplicationController
   end
 
   def new
-    @classroom_animation = ClassroomAnimation.new
+    @course = policy_scope(Course).where(id: params[:course_id]).first
+    @classroom_animation = ClassroomAnimation.new(course: @course)
     authorize @classroom_animation
     @classroom_animation.user = current_user
     @classroom_animation.starts_at = 1.day.from_now.change(hour: 9)
