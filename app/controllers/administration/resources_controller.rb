@@ -2,7 +2,7 @@ class Administration::ResourcesController < ApplicationController
   include AdministrationUserConcern
 
   def index
-    @resources = policy_scope([:administration, Resource])
+    @resources = policy_scope([:administration, Resource]).order(:name)
     authorize [:administration, Resource]
   end
 
@@ -14,12 +14,12 @@ class Administration::ResourcesController < ApplicationController
 
   def edit
     @resource = policy_scope([:administration, Resource]).find(params[:id])
-    authorize @resource
+    authorize [:administration, Resource]
   end
 
   def update
     @resource = policy_scope([:administration, Resource]).find(params[:id])
-    authorize @resource
+    authorize [:administration, Resource]
     @resource.update!(resource_params)
     redirect_to administration_resources_path
   end
