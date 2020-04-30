@@ -2,30 +2,30 @@ class Administration::ResourcesController < ApplicationController
   include AdministrationUserConcern
 
   def index
-    @resources = policy_scope(Resource)
-    authorize Resource
+    @resources = policy_scope([:administration, Resource])
+    authorize [:administration, Resource]
   end
 
   def create
-    @resource = policy_scope(Resource).create!(resource_params)
+    @resource = policy_scope([:administration, Resource]).create!(resource_params)
     authorize @resource
     redirect_to administration_resources_path
   end
 
   def edit
-    @resource = policy_scope(Resource).find(params[:id])
+    @resource = policy_scope([:administration, Resource]).find(params[:id])
     authorize @resource
   end
 
   def update
-    @resource = policy_scope(Resource).find(params[:id])
+    @resource = policy_scope([:administration, Resource]).find(params[:id])
     authorize @resource
     @resource.update!(resource_params)
     redirect_to administration_resources_path
   end
 
   def new
-    @resource = policy_scope(Resource).build
+    @resource = policy_scope([:administration, Resource]).build
     authorize @resource
   end
 

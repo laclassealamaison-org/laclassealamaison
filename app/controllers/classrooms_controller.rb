@@ -10,6 +10,6 @@ class ClassroomsController < ApplicationController
 
     @upcoming_sessions = @classroom.classroom_animations.upcoming.order(:starts_at)
     @live_session = @classroom.classroom_animations.live.open.first
-    @classroom_resources = @classroom.classroom_resources
+    @resources = @classroom.resources
   end
 end

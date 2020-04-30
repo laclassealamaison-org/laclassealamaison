@@ -64,10 +64,10 @@
 
   <h2>Autres ressources utiles</h2>
 
-  <% @classroom_resources&.each do |cr| %>
+  <% @resources&.each do |resource| %>
     <div class="my-12 text-center">
-      <%= link_to cr.resource.name, cr.resource.url, target: "_blank", class: "btn-pink" %>
-      <p><%= cr.resource.description %></p>
+      <%= link_to resource.name, resource.url, target: "_blank", class: "btn-pink" %>
+      <p><%= resource.description %></p>
     </div>
   <% end %>
 

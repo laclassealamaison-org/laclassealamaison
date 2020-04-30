@@ -10,7 +10,7 @@ class Administration::ResourcePolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      Resource
+      Resource.all
     end
   end
 end
