@@ -26,7 +26,7 @@ class Administration::ResourcesController < ApplicationController
 
   def new
     @resource = policy_scope([:administration, Resource]).build
-    authorize @resource
+    authorize [:administration, Resource]
   end
 
   private
