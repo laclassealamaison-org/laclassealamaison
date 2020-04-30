@@ -1,6 +1,6 @@
 class Teachers::CoursesController < ApplicationController
   before_action :authenticate_user!
-  layout "teacher"
+  layout 'teacher'
 
   def index
     @courses = policy_scope(Course)

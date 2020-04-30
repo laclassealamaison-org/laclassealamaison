@@ -4,12 +4,14 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'simplecov'
 SimpleCov.start 'rails'
 
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
 require 'rspec/rails'
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -44,11 +46,10 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-
   config.include ERB::Util
-  config.include FactoryBot::Syntax::Methods
+  config.include RSpecHtmlMatchers
   config.render_views = true
-  config.example_status_persistence_file_path = "tmp/spec-failed.txt"
+  config.example_status_persistence_file_path = 'tmp/spec-failed.txt'
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
@@ -59,23 +60,24 @@ RSpec.configure do |config|
     end
   end
   SimpleCov.configure do
-     if ENV['CI_PIPELINE_ID']
-       coverage_dir "coverage/#{ENV['CI_PIPELINE_ID']}/#{ENV['CI_JOB_ID']}"
-       command_name ENV['CI_JOB_NAME']
-     end
-     load_profile 'test_frameworks'
-     track_files '{app,lib}/**/*.rb'
-     add_filter '/vendor/ruby/'
-     add_filter 'config/initializers/'
-     add_group 'Controllers', /app\/controllers\/(?!users\/)/
-     add_group 'Models', 'app/models'
-     add_group 'Mailers', 'app/mailers'
-     add_group 'Helpers', 'app/helpers'
-     add_group 'Workers', %w(app/jobs app/workers)
-     add_group 'Libraries', 'lib'
-     add_group 'Misc', %w(app/builders app/serializers app/channels app/services app/uploaders)
-     merge_timeout 365 * 24 * 3600
-     minimum_coverage 1
+    if ENV['CI_PIPELINE_ID']
+      coverage_dir "coverage/#{ENV['CI_PIPELINE_ID']}/#{ENV['CI_JOB_ID']}"
+      command_name ENV['CI_JOB_NAME']
+    end
+    load_profile 'test_frameworks'
+    track_files '{app,lib}/**/*.rb'
+    add_filter '/vendor/ruby/'
+    add_filter 'config/initializers/'
+    add_group 'Controllers', 'app/controllers'
+    add_group 'Models', 'app/models'
+    add_group 'Mailers', 'app/mailers'
+    add_group 'Helpers', 'app/helpers'
+    add_group 'Workers', %w[app/jobs app/workers]
+    add_group 'Policies', 'app/policies'
+    add_group 'Libraries', 'lib'
+    add_group 'Misc', %w[app/builders app/serializers app/channels app/services app/uploaders]
+    merge_timeout 365 * 24 * 3600
+    minimum_coverage 1
   end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

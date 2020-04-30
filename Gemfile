@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
-gem 'dotenv-rails', require: 'dotenv/rails-now', groups: [:development, :test]
+gem 'dotenv-rails', require: 'dotenv/rails-now', groups: %i[development test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
@@ -30,38 +30,39 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'active_link_to'
 gem 'devise'
+gem 'haml'
 gem 'high_voltage'
 gem 'httparty'
 gem 'mail_form'
 gem 'mailjet'
 gem 'meta-tags'
-gem 'pundit'
-gem 'simple_calendar'
-gem 'haml'
 gem 'pretender'
-gem 'active_link_to'
+gem 'pundit'
 gem 'ransack'
+gem 'simple_calendar'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'database_cleaner'
+  gem 'factory_bot'
+  gem 'ffaker'
+  gem 'rspec-html-matchers'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'simplecov'
-  gem 'ffaker'
-  gem 'factory_bot'
-  gem 'database_cleaner'
 end
 
 group :development do
   gem 'annotate'
   gem 'letter_opener'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -76,4 +77,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

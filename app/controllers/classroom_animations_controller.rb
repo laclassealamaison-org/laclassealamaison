@@ -16,7 +16,8 @@ class ClassroomAnimationsController < ApplicationController
   end
 
   def new
-    @classroom_animation = ClassroomAnimation.new
+    @course = policy_scope(Course).where(id: params[:course_id]).first
+    @classroom_animation = ClassroomAnimation.new(course: @course)
     authorize @classroom_animation
     @classroom_animation.user = current_user
     @classroom_animation.starts_at = 1.day.from_now.change(hour: 9)
@@ -29,9 +30,9 @@ class ClassroomAnimationsController < ApplicationController
     authorize @classroom_animation
     @classroom_animation.classroom = @classroom_animation.course&.classroom
     @classroom_animation.user = current_user
-    @classroom_animation.live_url = "https://meet.jit.si/" + SecureRandom.hex(12)
+    @classroom_animation.live_url = 'https://meet.jit.si/' + SecureRandom.hex(12)
     if @classroom_animation.save
-      notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
+      notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: '%A %d/%m/%Y à %H:%M')} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
@@ -51,7 +52,7 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.find(params[:id])
     authorize @classroom_animation
     if @classroom_animation.update(classroom_animation_params)
-      notify("Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
+      notify("Modification de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: '%A %d/%m/%Y à %H:%M')} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
       redirect_to classroom_animation_path(@classroom_animation)
     else
@@ -65,7 +66,7 @@ class ClassroomAnimationsController < ApplicationController
     authorize @classroom_animation
     @classroom_animation.destroy
 
-    notify("Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: "%A %d/%m/%Y à %H:%M")} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
+    notify("Suppression de la session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: '%A %d/%m/%Y à %H:%M')} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
     redirect_to classroom_animations_path
   end
@@ -73,7 +74,7 @@ class ClassroomAnimationsController < ApplicationController
   private
 
   def get_layout
-    current_user.admin? ? "administration" : "teacher"
+    current_user.admin? ? 'administration' : 'teacher'
   end
 
   def classroom_animation_params

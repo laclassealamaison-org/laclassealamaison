@@ -3,6 +3,7 @@ class ApplicationPolicy
 
   def initialize(user, record)
     raise Pundit::NotAuthorizedError, 'doit être connecté' unless user
+
     @user = user
     @record = record
   end
@@ -40,6 +41,7 @@ class ApplicationPolicy
 
     def initialize(user, scope)
       raise Pundit::NotAuthorizedError, 'doit être connecté' unless user
+
       @user = user
       @scope = scope
     end

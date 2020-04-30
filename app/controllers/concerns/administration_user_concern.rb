@@ -3,7 +3,7 @@ module AdministrationUserConcern
   included do
     before_action :authenticate_user!
 
-    layout "administration"
+    layout 'administration'
 
     def index
       @users = policy_scope([:administration, user_role]).order(created_at: :desc)
