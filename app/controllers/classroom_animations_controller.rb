@@ -34,7 +34,7 @@ class ClassroomAnimationsController < ApplicationController
     if @classroom_animation.save
       notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: '%A %d/%m/%Y à %H:%M')} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
 
-      redirect_to classroom_animation_path(@classroom_animation)
+      redirect_to teachers_course_path(@classroom_animation.course)
     else
       @classrooms = Classroom.all
       flash.now[:alert] = @classroom_animation.errors.full_messages
