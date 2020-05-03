@@ -10,7 +10,7 @@ class Teachers::CoursesController < ApplicationController
   def create
     @course = current_user.courses.create!(course_params)
     authorize @course
-    redirect_to teachers_courses_path
+    redirect_to teachers_course_path(@course)
   end
 
   def edit
