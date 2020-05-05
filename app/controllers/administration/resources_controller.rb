@@ -29,6 +29,13 @@ class Administration::ResourcesController < ApplicationController
     authorize [:administration, Resource]
   end
 
+  def destroy
+    @resource = policy_scope([:administration, Resource]).find(params[:id])
+    authorize [:administration, Resource]
+    @resource.destroy
+    redirect_to administration_resources_path
+  end
+
   private
 
   def resource_params

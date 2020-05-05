@@ -31,6 +31,7 @@
               </td>
               <td>
                 <%= link_to content_tag(:i, "", class: 'fas fa-edit'), edit_administration_resource_path(resource) %>
+                <%= link_to content_tag(:i, "", class: 'fas fa-trash'), administration_resource_path(resource), method: :delete, data: { confirm: 'Voulez-vous supprimer cette resource ?' } %>
               </td>
             </tr>
             <% end %>
