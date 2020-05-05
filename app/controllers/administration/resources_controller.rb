@@ -8,7 +8,7 @@ class Administration::ResourcesController < ApplicationController
 
   def create
     @resource = policy_scope([:administration, Resource]).create!(resource_params)
-    authorize @resource
+    authorize [:administration, Resource]
     redirect_to administration_resources_path
   end
 
