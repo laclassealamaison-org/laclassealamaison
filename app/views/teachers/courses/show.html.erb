@@ -1,7 +1,21 @@
 <% content_for :page_title do %>
   <div class="flex flex-wrap justify-between">
-    <%= @course.title %>
+    Titre : <%= @course.title %>
     <div>
+      <%= link_to edit_teachers_course_path(@course), title: @course.title , class: 'sbtn btn-green' do %>
+        <i class="fas fa-edit mx-2"></i> Modifier le cours
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="w-full flex justify-around">
+  
+    <div class="inline-block bg-orange-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-3">
+      <%= @course.classroom.name %>
+    </div>
+  
+    <%= link_to edit_teachers_course_path(@course), title: @course.title do %>
         <% if @course.published %>
             <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mt-2">
                 Publié
@@ -11,30 +25,26 @@
                 Non publié
             </span>
         <% end %>
-    </div>
-  </div>
+      <% end %>
+
+</div>
+
+
+<p class="mt-6"><span class="text-3xl">Description :</span> <%= @course.description %> </p>
+
+<div class="border border-dashed border-gray-400 p-2">
+  <h2 class="my-0">Contenu : </h2>
+  <span class="whitespace-pre-wrap break-words">
+    <%= @course.content %>
+  </span>
+</div>
+
+<h2>Planification des sessions de cours </h2>
+<% if @course==true %>
+  <p>Vos sessions de cours sont planifiées</p>
+<% else %>
+  <p>Vous n'avez pas encore planifier de sessions, cliquer sur le bouton vert en-dessous pour pouvoir en planifier une </p>
 <% end %>
-
-<%= link_to edit_teachers_course_path(@course), title: @course.title , class: 'sbtn btn-green' do %>
-  <i class="fas fa-edit mx-2"></i> Modifier le cours
-<% end %>
-
-<h2> Classe : </h2>
-<%= @course.classroom.name %>
-
-<p class="mt-0"><h2>Titre :</h2>
-<%= @course.title %></p>
-
-<h2>Description : </h2>
-<%= @course.description %>
-
-<h2 class="mb-0">Contenu : </h2>
-<span class="whitespace-pre-wrap break-words">
-  <%= @course.content %>
-</span>
-
-
-<h2>Session à venir : </h2>
 
 <div class="w-full flex flex-wrap my-6">
   <%= render partial: 'horizontal_card_item',
@@ -45,5 +55,5 @@
 </div>
 
 <%= link_to new_classroom_animation_path(course_id: @course) , class: 'sbtn btn-green' do %>
-  <i class="fas fa-edit mx-2"></i> Ajouter une session
+  <i class="fas fa-edit mx-2"></i> Ajouter une session de cours
 <% end %>

@@ -9,7 +9,7 @@ class Parent::ClassroomAnimationReservationsController < ApplicationController
     @car = ClassroomAnimationReservation.new(car_params)
     authorize @car
     @car.save!
-    redirect_to parent_classroom_animation_reservations_path, notice: 'L\'inscription a été effectuée avec succès.'
+    redirect_to @car.child, notice: 'L\'inscription a été effectuée avec succès.'
   end
 
   def edit
@@ -29,7 +29,7 @@ class Parent::ClassroomAnimationReservationsController < ApplicationController
     @car = current_user.classroom_animation_reservations.find(params[:id])
     authorize @car
     @car.destroy!
-    redirect_to parent_classroom_animation_reservations_path, notice: 'La désinscription a été effectuée avec succès.'
+    redirect_to @car.child, notice: 'La désinscription a été effectuée avec succès.'
   end
 
   def new

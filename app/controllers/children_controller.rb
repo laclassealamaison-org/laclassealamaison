@@ -7,7 +7,7 @@ class ChildrenController < ApplicationController
 
   def create
     @child = current_user.children.create!(child_params)
-    redirect_to children_path
+    redirect_to @child
   end
 
   def edit
