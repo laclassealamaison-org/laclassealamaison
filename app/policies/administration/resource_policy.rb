@@ -4,11 +4,7 @@ class Administration::ResourcePolicy < ApplicationPolicy
     user.admin?
   end
 
-  def update?
-    user.admin?
-  end
-
-  def create?
+  def edit?
     user.admin?
   end
 
