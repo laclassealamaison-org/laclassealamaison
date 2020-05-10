@@ -1,10 +1,10 @@
-<header class="bg-gray-100 border-t-2 border-b-2 border-gray-300 mb-6">
+<header class="bg-gray-100 border-2 border-gray-300 mb-6">
     <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
         <h1 class="py-6 text-2xl md:text-4xl text-pink-400 font-bold">Sessions</h1>
     </div>
 </header>
 
-<div class="max-w-6xl mx-auto sm:px-6 lg:px-8 mb-12">
+<div class="w-full mx-auto sm:px-6 lg:px-8 mb-12">
   <div class="flex flex-col">
     <%= link_to 'Planifier une session', new_classroom_animation_path, class: 'btn-green mb-6' %>
 
@@ -38,6 +38,7 @@
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Classe</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Date</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nombre d'élèves maximum</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Cours</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Actions</th>
           </thead>
           <tbody>
@@ -57,6 +58,9 @@
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= classroom_animation.childrens_maximum %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                <%= classroom_animation.course&.title&.truncate(30) %>
               </td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                 <%= link_to 'Voir les détails de la session', classroom_animation_path(classroom_animation), class: 'btn-green' %>

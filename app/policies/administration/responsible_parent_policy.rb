@@ -1,12 +1,15 @@
 class Administration::ResponsibleParentPolicy < ApplicationPolicy
-  attr_reader :user, :responsible_parent
-
-  def initialize(user, responsible_parent)
-    @user = user
-    @responsible_parent = responsible_parent
+  def index?
+    user.admin?
   end
 
-  def index?
-    @user&.admin?
+  def update?
+    user.admin?
+  end
+
+  class Scope < Scope
+    def resolve
+      User.responsible_parents
+    end
   end
 end

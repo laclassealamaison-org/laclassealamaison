@@ -1,6 +1,9 @@
 class Administration::ResponsibleParentsController < ApplicationController
-  def index
-    @users = User.responsible_parents.order(created_at: :desc)
-    authorize [:administration, :responsible_parent], :index?
+  include AdministrationUserConcern
+
+  private
+
+  def user_role
+    :responsible_parent
   end
 end

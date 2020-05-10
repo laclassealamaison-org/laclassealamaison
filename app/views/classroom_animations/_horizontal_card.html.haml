@@ -1,0 +1,9 @@
+= link_to(classroom_animation.course ? course_path(classroom_animation.course) : "", class: "ui card") do
+  .content
+    .header= classroom_animation.course&.title || classroom_animation.classroom.name
+    .meta
+      %span= classroom_animation.human_time
+    .description
+      %p
+    .extra
+      .ui.label= classroom_animation.occupation + " élèves"

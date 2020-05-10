@@ -1,12 +1,15 @@
 class Administration::UserPolicy < ApplicationPolicy
-  attr_reader :current_user, :user
-
-  def initialize(current_user, user)
-    @current_user = current_user
-    @user = user
+  def index?
+    user.admin?
   end
 
-  def index?
-    @current_user&.admin?
+  def update?
+    user.admin?
+  end
+
+  class Scope < Scope
+    def resolve
+      User.user
+    end
   end
 end

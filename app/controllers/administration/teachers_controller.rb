@@ -1,6 +1,9 @@
 class Administration::TeachersController < ApplicationController
-  def index
-    @users = User.teachers.order(created_at: :desc)
-    authorize [:administration, :teacher], :index?
+  include AdministrationUserConcern
+
+  private
+
+  def user_role
+    :teacher
   end
 end

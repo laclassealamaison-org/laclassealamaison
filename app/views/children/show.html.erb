@@ -1,0 +1,144 @@
+<% content_for :page_title do %>
+  <div class="flex flex-wrap justify-between">
+    <%= "Profil de #{@child}, #{@child.classroom}" %>
+    <%= link_to 'Modifier le profil', edit_child_path(@child), class: 'btn-green' %>
+  </div>
+<% end %>
+
+<% content_for :back_link do %>
+  <%= link_to children_path do %>
+    <div class="flex liens mb-2">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve" class="w-3 max-h-4 mr-2 fill-current text-blue-400">
+        <g>
+          <path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+            c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+            L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+            c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+            c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+            C492,219.198,479.172,207.418,464.344,207.418z"/>
+        </g>
+      </svg>
+      Revenir à la liste de mes enfants
+    </div>
+  <% end %>
+<% end %>
+
+<% unless @child.classroom.classroom_animations.live.open.count.zero? %>
+<h2 class="text-gray-600 text-4xl mt-6 mb-4"><i class="fas fa-video text-2xl mr-2"></i> En direct actuellement</h2>
+<div class="bg-w white shadow overflow-hidden sm:rounded-md">
+  <ul class="list-none m-0">
+    <% @child.classroom.classroom_animations.live.open.each do |classroom_animation| %>
+    <li class="border-t border-gray-200 mb-0">
+      <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+        <div class="px-4 py-4 sm:px-6">
+          <div class="flex items-center justify-between my-1">
+            <div class="text-xl leading-5 font-medium text-pink-500 truncate">
+              <%= classroom_animation %>
+            </div>
+            <div class="mt-2 flex items-center text-base leading-5 text-gray-500 sm:mt-0">
+              <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+              </svg>
+              <span>
+                Cours
+                <%= classroom_animation.human_time %>
+              </span>
+            </div>
+          </div>
+          <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+            <%= classroom_animation.course&.description %>
+          </div>
+          <div class="mt-2 sm:flex sm:justify-between">
+            <div class="sm:flex">
+              <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+                <i class="fas fa-user text-gray-400 mr-1.5"></i>
+                <%= classroom_animation.user.teacher_name %>
+              </div>
+              <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
+                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
+                <%= classroom_animation.occupation %>
+              </div>
+            </div>
+            <div class="ml-2 flex-shrink-0 flex items-stretch">
+              <%= link_to course_path(classroom_animation.course), class: 'self-center mr-2' do %>
+                <i class="fas fa-sort-down pb-1 mr-1"></i> En savoir plus
+              <% end %>
+              <% if @child.id.in?(classroom_animation.children.pluck(:id)) %>
+                <%= link_to 'Rejoindre le direct', classroom_animation.live_url, target: '_blank', class: 'btn-green' %>
+              <% else %>
+                <% if classroom_animation.full? %>
+                  <span class="btn-gray">Complet</span>
+                <% else %>
+                  <%= form_with(model: @classroom_animation_reservation, url: parent_classroom_animation_reservations_path, local: true) do |form| %>
+                    <%= form.hidden_field :child_id, value: @child.id %>
+                    <%= form.hidden_field :classroom_animation_id, value: classroom_animation.id %>
+                    <%= form.submit "Inscrire #{@child}", class: 'btn-green' %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h2 class="text-gray-600 text-4xl mt-6 mb-4">Prochaines sessions de <%= @child.classroom %></h2>
+<div class="bg-w white shadow overflow-hidden sm:rounded-md">
+  <ul class="list-none m-0">
+    <% @child.classroom.classroom_animations.upcoming.order(starts_at: :asc).each do |classroom_animation| %>
+    <li class="border-t border-gray-200 mb-0">
+      <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+        <div class="px-4 py-4 sm:px-6">
+          <div class="flex items-center justify-between my-1">
+            <div class="text-xl leading-5 font-medium text-pink-500 truncate">
+              <%= classroom_animation %>
+            </div>
+            <div class="mt-2 flex items-center text-base leading-5 text-gray-500 sm:mt-0">
+              <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+              </svg>
+              <span>
+                Cours
+                <%= classroom_animation.human_time %>
+              </span>
+            </div>
+          </div>
+          <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+            <%= classroom_animation.course&.description %>
+          </div>
+          <div class="mt-2 sm:flex sm:justify-between">
+            <div class="sm:flex">
+              <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+                <i class="fas fa-user text-gray-400 mr-1.5"></i>
+                <%= classroom_animation.user&.teacher_name %>
+              </div>
+              <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
+                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
+                </svg>
+                <%= classroom_animation.occupation %>
+              </div>
+            </div>
+            <div class="ml-2 flex-shrink-0 flex items-stretch">
+              <%= link_to course_path(classroom_animation.course), class: 'self-center mr-4' do %>
+                <i class="fas fa-sort-down pb-1 mr-1"></i> En savoir plus
+              <% end %>
+              <%= render 'parent/classroom_animation_reservations/child_reservation_button',
+                child: @child, animation: classroom_animation
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
