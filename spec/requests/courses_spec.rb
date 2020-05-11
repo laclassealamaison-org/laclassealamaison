@@ -10,8 +10,8 @@ RSpec.describe 'Courses', type: :request do
       response.body
     end
     describe 'course publication' do
-      let!(:unpublished_course) { create :course, published: false }
-      let!(:published_course) { create :course, published: true }
+      let!(:unpublished_course) { create(:course, :unpublished) }
+      let!(:published_course) { create :course }
 
       it { is_expected.to include published_course.title }
       it { is_expected.to_not include unpublished_course.title }

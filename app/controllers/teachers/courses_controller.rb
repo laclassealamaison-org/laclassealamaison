@@ -8,6 +8,7 @@ class Teachers::CoursesController < ApplicationController
   end
 
   def create
+    authorize Course
     @course = current_user.courses.create!(course_params)
     authorize @course
     redirect_to new_classroom_animation_path(course_id: @course)
