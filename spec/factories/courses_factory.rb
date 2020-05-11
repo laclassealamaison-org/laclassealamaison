@@ -5,5 +5,11 @@ FactoryBot.define do
     content { FFaker::Lorem.sentence }
     user
     classroom
+    trait :unpublished do
+      after(:create) { |course|
+        course.update!(published: false)
+      }
+    end
+
   end
 end
