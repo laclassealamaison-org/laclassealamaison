@@ -22,11 +22,19 @@ class Course < ApplicationRecord
   belongs_to :classroom
   has_many :classroom_animations
 
+  before_create :publish
+
   def available?
     classroom_animations.upcoming.available.exists?
   end
 
   def self.available
     where(id: classroom_animation.upcoming.available.select(:course_id))
+  end
+
+  private
+
+  def publish
+    self.published = true
   end
 end
