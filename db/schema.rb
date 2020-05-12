@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_190058) do
+ActiveRecord::Schema.define(version: 2020_04_22_150730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2020_04_12_190058) do
     t.index ["classroom_id"], name: "index_classroom_animations_on_classroom_id"
     t.index ["course_id"], name: "index_classroom_animations_on_course_id"
     t.index ["user_id"], name: "index_classroom_animations_on_user_id"
+  end
+
+  create_table "classroom_resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.uuid "resource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_classroom_resources_on_classroom_id"
+    t.index ["resource_id"], name: "index_classroom_resources_on_resource_id"
   end
 
   create_table "classrooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -115,5 +124,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_190058) do
 
   add_foreign_key "classroom_animations", "classrooms"
   add_foreign_key "classroom_animations", "users"
+  add_foreign_key "classroom_resources", "classrooms"
+  add_foreign_key "classroom_resources", "resources"
   add_foreign_key "resources", "classrooms"
 end
