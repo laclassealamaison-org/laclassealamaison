@@ -1,0 +1,9 @@
+<%= content_for(:menu_title, "Espace administration") %>
+<%= content_for(:menu) do %>
+  <%= active_link_to 'Nouveaux utilisateurs', administration_users_path, class: 'item' %>
+  <%= active_link_to 'Professeurs', administration_teachers_path, class: 'item' %>
+  <%= active_link_to 'Parents', administration_responsible_parents_path, class: 'item' %>
+  <%= active_link_to 'Cours', administration_courses_path, class: 'item' %>
+  <%= active_link_to 'Sessions', classroom_animations_path, class: 'item' %>
+<% end %>
+<%= render "layouts/page_with_menu" %>
