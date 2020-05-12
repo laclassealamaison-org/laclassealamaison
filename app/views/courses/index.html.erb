@@ -18,10 +18,10 @@
   <h2>Les autres cours</h2>
   <div class="courses w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
     <%= render partial: 'course',
-      collection: @courses.where.not(classroom: current_user.children.select(:classroom_id)),
+      collection: @courses.where.not(classroom: current_user.children.select(:classroom_id)).ordered_by_level,
       locals: { wrong_classroom: true }
     %>
   </div>
 <% else %>
-  <%= render partial: 'course', collection: @courses, locals: { child: @child } %>
+  <%= render partial: 'course', collection: @courses.ordered_by_level, locals: { child: @child } %>
 <% end %>
