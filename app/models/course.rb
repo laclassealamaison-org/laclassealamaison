@@ -20,9 +20,11 @@
 class Course < ApplicationRecord
   belongs_to :user
   belongs_to :classroom
-  has_many :classroom_animations
+  has_many :classroom_animations, dependent: :destroy
 
   before_create :publish
+
+  validates :title, presence: true
 
   def available?
     classroom_animations.upcoming.available.exists?
