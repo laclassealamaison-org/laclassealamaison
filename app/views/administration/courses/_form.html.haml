@@ -18,7 +18,7 @@
     = f.label :published, 'Publié', for: :published
     = f.check_box :published
   = f.submit (@course.persisted? ? "Modifier le cours" : "Ajouter le cours"), class: 'btn-green'
-  = link_to "Annuler", teachers_courses_path, class: 'btn-gray'
+  = link_to "Annuler", administration_courses_path, class: 'btn-gray'
 
 :javascript
   $('.ui.dropdown').dropdown();
