@@ -64,7 +64,7 @@
 
   <h2>Autres ressources utiles</h2>
 
-  <% @resources&.each do |resource| %>
+  <% @resources.each do |resource| %>
     <div class="my-12 text-center">
       <%= link_to resource.name, resource.url, target: "_blank", class: "btn-pink" %>
       <p><%= resource.description %></p>

@@ -33,6 +33,17 @@ RSpec.describe 'Administration::ResourcesController', type: :request do
     end
 
     it { is_expected.to have_http_status(:ok) }
+
+  end
+
+  describe '#create' do
+
+    subject do
+      post new_administration_resource(resource)
+      response
+    end
+
+    it {is_expected.to have_http_status(302)}
   end
 
 end
