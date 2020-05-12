@@ -11,9 +11,10 @@
   .field
     = f.label :content, for: :content
     = f.text_area :content, rows: 7, placeholder: "Décrivez en quelques lignes les notions abordées", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-  .field
-    = f.label :publier, for: :published, class: 'text-2xl'
-    = f.check_box :published, class: 'text-2xl'
+  - if @course.persisted?
+    .field
+      = f.label :publier, for: :published, class: 'text-2xl'
+      = f.check_box :published, class: 'text-2xl'
   = f.submit (@course.persisted? ? "Modifier le cours" : "Ajouter le cours"), class: 'btn-green'
   = link_to "Annuler", teachers_courses_path, class: 'btn-gray'
 

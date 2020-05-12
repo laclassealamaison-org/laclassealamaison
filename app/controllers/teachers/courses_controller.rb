@@ -3,15 +3,18 @@ class Teachers::CoursesController < ApplicationController
   layout 'teacher'
 
   def index
-    @courses = policy_scope(Course)
+    @courses = policy_scope(Course).order("published desc", :title)
     authorize Course
   end
 
   def create
-    authorize Course
-    @course = current_user.courses.create!(course_params)
+    @course = current_user.courses.build(course_params)
     authorize @course
-    redirect_to new_classroom_animation_path(course_id: @course)
+    if @course.save
+      redirect_to new_classroom_animation_path(course_id: @course)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -27,7 +30,7 @@ class Teachers::CoursesController < ApplicationController
   end
 
   def new
-    @course = current_user.courses.build
+    @course ||= current_user.courses.build
     authorize @course
   end
 
