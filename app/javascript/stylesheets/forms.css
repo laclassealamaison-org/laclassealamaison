@@ -1,6 +1,11 @@
 .field_with_errors {
   @apply flex;
 }
+
+.field_with_errors input {
+  @apply border-red-800 bg-red-100;
+}
+
 form .field {
   @apply my-3;
 }

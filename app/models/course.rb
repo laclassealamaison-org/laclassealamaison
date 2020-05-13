@@ -20,7 +20,11 @@
 class Course < ApplicationRecord
   belongs_to :user
   belongs_to :classroom
-  has_many :classroom_animations
+  has_many :classroom_animations, dependent: :destroy
+
+  before_create :publish
+
+  validates :title, presence: true
 
   def available?
     classroom_animations.upcoming.available.exists?
@@ -28,5 +32,15 @@ class Course < ApplicationRecord
 
   def self.available
     where(id: classroom_animation.upcoming.available.select(:course_id))
+  end
+
+  def self.ordered_by_level
+    joins(:classroom).order("classrooms.position")
+  end
+
+  private
+
+  def publish
+    self.published = true
   end
 end
