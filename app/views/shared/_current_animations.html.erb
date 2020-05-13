@@ -30,24 +30,26 @@
         </span>
         <%= animation.children.map(&:name).join(",") %>
       </p>
+
+      <span class="rounded-md shadow-sm ml-4 p-2 self-center">
+      <% if animation.opened? %>
+        <%= link_to classroom_animation_closures_path(animation),  class: 'btn-orange my-1 md:text-lg md:text-center md:px-2', method: :post do %>
+        <i class='fa fa-door-open mr-3'></i>
+        La salle est ouverte, appuyer pour fermer la salle
+        <% end %>
+      <% else %>
+        <%= link_to classroom_animation_openings_path(animation), class: 'btn-orange my-1 md:text-lg md:text-center md:px-2', method: :post do %>
+        <i class='fa fa-door-closed mr-3'></i>
+        La salle est fermée, appuyer pour ouvrir la salle
+        <% end %>
+      <% end %>
+      </span>
+      
       <span class="rounded-md shadow-sm ml-4 p-2 self-center">
         <%= link_to animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' do %>
         <i class='fa fa-external-link-square-alt mr-3'></i>
         Rejoindre le direct
         <% end %>
-      </span>
-      <span class="rounded-md shadow-sm ml-4 p-2 self-center">
-      <% if animation.opened? %>
-        <%= link_to animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' do %>
-        <i class='fa fa-door-closed mr-3'></i>
-        Fermer la salle
-        <% end %>
-      <% else %>
-        <%= link_to animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' do %>
-        <i class='fa fa-door-open mr-3'></i>
-        Ouvrir la salle
-        <% end %>
-      <% end %>
       </span>
     </header>
 
