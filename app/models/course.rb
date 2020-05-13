@@ -34,6 +34,10 @@ class Course < ApplicationRecord
     where(id: classroom_animation.upcoming.available.select(:course_id))
   end
 
+  def self.ordered_by_level
+    joins(:classroom).order("classrooms.position")
+  end
+
   private
 
   def publish
