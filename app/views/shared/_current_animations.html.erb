@@ -20,4 +20,36 @@
     </header>
 
   <% end %>
+  <% current_user.teacher? && current_user.classroom_animations.hot.each do |animation| %>
+
+    <header class="flex items-stretch justify-center bg-teal-500 p-3">
+
+      <p class="text-white text-center text-lg mb-0 md:text-lg self-center">
+        Votre cours va commencer : <span class="font-bold text-orange-200">
+          <%= animation %> à <%= l(animation.starts_at, format: "%H:%M") %>
+        </span>
+        <%= animation.children.map(&:name).join(",") %>
+      </p>
+      <span class="rounded-md shadow-sm ml-4 p-2 self-center">
+        <%= link_to animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' do %>
+        <i class='fa fa-external-link-square-alt mr-3'></i>
+        Rejoindre le direct
+        <% end %>
+      </span>
+      <span class="rounded-md shadow-sm ml-4 p-2 self-center">
+      <% if animation.opened? %>
+        <%= link_to animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' do %>
+        <i class='fa fa-door-closed mr-3'></i>
+        Fermer la salle
+        <% end %>
+      <% else %>
+        <%= link_to animation.live_url, target: '_blank', class: 'btn-orange my-1 md:text-lg md:text-center md:px-2' do %>
+        <i class='fa fa-door-open mr-3'></i>
+        Ouvrir la salle
+        <% end %>
+      <% end %>
+      </span>
+    </header>
+
+  <% end %>
 <% end %>
