@@ -12,7 +12,7 @@
     <div class="sm:col-span-4">
       <%= form.label :course_id, 'Cours :' %>
       <div class="mt-1 flex rounded-md shadow-sm">
-        <%= form.collection_select :course_id, policy_scope(Course).where(published: true), :id, :title, { include_blank: true }, { required: true, class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' } %>
+        <%= form.collection_select :course_id, policy_scope(Course).where(published: true), :id, :title_with_description, { include_blank: true }, { required: true, class: 'form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5' } %>
       </div>
     </div>
     <div class="sm:col-span-4">

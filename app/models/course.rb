@@ -26,6 +26,12 @@ class Course < ApplicationRecord
 
   validates :title, presence: true
 
+  def title_with_description
+    s = title
+    s += " (#{description})" if description
+    s
+  end
+
   def available?
     classroom_animations.upcoming.available.exists?
   end
