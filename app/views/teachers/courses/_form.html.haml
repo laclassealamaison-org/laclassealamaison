@@ -17,6 +17,5 @@
       = f.check_box :published, class: 'text-2xl'
   = f.submit (@course.persisted? ? "Modifier le cours" : "Ajouter le cours"), class: 'btn-green'
   = link_to "Annuler", teachers_courses_path, class: 'btn-gray'
-
 :javascript
   $('.ui.dropdown').dropdown();
