@@ -41,6 +41,7 @@ class User < ApplicationRecord
 
   enum role: %i[user responsible_parent teacher admin]
   after_initialize :set_default_role, if: :new_record?
+  after_create :notify_newuser
 
   has_many :classroom_animations
   has_many :courses
@@ -81,5 +82,11 @@ class User < ApplicationRecord
 
   def available_children_for(classroom_animation)
     children.where.not(id: children_for(classroom_animation))
+  end
+
+  private
+
+  def notify_newuser
+    AdminNotificationMailer.newuser(self).deliver_later
   end
 end
