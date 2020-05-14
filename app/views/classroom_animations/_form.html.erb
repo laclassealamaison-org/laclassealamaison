@@ -25,6 +25,7 @@
   <div class="mt-8 pt-5">
     <div class="flex">
       <%= form.submit 'Enregistrer la session', class: 'btn-green' %>
+      <%= link_to 'Retour au cours', teachers_course_path(@classroom_animation.course), class: 'btn-gray ml-2' %>
     </div>
   </div>
 <% end %>

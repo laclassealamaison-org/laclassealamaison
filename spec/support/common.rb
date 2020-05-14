@@ -9,6 +9,7 @@ shared_context 'With default models' do
 
   let(:classroom) { create :classroom, name: 'CP' }
   let(:course) { create :course, user: teacher, classroom: classroom, published: true }
+  let(:resource) {create :resource, classroom: classroom}
 
   let(:child) { create :child, parent: parent, classroom: classroom }
   let(:other_child) { create :child, parent: other_parent, classroom: classroom }

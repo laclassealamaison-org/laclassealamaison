@@ -1,0 +1,20 @@
+<%= form_for @resource, url: url_for([:administration, @resource]) do |f| %>
+  <div class="field">
+    <%= f.label :name, 'Nom', for: :name %>
+    <%= f.text_field :name, placeholder: "ex: video de maths CP", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+  </div>
+  <div class="field">
+    <%= f.label :description, 'Description', for: :description %>
+    <%= f.text_field :description.truncate(50, separator: ' '), placeholder: "ex: apprendre a multiplier par 4", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+  </div>
+  <div class="field">
+    <%= f.label :url, 'URL', for: :url %>
+    <%= f.text_field :url, placeholder: "ex: https://youtube.com", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500' %>
+  </div>
+  <div class="field">
+    <%= f.label :classroom, for: :classroom_id %>
+    <%= f.collection_select :classroom_id, Classroom.all, :id, :name, {}, class: 'block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline' %>
+  </div>
+  <%= f.submit (@resource.persisted? ? "Modifier la resource" : "Ajouter la resource"), class: 'btn-green' %>
+  <%= link_to "Annuler", administration_resources_path, class: 'btn-gray' %>
+<% end %>
