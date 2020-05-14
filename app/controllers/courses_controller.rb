@@ -3,8 +3,9 @@ class CoursesController < ApplicationController
   layout 'page'
 
   def index
-    @q = Course.where(published: true).ransack(params[:q])
-    @courses = @q.result(distinct: true)
+    # @q = Course.where(published: true).ransack(params[:q])
+    # @courses = @q.result(distinct: true)
+    @courses = Course.where(published: true)
   end
 
   def show

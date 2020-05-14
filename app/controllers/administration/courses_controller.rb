@@ -4,7 +4,7 @@ class Administration::CoursesController < ApplicationController
   before_action :check_authorization
 
   def index
-    @courses = policy_scope(Course).includes(:user).order("users.last_name", "published desc", :title)
+    @courses = policy_scope(Course).includes(:user, :classroom).order("classrooms.position", "users.last_name", "published desc", :title)
     authorize Course
   end
 

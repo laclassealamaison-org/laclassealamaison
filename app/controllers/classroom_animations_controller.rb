@@ -19,7 +19,6 @@ class ClassroomAnimationsController < ApplicationController
     @course = policy_scope(Course).where(id: params[:course_id]).first
     @classroom_animation = ClassroomAnimation.new(course: @course)
     authorize @classroom_animation
-    @classroom_animation.user = current_user
     @classroom_animation.starts_at = 1.day.from_now.change(hour: 9)
     @classroom_animation.childrens_maximum = 15
     @classrooms = Classroom.all
@@ -29,12 +28,15 @@ class ClassroomAnimationsController < ApplicationController
     @classroom_animation = ClassroomAnimation.new(classroom_animation_params)
     authorize @classroom_animation
     @classroom_animation.classroom = @classroom_animation.course&.classroom
-    @classroom_animation.user = current_user
+    @classroom_animation.user = @classroom_animation.course&.user
     @classroom_animation.live_url = 'https://meet.jit.si/' + SecureRandom.hex(12)
     if @classroom_animation.save
       notify("Nouvelle session de #{@classroom_animation.classroom.name} le #{l(@classroom_animation.starts_at, format: '%A %d/%m/%Y à %H:%M')} de #{@classroom_animation.childrens_maximum} enfants maximum par #{@classroom_animation.user.teacher_name}")
-
-      redirect_to teachers_course_path(@classroom_animation.course)
+      if current_user.teacher?
+        redirect_to teachers_course_path(@classroom_animation.course)
+      else
+        redirect_to classroom_animations_path
+      end
     else
       @classrooms = Classroom.all
       flash.now[:alert] = @classroom_animation.errors.full_messages
