@@ -24,6 +24,15 @@ module AdministrationUserConcern
       redirect_to url_for([:administration, user_role.to_s.pluralize.to_sym])
     end
 
+    def destroy
+      @user = policy_scope([:administration, user_role]).find(params[:id])
+      authorize [:administration, user_role]
+
+      @user.destroy!
+
+      redirect_to url_for([:administration, user_role.to_s.pluralize.to_sym])
+    end
+
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email)
     end

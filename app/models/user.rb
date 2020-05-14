@@ -42,9 +42,9 @@ class User < ApplicationRecord
   enum role: %i[user responsible_parent teacher admin]
   after_initialize :set_default_role, if: :new_record?
 
-  has_many :classroom_animations
-  has_many :courses
-  has_many :children, foreign_key: :parent_id, inverse_of: :parent
+  has_many :classroom_animations, dependent: :destroy
+  has_many :courses, dependent: :destroy
+  has_many :children, foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
   has_many :classroom_animation_reservations, through: :children
   has_many :reserved_animations, through: :classroom_animation_reservations, source: :classroom_animation
   scope :responsible_parents, -> { where(role: :responsible_parent) }
