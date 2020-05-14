@@ -1,11 +1,11 @@
 <%= render "layouts/common" do %>
   <div class="flex my-10 flex-col md:flex-row">
-    <div class="md:hidden mb-3">
+    <div class="hidden sm:block md:hidden mb-3">
       <div class="calm secondary poiting blue menu">
         <%= yield :menu %>
       </div>
     </div>
-    <div class="hidden md:block">
+    <div class="block sm:hidden md:block mb-3">
       <div class="calm vertical menu">
         <div class="header item">
           <%= yield :menu_title %>
@@ -23,7 +23,7 @@
         <% if content_for?(:page_title) %>
           <div class="md:block">
             <header class="bg-gray-100 border-2 border-gray-300 mb-6">
-              <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+              <div class="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
                 <h1 class="py-6 text-2xl md:text-4xl text-pink-400 font-bold">
                   <%= yield :page_title %>
                 </h1>

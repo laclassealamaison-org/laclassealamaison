@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 .field_with_errors {
   @apply flex;
 }
@@ -17,3 +18,4 @@ form.course_search {
 form.course_search > * {
   @apply mx-1;
 }
+/* purgecss end ignore */
