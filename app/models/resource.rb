@@ -20,5 +20,9 @@
 #
 class Resource < ApplicationRecord
   has_many :classroom_resources
+<<<<<<< HEAD
   has_many :classrooms, through: :classroom_resources
+=======
+  has_many :classroom, through: :classroom_resources
+>>>>>>> 7bb90d030ddf28878b1f540c8542bf48628cd0a8
 end

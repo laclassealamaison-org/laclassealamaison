@@ -55,8 +55,13 @@ ActiveRecord::Schema.define(version: 2020_04_22_150730) do
   end
 
   create_table "classroom_resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+<<<<<<< HEAD
     t.uuid "resource_id", null: false
     t.uuid "classroom_id", null: false
+=======
+    t.uuid "classroom_id", null: false
+    t.uuid "resource_id", null: false
+>>>>>>> 7bb90d030ddf28878b1f540c8542bf48628cd0a8
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["classroom_id"], name: "index_classroom_resources_on_classroom_id"

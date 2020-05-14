@@ -39,7 +39,11 @@ RSpec.describe 'Administration::ResourcesController', type: :request do
   describe '#create' do
 
     subject do
+<<<<<<< HEAD
       post new_administration_resource_path(resource)
+=======
+      post new_administration_resource(resource)
+>>>>>>> 7bb90d030ddf28878b1f540c8542bf48628cd0a8
       response
     end
 
