@@ -28,7 +28,7 @@ class Course < ApplicationRecord
 
   def title_with_description
     s = title
-    s += " (#{description})" if description
+    s += " (#{description})" if description.present?
     s
   end
 
