@@ -170,7 +170,7 @@ GEM
     pretender (0.3.4)
       actionpack (>= 4.2)
     public_suffix (4.0.3)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -342,7 +342,7 @@ DEPENDENCIES
   meta-tags
   pg (>= 0.18, < 2.0)
   pretender
-  puma (~> 4.1)
+  puma (~> 4.3)
   pundit
   rails (~> 6.0.2, >= 6.0.2.2)
   ransack
