@@ -37,6 +37,7 @@
           <% end %>
           <%= link_to 'Administration', administration_menus_path, class: 'liens ml-8' if current_user&.admin? %>
           <% if current_user %>
+          <%= link_to 'Profil', edit_user_registration_path, class: 'liens ml-8' %>
             <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: 'liens ml-8' %>
           <% else %>
             <%= link_to 'Se connecter', new_user_session_path,class: 'liens ml-8' %>

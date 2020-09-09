@@ -1,43 +1,59 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md text-center">
+    <h2 class="mt-6 text-3xl leading-9 font-extrabold text-gray-900">Modifier mon profil</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div>
+          <%= f.label :email, class: 'block text-sm font-medium leading-5 text-gray-700' %><br />
+          <div class="mt-1 rounded-md shadow-sm">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email",class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5' %>
+          </div>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="mt-6">
+          <%= f.label :password,'Nouveau mot de passe', class: 'block text-sm font-medium leading-5 text-gray-700' %> <i class="text-sm font-medium leading-5 text-gray-700">(laissez vide si vous ne souhaitez pas modifier votre mot de passe)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password",class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5' %>
+          <% if @minimum_password_length %>
+            <em class="text-sm font-medium leading-5 text-gray-700"><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+
+        <div class="mt-6">
+          <%= f.label :password_confirmation,'Confirmation du nouveau mot de passe', class: 'block text-sm font-medium leading-5 text-gray-700' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5' %>
+        </div>
+
+        <div class="mt-6">
+          <%= f.label :current_password, 'Mot de passe actuel', class: 'block text-sm font-medium leading-5 text-gray-700' %> <i class="text-sm font-medium leading-5 text-gray-700">(nous avons besoin de votre mot de passe actuel pour valider vos modifications)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password",class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5' %>
+        </div>
+
+        <div class="mt-6">
+          <span class="block w-full rounded-md shadow-sm">
+            <%= f.submit "Mettre à jour",class: 'w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out' %>
+          </span>
+        </div>
+        <% end %>
+        <div class="mt-6">
+          <span class="block w-full rounded-md shadow-sm">
+            <%= button_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete ,class: 'w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out' %>
+          </span>
+        </div>
+        <div class="mt-6">
+          <span class="block w-full rounded-md shadow-sm">
+            <%= link_to "Précédent", :back ,class: 'w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out' %>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
