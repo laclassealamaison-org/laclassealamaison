@@ -18,6 +18,7 @@
       </div>
       <div class="field">
         <input type="submit" name="" value="Enregistrer", class='btn-green'>
+        <%= link_to "Supprimer", administration_responsible_parent_path(@user), method: :delete, class: 'btn-red', data: {confirm: "Souhaitez vous supprimer ce parent ?"} %>
       </div>
     <% end %>
   </div>

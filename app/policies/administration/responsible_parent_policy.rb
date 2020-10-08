@@ -7,9 +7,13 @@ class Administration::ResponsibleParentPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def destroy?
+    user.admin?
+  end
+
   class Scope < Scope
     def resolve
-      User.responsible_parents
+      User.responsible_parent
     end
   end
 end

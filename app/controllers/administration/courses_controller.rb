@@ -26,6 +26,13 @@ class Administration::CoursesController < ApplicationController
     redirect_to administration_courses_path
   end
 
+  def destroy
+    @course = policy_scope(Course).find(params[:id])
+    authorize @course
+    @course.destroy!
+    redirect_to administration_courses_path
+  end
+
   def new
     @course = policy_scope(Course).build
     authorize @course

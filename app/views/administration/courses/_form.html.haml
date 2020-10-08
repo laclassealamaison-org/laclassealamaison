@@ -14,11 +14,13 @@
   .field
     = f.label :content, 'Contenu', for: :content
     = f.text_area :content, rows: 7, placeholder: "Décrivez en quelques lignes les notions abordées", class: 'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
-  .field
-    = f.label :published, 'Publié', for: :published
-    = f.check_box :published
+  - if @course.persisted?
+    .field
+      = f.label :published, 'Publié', for: :published
+      = f.check_box :published
   = f.submit (@course.persisted? ? "Modifier le cours" : "Ajouter le cours"), class: 'btn-green'
   = link_to "Annuler", administration_courses_path, class: 'btn-gray'
-
+  - if @course.persisted?
+    = link_to "Supprimer", administration_course_path(@course), method: :delete, class: 'float-right btn-red', data: {confirm: "Souhaitez vous supprimer ce cours ?"}
 :javascript
   $('.ui.dropdown').dropdown();

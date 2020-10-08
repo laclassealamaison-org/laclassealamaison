@@ -7,6 +7,10 @@ class Administration::CoursesPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def destroy?
+    user.admin?
+  end
+
   def create?
     user.admin?
   end
