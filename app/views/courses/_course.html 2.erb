@@ -1,0 +1,50 @@
+<div class="display-block rounded shadow-xl my-2 mx-2 border border-gray-200">
+  <div class="tooltip flex flex-col min-h-full items-stretch">
+    <%= link_to course_path(course), title: course.title do %>
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2 text-orange-500">
+          <%= course.title %>
+        </div>
+        <p class="text-gray-700 text-base">
+          <%= course.description %>
+        </p>
+      </div>
+      <div class="px-6 pt-4 mt-auto">
+        <span class="inline-block bg-teal-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-1">
+          <%= course.user.teacher_name %>
+        </span>
+      </div>
+      <div class="px-6 py-4 mt-auto">
+        <% unless defined?(hide_classroom) %>
+          <span class="inline-block bg-orange-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+            <%= course.classroom.name %>
+          </span>
+        <% end %>
+        <% if course.available? %>
+          <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+            Session disponible
+          </span>
+        <% elsif course.classroom_animations.upcoming.exists? %>
+          <span class="inline-block bg-red-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+            Complet
+          </span>
+        <% else %>
+          <span class="inline-block bg-yellow-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+            Pas de session
+          </span>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="mt-auto ">
+      <% if current_user %>
+        <% if course.available? %>
+          <%= link_to 'Voir les sessions', course_path(course), class: 'btn-green w-full justify-center' %>
+        <% else %>
+          <div class="btn-orange w-full justify-center">
+            Bientôt disponible
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
