@@ -18,6 +18,8 @@ class Child < ApplicationRecord
   belongs_to :parent, class_name: 'User', inverse_of: :children
   belongs_to :classroom
   has_many :classroom_animation_reservations, dependent: :destroy
+  has_many :progress_cards, dependent: :destroy
+
 
   def to_s
     name

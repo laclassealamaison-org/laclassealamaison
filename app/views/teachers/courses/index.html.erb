@@ -11,3 +11,11 @@
 <div class="courses w-full flex flex-wrap my-6">
   <%= render partial: 'course', collection: @courses %>
 </div>
+
+  <div class="flex flex-wrap justify-between">
+    <h2>Mes fiches de suivi</h2>
+  </div>
+
+  <%= link_to new_progress_card_path, class: 'sbtn btn-green' do %>
+  <i class="fas fa-plus mr-2"></i> Rédiger une fiche de suivi
+<% end %>
