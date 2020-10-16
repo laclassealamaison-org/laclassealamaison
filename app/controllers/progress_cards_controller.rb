@@ -18,6 +18,12 @@ class ProgressCardsController < ApplicationController
     end
   end
 
+  def destroy
+    @progress_card = ProgressCard.find(params[:id])
+    @progress_card.destroy
+    redirect_to teachers_courses_path
+  end
+
   private
 
    def progress_card_params

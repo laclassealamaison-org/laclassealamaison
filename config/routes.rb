@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :contacts, only: %i[new create]
   resources :newsletters, only: %i[new create]
   resources :questions, only: %i[new create]
-  resources :progress_cards, only: %i[new create]
+  resources :progress_cards, only: %i[new create destroy]
 
 
   # Application

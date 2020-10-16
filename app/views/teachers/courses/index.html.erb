@@ -33,6 +33,9 @@
               </div>
               <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
                 Fiche créée le <%= card.created_at.strftime("%d-%m-%Y") %>
+                <%= link_to progress_card_path(card), data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'self-center mr-2' do %>
+                <i class="fas fa-trash-alt pb-1 mr-1"></i>
+              <% end %>
               </div>
             </div>
             <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
