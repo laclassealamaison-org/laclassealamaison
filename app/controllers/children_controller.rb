@@ -18,6 +18,7 @@ class ChildrenController < ApplicationController
   def show
     @child = current_user.children.find(params[:id])
     @classroom_animation_reservation = ClassroomAnimationReservation.new
+    @progress_cards = ProgressCard.where(child_id: @child.id)
   end
 
   def update

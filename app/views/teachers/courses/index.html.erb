@@ -19,3 +19,30 @@
   <%= link_to new_progress_card_path, class: 'sbtn btn-green' do %>
   <i class="fas fa-plus mr-2"></i> Rédiger une fiche de suivi
 <% end %>
+
+<div class="courses w-full flex flex-wrap my-6">
+  <div class="bg-w white shadow overflow-hidden sm:rounded-md">
+  <ul class="list-none m-0">
+    <% @progress_cards.each do |card| %>
+      <li class="border-t border-gray-200 mb-0">
+        <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+          <div class="px-4 py-4 sm:px-6">
+            <div class="flex items-center justify-between my-1">
+              <div class="text-xl leading-5 font-medium text-pink-500 truncate">
+                <%= card.child.name %>
+              </div>
+              <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+                Fiche créée le <%= card.created_at.strftime("%d-%m-%Y") %>
+              </div>
+            </div>
+            <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+              <%= card.content %>
+            </div>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+</div>
