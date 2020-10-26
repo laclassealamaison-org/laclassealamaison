@@ -35,4 +35,10 @@ class ClassroomAnimationReservation < ApplicationRecord
   def to_s
     "#{child.name}, #{classroom_animation}"
   end
+
+
+  def presence_confirmation
+    if self.starts_at - DateTime.now <= 1
+    end
+  end
 end
