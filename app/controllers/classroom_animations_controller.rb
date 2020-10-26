@@ -73,6 +73,25 @@ class ClassroomAnimationsController < ApplicationController
     redirect_to classroom_animations_path
   end
 
+  def presence_confirmation
+    upcoming_animations = ClassroomAnimation.where("starts_at > ?", Date.today)
+    upcoming_animations.each do |animation|
+      if animation.starts_at - Date.today == 1
+        send_mail(animation)
+      end
+    end
+  end
+
+  def send_mail(animation)
+    reservations = ClassroomAnimationReservation.where(classroom_animation_id: animation.id)
+    reservations.each do |reservation|
+      child = Child.find(reservation.child_id)
+      user = child.parent
+      mail = UserMailer.with(user: user).presence_confirmation_mail
+      mail.deliver_now
+    end
+  end
+
   private
 
   def get_layout
