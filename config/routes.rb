@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   namespace :administration do
+    resources :resources
     resources :menus, only: [:index]
     resources :courses
     resources :responsible_parents, only: %i[index edit update] do
