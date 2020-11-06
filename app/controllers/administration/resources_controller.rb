@@ -1,4 +1,7 @@
 class Administration::ResourcesController < ApplicationController
+  include AdministrationUserConcern
+  before_action :set_resource, only: [:destroy, :edit, :update]
+
   def index
     @resources = Resource.all
   end
@@ -14,6 +17,27 @@ class Administration::ResourcesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit;  end
+
+  def update
+    if @resource.update(resource_params)
+       redirect_to administration_resources_path
+     else
+       render :edit
+     end
+  end
+
+  def destroy
+    @resource.destroy
+    redirect_to administration_resources_path
+  end
+
+  private
+
+  def set_resource
+    @resource = Resource.find(params[:id])
   end
 
   def resource_params

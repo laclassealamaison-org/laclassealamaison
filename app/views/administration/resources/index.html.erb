@@ -18,6 +18,7 @@
           <thead>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Nom</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Classe</th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Description</th>
             <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Edition</th>
           </thead>
           <tbody>
@@ -25,6 +26,7 @@
             <tr>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= link_to resource.name, resource.url %></td>
               <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= resource.classroom %></td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200"><%= resource.description.truncate_words(4) %></td>
               <td>
                 <%= link_to content_tag(:i, "", class: 'fas fa-edit'), edit_administration_resource_path(resource) %>
               </td>
