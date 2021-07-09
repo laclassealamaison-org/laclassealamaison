@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_190058) do
+ActiveRecord::Schema.define(version: 2020_10_13_080903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 2020_04_12_190058) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "progress_cards", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "content"
+    t.uuid "user_id", null: false
+    t.uuid "child_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["child_id"], name: "index_progress_cards_on_child_id"
+    t.index ["user_id"], name: "index_progress_cards_on_user_id"
+  end
+
   create_table "resources", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "classroom_id", null: false
     t.string "url"
@@ -115,5 +125,7 @@ ActiveRecord::Schema.define(version: 2020_04_12_190058) do
 
   add_foreign_key "classroom_animations", "classrooms"
   add_foreign_key "classroom_animations", "users"
+  add_foreign_key "progress_cards", "children"
+  add_foreign_key "progress_cards", "users"
   add_foreign_key "resources", "classrooms"
 end

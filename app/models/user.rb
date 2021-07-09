@@ -48,6 +48,7 @@ class User < ApplicationRecord
   has_many :children, foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
   has_many :classroom_animation_reservations, through: :children
   has_many :reserved_animations, through: :classroom_animation_reservations, source: :classroom_animation
+  has_many :progress_cards
   scope :responsible_parents, -> { where(role: :responsible_parent) }
   scope :teachers, -> { where(role: :teacher) }
   scope :simple_users, -> { where(role: :user) }

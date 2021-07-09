@@ -5,6 +5,11 @@ class Teachers::CoursesController < ApplicationController
   def index
     @courses = policy_scope(Course).order("published desc", :title)
     authorize Course
+    @progress_cards = ProgressCard.where(user_id: current_user.id)
+  end
+
+  def cards_index
+    @progress_cards = ProgressCard.where(user_id: current_user.id)
   end
 
   def create
