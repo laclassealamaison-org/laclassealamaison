@@ -270,6 +270,9 @@ GEM
       rubyzip (>= 1.2.2)
     simple_calendar (2.3.0)
       rails (>= 3.0)
+    simple_form (5.0.3)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -356,6 +359,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   simple_calendar
+  simple_form
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
